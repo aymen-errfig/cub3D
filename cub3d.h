@@ -15,7 +15,7 @@
 # define FOV_SCALE 0.66
 
 
-# define WIDTH 900
+# define WIDTH 1200
 # define HEIGHT 700
 
 #define UP_KEYCODE  13
@@ -59,4 +59,16 @@ typedef struct	s_cub3d
 	void		*mlx_win;
 	t_data     img_data;
 }	t_cub3d;
+
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
+void draw_rectangle(t_data *data, t_vector v, int color, int size, int is_line);
+void draw_map(t_cub3d *prog);
+t_player player_init(void);
+int	move_player(t_cub3d *prog);
+int	keyboard_press_handler(int keycode, t_cub3d *prog);
+double degree_to_rad(double angle);
+void destroy_window(t_cub3d *prog);
+void draw_line(t_data *data, t_vector start, t_vector end, int color);
+int	is_hit_wall(t_cub3d prog, t_vector position);
+void	draw_rays(t_cub3d prog);
 #endif

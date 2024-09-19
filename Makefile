@@ -2,10 +2,9 @@ CC = cc
 CFLAGS = #-Wall -Wextra -Werror 
 
 # CFLAGS = -O2
-CFLAGS += -Wpedantic
+# CFLAGS += -Wpedantic
 
-SRCS = 	main.c
-
+SRCS = 	draw.c hooks_handler.c main.c player.c raycast.c utils.c
 OBJS = $(SRCS:.c=.o)
 NAME = cub3d
 HEADERS = cub3d.h
@@ -17,8 +16,8 @@ $(NAME): $(OBJS)
 	$(CC) $(OBJS) $(LINKERS) -o $(NAME) 
 	@echo "compiling the mandatory part"
 
-%.o: %.c 
-	@$(CC) $(HEADERS) $(CFLAGS) -c $< -o $@
+%.o: %.c $(HEADERS)
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 re: fclean all
 
