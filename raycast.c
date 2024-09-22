@@ -9,11 +9,10 @@ double calculate_distance(t_vector v1, t_vector v2)
     return distance;
 }
 
-
 void dda_algo(t_cub3d prog, double angle)
 {
-    int is_ray_down = angle > 0 && angle < M_PI;
-    int is_ray_up = !is_ray_down;
+    int is_ray_up = (angle > 3 * M_PI / 2 || angle < M_PI / 2);
+    int is_ray_down = !is_ray_up;
     int is_ray_right = angle < 0.5 * M_PI || angle > 1.5 * M_PI;
     int is_ray_left = !is_ray_right;
     t_vector h_intersection;
@@ -34,7 +33,6 @@ void dda_algo(t_cub3d prog, double angle)
         h_step.x *= -1;
     if (is_ray_right && h_step.x < 0)
         h_step.x *= -1;
-
     // Vertical intersection
     v_intersection.x = floor(prog.player.player_pos.x / GRID_SIZE) * GRID_SIZE; 
     if (is_ray_right)
@@ -48,34 +46,27 @@ void dda_algo(t_cub3d prog, double angle)
         v_step.y *= -1;
     if (is_ray_down && v_step.y < 0)
         v_step.y *= -1;
-
     t_vector current = prog.player.player_pos;
-    while (calculate_distance(current, prog.player.player_pos) < 100)
+    while (!is_hit_wall(prog, current) && calculate_distance(current, prog.player.player_pos) < GRID_SIZE)
     {
         if (calculate_distance(current, h_intersection) < calculate_distance(current, v_intersection))
         {
-            if (is_hit_wall(prog, h_intersection))
-                break;
+            if (is_hit_wall(prog, h_intersection)) break;
             current.x = h_intersection.x;
             current.y = h_intersection.y;
-            h_intersection.x += h_step.x;
-            h_intersection.y += h_step.y; 
         }
         else
         {
-            if (is_hit_wall(prog, v_intersection))
-                break;
+            if (is_hit_wall(prog, v_intersection)) break;
             current.x = v_intersection.x;
             current.y = v_intersection.y;
-            v_intersection.x += v_step.x;
-            v_intersection.y += v_step.y; 
         }
-	h_intersection.x += h_step.x, h_intersection.y += h_step.y; 
-	v_intersection.x += v_step.x, v_intersection.y += v_step.y; 
+
+        h_intersection.x += h_step.x; h_intersection.y += h_step.y; 
+        v_intersection.x += v_step.x; v_intersection.y += v_step.y; 
     }
     draw_line(&prog.img_data, prog.player.player_pos, current, 0xFF00FF);    
 }
-
 
 void	draw_rays(t_cub3d prog)
 {
@@ -83,15 +74,11 @@ void	draw_rays(t_cub3d prog)
 	double angle;
 
 	i = -1;
-	angle = prog.player.player_angle - (degree_to_rad(60.f) / 2.0f);
-	while (++i < (WIDTH))
+	angle = prog.player.player_angle - FOV_SCALE / 2;
+	while (++i < WIDTH)
 	{
-		angle = fmod(angle, 2 * M_PI);
-		if (angle < 0)
-			angle *= 2 * M_PI;
+		angle = normalize_angle(angle);
 		dda_algo(prog, angle);
-		/* draw_line(&prog.img_data, prog.player.player_pos, end, 0xFF00FF); */	
-		angle += degree_to_rad(60.0) / (WIDTH);
-		//break ;
+		angle += FOV_SCALE / WIDTH;
 	}
 }

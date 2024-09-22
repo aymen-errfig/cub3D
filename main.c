@@ -46,8 +46,8 @@ int main(void)
 			&prog.img_data.line_length, &prog.img_data.endian);
 	prog.player = player_init();
 	draw_map(&prog);
-	draw_rectangle(&prog.img_data, prog.player.player_pos, 0x0000FF, 20, 0);
-	/* draw_rays(prog); */
+	/* draw_rectangle(&prog.img_data, prog.player.player_pos, 0x0000FF, 20, 0); */
+	draw_rays(prog);
 	mlx_put_image_to_window(prog.mlx_ptr, prog.mlx_win, prog.img_data.img, 0, 0);
 	mlx_hook(prog.mlx_win, 02, 1L<<1, keyboard_press_handler, &prog);
 	mlx_loop(prog.mlx_ptr);

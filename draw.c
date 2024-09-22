@@ -9,11 +9,11 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 
 void draw_rectangle(t_data *data, t_vector v, int color, int size, int is_line)
 {
-	int i = v.x + (2 * !is_line);
-	int j = v.y + (2 * !is_line);
+	int i = v.x ;
+	int j = v.y ;
 	while (i < v.x+size)
 	{
-		j = v.y + (2 * !is_line);
+		j = v.y ;
 		while (j < v.y+size)
 		{
 			my_mlx_pixel_put(data, i,j, color);
@@ -71,7 +71,7 @@ void draw_map(t_cub3d *prog)
 
 void swap(double *x, double *y)
 {
-	int tmp;
+	double tmp;
 
 	tmp = *x;
 	*x = *y;
@@ -84,8 +84,8 @@ void draw_line(t_data *data, t_vector start, t_vector end, int color)
     {
 	    return ;
     }
-    int diffX = fabs(end.x - start.x);
-    int diffY = fabs(end.y - start.y);
+    double diffX = fabs(end.x - start.x);
+    double diffY = fabs(end.y - start.y);
     int step = (diffX < diffY);  // Check if the line is steep
     double err = diffX / 2.;
     if (step)

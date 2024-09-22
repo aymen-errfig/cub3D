@@ -9,7 +9,7 @@ int	keyboard_press_handler(int keycode, t_cub3d *prog)
 
 	(void)prog;
 	if (keycode != 258 && keycode != UP_KEYCODE && keycode != DOWN_KEYCODE && keycode != RIGHT_KEYCODE && 
-	keycode != LEFT_KEYCODE && keycode != 53)
+	keycode != LEFT_KEYCODE && keycode != 53 && keycode != RIGHT_ARROW_KEYCODE && keycode != LEFT_ARROW_KEYCODE)
 		return (1);
 	if (keycode == 53)
 	{
@@ -24,48 +24,44 @@ int	keyboard_press_handler(int keycode, t_cub3d *prog)
 	{
 		new_pos.x = prog->player.player_pos.x + speed_cos;
 		new_pos.y = prog->player.player_pos.y + speed_sin;
-		/* printf ("new pos: %f %f\n", new_pos.x, new_pos.y); */
-		/* printf ("new pos: %d %d\n", (int)floor(new_pos.y / GRID_SIZE), (int)floor(new_pos.x / GRID_SIZE)); */
-		if (prog->map[(int)floor(new_pos.y / (double)GRID_SIZE)][(int)floor(new_pos.x / (double)GRID_SIZE)] == 1)
-		{
+		if (is_hit_wall(*prog, new_pos))
 			return (1);
-		}
 		prog->player.player_pos = new_pos;
 	}
 	else if (keycode == DOWN_KEYCODE)
 	{
 		new_pos.x = prog->player.player_pos.x - speed_cos;
 		new_pos.y = prog->player.player_pos.y - speed_sin;
-		/* printf ("new pos: %f %f\n", new_pos.x, new_pos.y); */
-		/* printf ("new pos: %d %d\n", (int)floor(new_pos.y / (double)GRID_SIZE), (int)floor(new_pos.x / GRID_SIZE)); */
-		if (prog->map[(int)floor(new_pos.y / (double)GRID_SIZE)][(int)floor(new_pos.x / (double)GRID_SIZE)] == 1)
-		{
+		if (is_hit_wall(*prog, new_pos))
 			return (1);
-		}
 		prog->player.player_pos = new_pos;
 	}
 	else if (keycode == LEFT_KEYCODE)
 	{
 		new_pos.x = prog->player.player_pos.x - speed_sin;
 		new_pos.y = prog->player.player_pos.y + speed_cos;
-		if (prog->map[(int)floor(new_pos.y / (double)GRID_SIZE)][(int)floor(new_pos.x / (double)GRID_SIZE)] == 1)
-		{
+
+		if (is_hit_wall(*prog, new_pos))
 			return (1);
-		}
 		prog->player.player_pos = new_pos;
-		// prog->player.player_angle += degree_to_rad(3);
 	}
 	else if (keycode == RIGHT_KEYCODE)
 	{
 		new_pos.x = prog->player.player_pos.x + speed_sin;
 		new_pos.y = prog->player.player_pos.y - speed_cos;
-		if (prog->map[(int)floor(new_pos.y / (double)GRID_SIZE)][(int)floor(new_pos.x / (double)GRID_SIZE)] == 1)
-		{
+		if (is_hit_wall(*prog, new_pos))
 			return (1);
-		}
 		prog->player.player_pos = new_pos;
 	}
-	// else if (keycode == RIGH)
+	else if (keycode == RIGHT_ARROW_KEYCODE)
+	{
+		 prog->player.player_angle -= degree_to_rad(3);
+	}
+	else if (keycode == LEFT_ARROW_KEYCODE)
+	{
+		 prog->player.player_angle += degree_to_rad(3);
+	}
+	/* prog->player.player_angle = normalize_angle(prog->player.player_angle); */
 	move_player(prog);
 	return (0);
 }

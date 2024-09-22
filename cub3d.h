@@ -12,16 +12,18 @@
 # define E 3
 
 # define GRID_SIZE 100
-# define FOV_SCALE 0.66
+# define FOV_SCALE 0.69813170079
 
-
-# define WIDTH 1200
+# define WIDTH 900
 # define HEIGHT 700
 
 #define UP_KEYCODE  13
 #define DOWN_KEYCODE  1
 #define LEFT_KEYCODE  2
 #define RIGHT_KEYCODE  0
+
+#define LEFT_ARROW_KEYCODE  123
+#define RIGHT_ARROW_KEYCODE  124
 
 typedef struct	s_data {
 	void	*img;
@@ -30,7 +32,6 @@ typedef struct	s_data {
 	int		line_length;
 	int		endian;
 }	t_data;
-
 
 typedef struct s_vector
 {
@@ -71,4 +72,5 @@ void destroy_window(t_cub3d *prog);
 void draw_line(t_data *data, t_vector start, t_vector end, int color);
 int	is_hit_wall(t_cub3d prog, t_vector position);
 void	draw_rays(t_cub3d prog);
+double	normalize_angle(double angle);
 #endif
