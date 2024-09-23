@@ -20,7 +20,7 @@ int	move_player(t_cub3d *prog)
 		exit(1);
 	prog->img_data.addr = mlx_get_data_addr(prog->img_data.img, &prog->img_data.bits_per_pixel,
 			&prog->img_data.line_length, &prog->img_data.endian);
-	draw_map(prog);
+	draw_minimap(prog);
 	draw_rays(*prog);
 	/* draw_rectangle(&prog->img_data, prog->player.player_pos, 0x0000FF, 20, 0); */
 	mlx_put_image_to_window(prog->mlx_ptr, prog->mlx_win, prog->img_data.img, 0, 0);

@@ -19,9 +19,9 @@ int main(void)
 	int map[7][9] = {
 		{1, 1, 1, 1 ,1, 1, 1, 1 ,1},
 		{1, 0, 0, 0 ,0, 0, 0, 0 ,1},
-		{1, 0, 0, 0 ,0, 0, 0, 0 ,1},
-		{1, 0, 0, 0, 0, 0, 0, 0 ,1},
-		{1, 0, 0, 0 ,0, 0, 0, 0 ,1},
+		{1, 0, 0, 0 ,1, 0, 0, 0 ,1},
+		{1, 0, 1, 1, 1, 1, 1, 0 ,1},
+		{1, 0, 0, 0 ,1, 0, 0, 0 ,1},
 		{1, 0, 0, 0 ,0, 0, 0, 0 ,1},
 		{1, 1, 1, 1 ,1, 1, 1, 1 ,1},
 	};
@@ -40,12 +40,12 @@ int main(void)
 		exit(-1);
 	prog.mlx_win = mlx_new_window(prog.mlx_ptr, WIDTH, HEIGHT, "Cub3d");
 	// to protect
-	prog.img_data.img = mlx_new_image(prog.mlx_ptr, WIDTH, 700);
+	prog.img_data.img = mlx_new_image(prog.mlx_ptr, MINIPAM_W, MINIPAM_H);
 	// to protect
 	prog.img_data.addr = mlx_get_data_addr(prog.img_data.img, &prog.img_data.bits_per_pixel,
 			&prog.img_data.line_length, &prog.img_data.endian);
 	prog.player = player_init();
-	draw_map(&prog);
+	draw_minimap(&prog);
 	/* draw_rectangle(&prog.img_data, prog.player.player_pos, 0x0000FF, 20, 0); */
 	draw_rays(prog);
 	mlx_put_image_to_window(prog.mlx_ptr, prog.mlx_win, prog.img_data.img, 0, 0);

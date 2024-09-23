@@ -23,7 +23,7 @@ void draw_rectangle(t_data *data, t_vector v, int color, int size, int is_line)
 	}
 }
 
-void draw_map(t_cub3d *prog)
+void draw_minimap(t_cub3d *prog)
 {
 	int i = 0;
 	int j = 0;

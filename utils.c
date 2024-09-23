@@ -1,16 +1,8 @@
 #include "cub3d.h"
 
-int	is_hit_wall1(t_cub3d prog, t_vector position, int is_ray_up, int is_ray_right)
-{
-	if (position.x >= WIDTH || position.y >= HEIGHT || position.x < 0 || position.y < 0)
-	    return (1);
-	return (prog.map[(int)floor(position.y/GRID_SIZE)][(int)floor(position.x/GRID_SIZE)]);
-}
-
-
 int	is_hit_wall(t_cub3d prog, t_vector position)
 {
-	if (position.x >= WIDTH || position.y >= HEIGHT || position.x < 0 || position.y < 0)
+	if (position.x >= MINIPAM_W || position.y >= MINIPAM_H || position.x < 0 || position.y < 0)
 	    return (1);
 	int y = (int)floor(position.y / GRID_SIZE);
 	int x = (int)floor(position.x / GRID_SIZE);  // Corrected from position.y to position.x
