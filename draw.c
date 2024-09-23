@@ -43,32 +43,6 @@ void draw_map(t_cub3d *prog)
 	}
 }
 
-/* void	bresenham_draw_line(t_vector start, t_vector end) */
-/* { */
-/* 	int step_x; */
-/* 	int step_y; */
-/* 	int d; */
-
-/* 	step_x = abs((int)end.x - (int)start.x); */
-/* 	step_y = abs((int)end.y - (int)start.y); */
-/* 	d = 2 * step_y - step_x; */
-/* 	while (1) */
-/* 	{ */
-/* 		if (d > 0) */
-/* 		{ */
-/* 			start.x += 1; */
-/* 			start.y += 1; */
-/* 		} */
-/* 		else if (d < 0) */
-/* 		{ */
-/* 		} */
-/* 		step_x = end.x - start.x; */
-/* 		step_y = end.y - start.y; */
-/* 		d = 2 * step_y - step_x; */
-
-/* 	} */
-/* } */
-
 void swap(double *x, double *y)
 {
 	double tmp;
@@ -78,42 +52,20 @@ void swap(double *x, double *y)
 	*y = tmp;
 }
 
-void draw_line(t_data *data, t_vector start, t_vector end, int color)
+void draw_line(t_data *data, t_vector start, t_vector end, int color) 
 {
-    if (end.x == start.x && end.y == start.y)
-    {
-	    return ;
-    }
-    double diffX = fabs(end.x - start.x);
-    double diffY = fabs(end.y - start.y);
-    int step = (diffX < diffY);  // Check if the line is steep
-    double err = diffX / 2.;
-    if (step)
-    {
-        swap(&start.x, &start.y);
-        swap(&end.x, &end.y);
-    }
-    if (start.x > end.x)
-    {
-        swap(&start.x, &end.x);
-        swap(&start.y, &end.y);
-    }
-    diffX = end.x - start.x;
-    diffY = fabs(end.y - start.y);
-    int ystep = (start.y < end.y) ? 1 : -1;
-    while (start.x <= end.x)  // Ensure last point is drawn
-    {
-        if (!step)
-            my_mlx_pixel_put(data, (int)start.x, (int)start.y, color);
-        else
-            my_mlx_pixel_put(data, (int)start.y, (int)start.x, color);
+    int i;
+    double x = end.x - start.x;
+    double y = end.y - start.y;
+    double length = sqrt(x * x + y * y);
+    double addx = x / length;
+    double addy = y / length;
+    x = start.x;
+    y = start.y;
 
-        err -= diffY;
-        if (err < 0)
-        {
-            start.y += ystep;
-            err += diffX;
-        }
-        start.x += 1;
+    for (i = 0; i < length; i += 1) {
+	    my_mlx_pixel_put(data,(int)round(x), (int)round(y),color );
+        x += addx;
+        y += addy;
     }
 }

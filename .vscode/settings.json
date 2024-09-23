@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "chrono": "c",
+        "__node_handle": "c"
+    }
+}
