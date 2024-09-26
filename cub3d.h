@@ -54,6 +54,17 @@ typedef struct s_player
 	double			player_angle;
 }	t_player;
 
+
+typedef struct s_ray
+{
+    int is_ray_up;
+    int is_ray_down;
+    int is_ray_right;
+    int is_ray_left;
+    double distance;
+    t_vector ray_pos;
+}	t_ray;
+
 typedef struct	s_cub3d
 {
 	char		**map;
