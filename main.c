@@ -44,10 +44,21 @@ int main(void)
 	// to protect
 	prog.img_data.addr = mlx_get_data_addr(prog.img_data.img, &prog.img_data.bits_per_pixel,
 			&prog.img_data.line_length, &prog.img_data.endian);
+
+	prog.img_data.img = mlx_new_image(prog.mlx_ptr, MINIPAM_W, MINIPAM_H);
+	// to protect
+	prog.img_data.addr = mlx_get_data_addr(prog.img_data.img, &prog.img_data.bits_per_pixel,
+			&prog.img_data.line_length, &prog.img_data.endian);
+
+	prog.game_img.img = mlx_new_image(prog.mlx_ptr, WIDTH, HEIGHT);
+	// to protect
+	prog.game_img.addr = mlx_get_data_addr(prog.game_img.img, &prog.game_img.bits_per_pixel,
+			&prog.game_img.line_length, &prog.game_img.endian);
+
 	prog.player = player_init();
 	draw_minimap(&prog);
-	/* draw_rectangle(&prog.img_data, prog.player.player_pos, 0x0000FF, 20, 0); */
 	draw_rays(prog);
+	mlx_put_image_to_window(prog.mlx_ptr, prog.mlx_win, prog.game_img.img, 0, 0);
 	mlx_put_image_to_window(prog.mlx_ptr, prog.mlx_win, prog.img_data.img, 0, 0);
 	mlx_hook(prog.mlx_win, 02, 1L<<1, keyboard_press_handler, &prog);
 	mlx_loop(prog.mlx_ptr);

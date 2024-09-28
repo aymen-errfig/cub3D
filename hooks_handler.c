@@ -62,6 +62,7 @@ int	keyboard_press_handler(int keycode, t_cub3d *prog)
 		 prog->player.player_angle += degree_to_rad(3);
 	}
 	/* prog->player.player_angle = normalize_angle(prog->player.player_angle); */
+	
 	move_player(prog);
 	return (0);
 }

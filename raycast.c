@@ -30,9 +30,9 @@ t_vector horizontal_intersection(t_vector   current, t_cub3d prog, double angle,
     {
          if (ray.is_ray_up)
             h_intersection.y -= 1;
-        if (is_hit_wall(prog, h_intersection)) break;
-        current.x = h_intersection.x;
-        current.y = h_intersection.y;
+        if (is_hit_wall(prog, h_intersection)) 
+		break;
+	current = h_intersection;
         h_intersection.x += h_step.x; h_intersection.y += h_step.y; 
     }
     return (h_intersection);
@@ -60,8 +60,7 @@ t_vector vertical_intersection(t_vector   current, t_cub3d prog, double angle, t
         if (ray.is_ray_left)
             v_intersection.x -= 1;
         if (is_hit_wall(prog, v_intersection)) break;
-        current.x = v_intersection.x;
-        current.y = v_intersection.y;
+	current = v_intersection;
         v_intersection.x += v_step.x; v_intersection.y += v_step.y; 
     }
     return (v_intersection);
@@ -71,19 +70,23 @@ void dda_algo(t_cub3d prog, double angle, t_ray *ray)
 {
 	t_vector h_intersection;
     	t_vector v_intersection;
-    	ray->ray_pos = prog.player.player_pos;
+    	t_vector player;
 
+    player = prog.player.player_pos;
 	ray->is_ray_up = (angle < 0 || angle > M_PI);
     	ray->is_ray_down = !ray->is_ray_up;
     	ray->is_ray_right = angle > 3 * M_PI / 2 || angle < M_PI / 2;
     	ray->is_ray_left = !ray->is_ray_right;
-    	h_intersection = horizontal_intersection(ray->ray_pos,prog, angle, *ray);
-    	v_intersection = vertical_intersection(ray->ray_pos,prog, angle, *ray);
-    	if (calculate_distance(ray->ray_pos, h_intersection) < calculate_distance(ray->ray_pos, v_intersection))
-        	ray->ray_pos = h_intersection;
-    	else
-         	ray->ray_pos = v_intersection;
-    	draw_line(&prog.img_data, prog.player.player_pos, ray->ray_pos, 0xFF00FF);
+    	h_intersection = horizontal_intersection(player, prog, angle, *ray);
+    	v_intersection = vertical_intersection(player, prog, angle, *ray);
+	ray->ray_pos = h_intersection;
+	ray->distance = calculate_distance(player, h_intersection);
+	if (calculate_distance(player, v_intersection) < ray->distance) 
+	{
+		ray->ray_pos = v_intersection;
+		ray->distance = calculate_distance(player, v_intersection);
+	}
+	draw_line(&prog.img_data, prog.player.player_pos, ray->ray_pos, 0xFF00FF);
 }
 
 void	draw_rays(t_cub3d prog)
@@ -97,6 +100,7 @@ void	draw_rays(t_cub3d prog)
 	while (++i < WIDTH)
 	{
 		angle = normalize_angle(angle);
+		ray.index = i;
 		dda_algo(prog, angle, &ray);
 		angle += FOV_SCALE / WIDTH;
 	}

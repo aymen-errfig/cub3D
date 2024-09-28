@@ -61,6 +61,7 @@ typedef struct s_ray
     int is_ray_down;
     int is_ray_right;
     int is_ray_left;
+    int index;
     double distance;
     t_vector ray_pos;
 }	t_ray;
@@ -74,6 +75,7 @@ typedef struct	s_cub3d
 	void		*mlx_ptr;
 	void		*mlx_win;
 	t_data     img_data;
+	t_data     game_img;
 }	t_cub3d;
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
