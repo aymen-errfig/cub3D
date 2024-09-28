@@ -28,9 +28,9 @@ t_vector horizontal_intersection(t_vector   current, t_cub3d prog, double angle,
         h_step.x *= -1;
     while (1)
     {
-         if (ray.is_ray_up)
-            h_intersection.y -= 1;
-        if (is_hit_wall(prog, h_intersection)) 
+        //  if (ray.is_ray_up)
+        //     h_intersection.y -= 1;
+        if (is_hit_wall(prog,(t_vector) {.x=h_intersection.x,.y=h_intersection.y - ray.is_ray_up })) 
 		break;
 	current = h_intersection;
         h_intersection.x += h_step.x; h_intersection.y += h_step.y; 
@@ -57,10 +57,12 @@ t_vector vertical_intersection(t_vector   current, t_cub3d prog, double angle, t
         v_step.y *= -1;
     while (1)
     {
-        if (ray.is_ray_left)
-            v_intersection.x -= 1;
-        if (is_hit_wall(prog, v_intersection)) break;
-	current = v_intersection;
+        // if (ray.is_ray_left)
+        //     v_intersection.x -= 1;
+        // if (is_hit_wall(prog, v_intersection)) break;
+          if (is_hit_wall(prog,(t_vector) {.x=v_intersection.x - ray.is_ray_left,.y=v_intersection.y  }))
+            break;
+	    current = v_intersection;
         v_intersection.x += v_step.x; v_intersection.y += v_step.y; 
     }
     return (v_intersection);
@@ -86,16 +88,34 @@ void dda_algo(t_cub3d prog, double angle, t_ray *ray)
 		ray->ray_pos = v_intersection;
 		ray->distance = calculate_distance(player, v_intersection);
 	}
-	double distancePorjectionPlane = (WIDTH/2.) / tan(degree_to_rad(30));
-	double wallStripHeight = (GRID_SIZE / (ray->distance * 25.0)) * distancePorjectionPlane;
-	printf ("%f %f\n", distancePorjectionPlane, wallStripHeight);
-	t_vector wall;
-	wall.x = ray->index;
-	wall.y = (HEIGHT/2.0) - (wallStripHeight / 2.0);
-	t_vector width;
-	width.x = 1;
-	width.y = wallStripHeight;
-	rec(&prog.img_data, wall, 0xFFFF00, width);
+    if (ray->distance < 35)
+        ray->distance = 35;
+     printf("%f\n", ray->distance);
+    double wall_height = ((GRID_SIZE * HEIGHT) / ray->distance);
+    printf("%f\n", wall_height);
+    t_vector begin;
+    begin.y = (HEIGHT / 2) - (wall_height / 2);
+    begin.x = ray->index;
+    t_vector end;
+    end.y = (HEIGHT / 2) + (wall_height / 2);
+    end.x = ray->index;
+    
+    // while (++y < end)
+    // {
+    //     draw_line(&prog.img_data, prog.player.player_pos, ray->ray_pos, 0xFF00FF);
+    // }
+	// double distancePorjectionPlane = (WIDTH/2.) / tan(degree_to_rad(30));
+	// double wallStripHeight = (GRID_SIZE / (ray->distance * 25.0)) * distancePorjectionPlane;
+    // wallStripHeight *= 1.0;
+	// printf ("%f %f\n", distancePorjectionPlane, wallStripHeight);
+	// t_vector wall;
+	// wall.x = ray->index;
+	// wall.y = (HEIGHT/2.0) - (wallStripHeight / 2.0);
+	// t_vector width;
+	// width.x = 1;
+	// width.y = wallStripHeight;
+	// rec(&prog.img_data, wall, 0xFFFF00, width);
+	draw_line(&prog.img_data, begin, end, 0x00FF00);
 	draw_line(&prog.img_data, prog.player.player_pos, ray->ray_pos, 0xFF00FF);
 }
 
