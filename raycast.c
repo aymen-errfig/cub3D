@@ -72,7 +72,7 @@ void dda_algo(t_cub3d prog, double angle, t_ray *ray)
     	t_vector v_intersection;
     	t_vector player;
 
-    player = prog.player.player_pos;
+	player = prog.player.player_pos;
 	ray->is_ray_up = (angle < 0 || angle > M_PI);
     	ray->is_ray_down = !ray->is_ray_up;
     	ray->is_ray_right = angle > 3 * M_PI / 2 || angle < M_PI / 2;
@@ -86,6 +86,16 @@ void dda_algo(t_cub3d prog, double angle, t_ray *ray)
 		ray->ray_pos = v_intersection;
 		ray->distance = calculate_distance(player, v_intersection);
 	}
+	double distancePorjectionPlane = (WIDTH/2.) / tan(degree_to_rad(30));
+	double wallStripHeight = (GRID_SIZE / (ray->distance * 25.0)) * distancePorjectionPlane;
+	printf ("%f %f\n", distancePorjectionPlane, wallStripHeight);
+	t_vector wall;
+	wall.x = ray->index;
+	wall.y = (HEIGHT/2.0) - (wallStripHeight / 2.0);
+	t_vector width;
+	width.x = 1;
+	width.y = wallStripHeight;
+	rec(&prog.img_data, wall, 0xFFFF00, width);
 	draw_line(&prog.img_data, prog.player.player_pos, ray->ray_pos, 0xFF00FF);
 }
 

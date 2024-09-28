@@ -91,4 +91,5 @@ int	is_hit_wall1(t_cub3d prog, t_vector position, int is_ray_up, int is_ray_righ
 int	is_hit_wall(t_cub3d prog, t_vector position);
 void	draw_rays(t_cub3d prog);
 double	normalize_angle(double angle);
+void rec(t_data *data, t_vector v, int color, t_vector size);
 #endif
