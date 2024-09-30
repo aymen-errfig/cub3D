@@ -27,8 +27,8 @@ int	move_player(t_cub3d *prog)
 	// 	exit(1);
 	// prog->game_img.addr = mlx_get_data_addr(prog->game_img.img, &prog->game_img.bits_per_pixel,
 	// 		&prog->game_img.line_length, &prog->game_img.endian);
-	draw_minimap(prog);
 	draw_rays(*prog);
+	draw_minimap(prog);
 	mlx_put_image_to_window(prog->mlx_ptr, prog->mlx_win, prog->game_img.img, 0, 0); 
 	mlx_put_image_to_window(prog->mlx_ptr, prog->mlx_win, prog->img_data.img, 0, 0);
 	return (0);

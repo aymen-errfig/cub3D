@@ -107,8 +107,13 @@ void dda_algo(t_cub3d prog, double angle, t_ray *ray)
     t_vector end;
     end.y = (HEIGHT / 2.0) + (wall_height / 2.0);
     end.x = ray->index;
-    draw_line(&prog.img_data, begin, end, 0x00FF00);
+    // draw_line(&prog.img_data, begin, end, 0x00FF00);
     draw_line(&prog.img_data, prog.player.player_pos, ray->ray_pos, 0xFF00FF);
+}
+
+void    draw_walls(t_cub3d prog)
+{
+    
 }
 
 void	draw_rays(t_cub3d prog)
