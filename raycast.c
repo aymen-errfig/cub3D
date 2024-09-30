@@ -13,6 +13,7 @@ t_vector horizontal_intersection(t_vector   current, t_cub3d prog, double angle,
 {
     t_vector h_intersection;
     t_vector h_step;
+    int hitWall = 0;
 
     h_intersection.y = floor(prog.player.player_pos.y / GRID_SIZE) * GRID_SIZE; 
     if (ray.is_ray_down)
@@ -28,13 +29,17 @@ t_vector horizontal_intersection(t_vector   current, t_cub3d prog, double angle,
         h_step.x *= -1;
     while (1)
     {
-        //  if (ray.is_ray_up)
-        //     h_intersection.y -= 1;
+       
         if (is_hit_wall(prog,(t_vector) {.x=h_intersection.x,.y=h_intersection.y - ray.is_ray_up })) 
-		break;
+        {
+             //hitWall = 1;
+            break;
+        }
 	current = h_intersection;
         h_intersection.x += h_step.x; h_intersection.y += h_step.y; 
     }
+    // if (hitWall == 0)
+    //     ray.distance = INT32_MAX;
     return (h_intersection);
 }
 
@@ -42,6 +47,7 @@ t_vector vertical_intersection(t_vector   current, t_cub3d prog, double angle, t
 {
     t_vector v_intersection;
     t_vector v_step;
+    int    hitWall = 0;
 
      v_intersection.x = floor(prog.player.player_pos.x / GRID_SIZE) * GRID_SIZE;
     if (ray.is_ray_right)
@@ -57,14 +63,15 @@ t_vector vertical_intersection(t_vector   current, t_cub3d prog, double angle, t
         v_step.y *= -1;
     while (1)
     {
-        // if (ray.is_ray_left)
-        //     v_intersection.x -= 1;
-        // if (is_hit_wall(prog, v_intersection)) break;
-          if (is_hit_wall(prog,(t_vector) {.x=v_intersection.x - ray.is_ray_left,.y=v_intersection.y  }))
+          if (is_hit_wall(prog,(t_vector) {.x=v_intersection.x - ray.is_ray_left,.y=v_intersection.y  })) {
+            //hitWall = 1;
             break;
+          }
 	    current = v_intersection;
         v_intersection.x += v_step.x; v_intersection.y += v_step.y; 
     }
+    // if (hitWall == 0)
+    //     ray.distance = INT32_MAX;
     return (v_intersection);
 }
 
@@ -83,6 +90,7 @@ void dda_algo(t_cub3d prog, double angle, t_ray *ray)
     	v_intersection = vertical_intersection(player, prog, angle, *ray);
 	ray->ray_pos = h_intersection;
 	ray->distance = calculate_distance(player, h_intersection);
+
 	if (calculate_distance(player, v_intersection) < ray->distance) 
 	{
 		ray->ray_pos = v_intersection;
@@ -115,7 +123,7 @@ void dda_algo(t_cub3d prog, double angle, t_ray *ray)
 	// width.x = 1;
 	// width.y = wallStripHeight;
 	// rec(&prog.img_data, wall, 0xFFFF00, width);
-	draw_line(&prog.img_data, begin, end, 0x00FF00);
+	// draw_line(&prog.img_data, begin, end, 0x00FF00);
 	draw_line(&prog.img_data, prog.player.player_pos, ray->ray_pos, 0xFF00FF);
 }
 

@@ -78,6 +78,8 @@ typedef struct	s_cub3d
 	t_data     game_img;
 }	t_cub3d;
 
+t_cub3d	*getData(t_cub3d *tosave);
+
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 void draw_rectangle(t_data *data, t_vector v, int color, int size, int is_line);
 void draw_minimap(t_cub3d *prog);

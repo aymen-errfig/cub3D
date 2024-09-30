@@ -1,5 +1,13 @@
 #include "cub3d.h"
 
+t_cub3d	*getData(t_cub3d *tosave)
+{
+	static t_cub3d	*saved;
+	if (tosave != NULL)
+		saved = tosave;
+	return (saved);
+}
+
 int	is_hit_wall(t_cub3d prog, t_vector position)
 {
 	if (position.x >= MINIPAM_W || position.y >= MINIPAM_H || position.x < 0 || position.y < 0)

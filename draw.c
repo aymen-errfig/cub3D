@@ -2,6 +2,8 @@
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
+	if (x >= WIDTH || y >= HEIGHT || y <0 || x < 0)
+		return ;
 	char	*dst;
 	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
 	*(unsigned int*)dst = color;
@@ -23,21 +25,22 @@ void draw_rectangle(t_data *data, t_vector v, int color, int size, int is_line)
 	}
 }
 
-void rec(t_data *data, t_vector v, int color, t_vector size)
-{
-	int i = v.x ;
-	int j = v.y ;
-	while (i < v.x+size.x)
-	{
-		j = v.y ;
-		while (j < v.y+size.y)
-		{
-			my_mlx_pixel_put(data, i,j, color);
-			j++;
-		}
-		i++;
-	}
-}
+// void rec(t_data *data, t_vector v, int color, t_vector size)
+// {
+// 	double i = v.x ;
+// 	double j = v.y ;
+// 	while (i < v.x+size.x)
+// 	{
+// 		j = v.y ;
+// 		while (j < v.y+size.y)
+// 		{
+// 			my_mlx_pixel_put(data, i,j, color);
+// 			j++;
+// 			printf("line:%f %f\n", i,j);
+// 		}
+// 		i++;
+// 	}
+// }
 
 void draw_minimap(t_cub3d *prog)
 {
@@ -48,10 +51,15 @@ void draw_minimap(t_cub3d *prog)
 		j = 0;
 		while (j < 9)
 		{
+			t_vector rectange = (t_vector) {.x = GRID_SIZE*j, .y=GRID_SIZE*i};
 			if (prog->map[i][j] == 1)
 			{
-				t_vector rectange = (t_vector) {.x = GRID_SIZE*j, .y=GRID_SIZE*i};
-				draw_rectangle(&prog->img_data, rectange, 0xFF0000, GRID_SIZE, 0);
+				
+				
+			}
+			else
+			{
+				draw_rectangle(&prog->img_data, rectange, 0x0, GRID_SIZE, 0);
 			}
 			j++;
 		}
@@ -71,6 +79,7 @@ void swap(double *x, double *y)
 void draw_line(t_data *data, t_vector start, t_vector end, int color) 
 {
     int i;
+
     double x = end.x - start.x;
     double y = end.y - start.y;
     double length = sqrt(x * x + y * y);
@@ -80,6 +89,8 @@ void draw_line(t_data *data, t_vector start, t_vector end, int color)
     y = start.y;
 
     for (i = 0; i < length; i += 1) {
+		if (x >= WIDTH || y >= HEIGHT || y <0 || x < 0)
+			return ;
 	    my_mlx_pixel_put(data,(int)round(x), (int)round(y),color );
         x += addx;
         y += addy;

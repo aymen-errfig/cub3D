@@ -14,22 +14,25 @@ t_player player_init(void)
 
 int	move_player(t_cub3d *prog)
 {
-	mlx_destroy_image(prog->mlx_ptr, prog->img_data.img);
-	mlx_destroy_image(prog->mlx_ptr, prog->game_img.img);
-	prog->img_data.img = mlx_new_image(prog->mlx_ptr, 900, 700);
-	if (!prog->img_data.img)
-		exit(1);
-	prog->img_data.addr = mlx_get_data_addr(prog->img_data.img, &prog->img_data.bits_per_pixel,
-			&prog->img_data.line_length, &prog->img_data.endian);
+	// mlx_destroy_image(prog->mlx_ptr, prog->img_data.img);
+	// mlx_destroy_image(prog->mlx_ptr, prog->game_img.img);
+	// prog->img_data.img = mlx_new_image(prog->mlx_ptr, MINIPAM_H, MINIPAM_W);
+	// if (!prog->img_data.img)
+	// 	exit(1);
+	// prog->img_data.addr = mlx_get_data_addr(prog->img_data.img, &prog->img_data.bits_per_pixel,
+	// 		&prog->img_data.line_length, &prog->img_data.endian);
 
-	prog->game_img.img = mlx_new_image(prog->mlx_ptr, 900, 700);
-	if (!prog->game_img.img)
-		exit(1);
-	prog->game_img.addr = mlx_get_data_addr(prog->game_img.img, &prog->game_img.bits_per_pixel,
-			&prog->game_img.line_length, &prog->game_img.endian);
-	draw_rays(*prog);
+	// prog->game_img.img = mlx_new_image(prog->mlx_ptr, 900, 700);
+	// if (!prog->game_img.img)
+	// 	exit(1);
+	// prog->game_img.addr = mlx_get_data_addr(prog->game_img.img, &prog->game_img.bits_per_pixel,
+	// 		&prog->game_img.line_length, &prog->game_img.endian);
+	
+	//mlx_clear_window(prog->mlx_ptr, prog->mlx_win);
 	draw_minimap(prog);
-	/* mlx_put_image_to_window(prog->mlx_ptr, prog->mlx_win, prog->game_img.img, 0, 0); */
+	draw_rays(*prog);
+
+	//mlx_put_image_to_window(prog->mlx_ptr, prog->mlx_win, prog->game_img.img, 0, 0); 
 	mlx_put_image_to_window(prog->mlx_ptr, prog->mlx_win, prog->img_data.img, 0, 0);
 	return (0);
 }
