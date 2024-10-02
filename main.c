@@ -53,13 +53,9 @@ int main(void)
 			&prog.game_img.line_length, &prog.game_img.endian);
 
 	prog.player = player_init();
-	// draw_minimap(&prog);
-	// draw_rays(prog);
 	move_player(&prog);
-	//mlx_put_image_to_window(prog.mlx_ptr, prog.mlx_win, );prog.game_img.img, 0, 0
 	mlx_put_image_to_window(prog.mlx_ptr, prog.mlx_win, prog.img_data.img, 0, 0);
 	mlx_hook(prog.mlx_win, 02, 1L<<1, keyboard_press_handler, &prog);
 	mlx_loop(prog.mlx_ptr);
-	//free(prog.map); // 
 	return (0);
 }

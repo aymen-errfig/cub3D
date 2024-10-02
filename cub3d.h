@@ -26,8 +26,8 @@
 #define LEFT_KEYCODE  2
 #define RIGHT_KEYCODE  0
 
-#define LEFT_ARROW_KEYCODE  123
-#define RIGHT_ARROW_KEYCODE  124
+#define LEFT_ARROW_KEYCODE  124
+#define RIGHT_ARROW_KEYCODE  123
 
 typedef struct	s_data {
 	void	*img;

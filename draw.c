@@ -25,23 +25,6 @@ void draw_rectangle(t_data *data, t_vector v, int color, int size, int is_line)
 	}
 }
 
-// void rec(t_data *data, t_vector v, int color, t_vector size)
-// {
-// 	double i = v.x ;
-// 	double j = v.y ;
-// 	while (i < v.x+size.x)
-// 	{
-// 		j = v.y ;
-// 		while (j < v.y+size.y)
-// 		{
-// 			my_mlx_pixel_put(data, i,j, color);
-// 			j++;
-// 			printf("line:%f %f\n", i,j);
-// 		}
-// 		i++;
-// 	}
-// }
-
 void draw_minimap(t_cub3d *prog)
 {
 	int i = 0;
@@ -58,7 +41,7 @@ void draw_minimap(t_cub3d *prog)
 			}
 			else
 			{
-				draw_rectangle(&prog->img_data, rectange, 0x0, GRID_SIZE, 0);
+				draw_rectangle(&prog->img_data, rectange, 0xFFFFFF, GRID_SIZE, 0);
 			}
 			j++;
 		}
