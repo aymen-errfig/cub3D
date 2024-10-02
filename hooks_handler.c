@@ -1,68 +1,72 @@
 #include "cub3d.h"
 
-int	keyboard_press_handler(int keycode, t_cub3d *prog)
+void clear_resource(t_cub3d *prog)
+{
+	free(prog->map);
+	destroy_window(prog);
+	exit(1);
+}
+
+int is_not_valid_key(int keycode)
+{
+	return (keycode != 258 && keycode != UP_KEYCODE && keycode != DOWN_KEYCODE && keycode != RIGHT_KEYCODE && 
+	keycode != LEFT_KEYCODE && keycode != 53 && keycode != RIGHT_ARROW_KEYCODE && keycode != LEFT_ARROW_KEYCODE);
+}
+
+int handle_player_movement(t_cub3d *prog, int rl_direction, int ud_direction)
+{
+	t_vector new_pos;
+	int speed;
+
+	speed = 5;
+	new_pos =  prog->player.player_pos;
+	if (ud_direction != 0)
+	{
+	new_pos.x += ((cos(prog->player.player_angle) * ud_direction) * speed);
+	new_pos.y += ((sin(prog->player.player_angle) * ud_direction) * speed);
+	}
+	if (rl_direction != 0)
+	{
+	new_pos.x += ((sin(prog->player.player_angle) * rl_direction) * speed);
+	new_pos.y -=  ((cos(prog->player.player_angle) * rl_direction) * speed);
+	}
+	if (is_hit_wall(*prog, new_pos))
+		return (1);
+	prog->player.player_pos = new_pos;
+	return (0);
+}
+
+void handle_player_rotation(t_cub3d *prog, int keycode)
+{
+	int move_angle;
+
+	move_angle = 0;
+	if (keycode == RIGHT_ARROW_KEYCODE)
+	move_angle = 1;
+	else if (keycode == LEFT_ARROW_KEYCODE)
+	move_angle = -1;
+	prog->player.player_angle += move_angle * degree_to_rad(3);
+}
+
+int keyboard_press_handler(int keycode, t_cub3d *prog)
 {
 	int speed;
-	double speed_sin;
-	double speed_cos;
+	int move_angle;
 	t_vector new_pos;
+	int rl_direction;
+	int ud_direction;
 
-	(void)prog;
-	if (keycode != 258 && keycode != UP_KEYCODE && keycode != DOWN_KEYCODE && keycode != RIGHT_KEYCODE && 
-	keycode != LEFT_KEYCODE && keycode != 53 && keycode != RIGHT_ARROW_KEYCODE && keycode != LEFT_ARROW_KEYCODE)
+	if (is_not_valid_key(keycode))
 		return (1);
 	if (keycode == 53)
-	{
-		free(prog->map);
-		destroy_window(prog);
-		exit(1);
-	}
+		clear_resource(prog);
+	ud_direction = 0;
+	rl_direction = 0;
 	speed = 20;
-	speed_sin = speed * sin(prog->player.player_angle);
-	speed_cos = speed * cos(prog->player.player_angle);
-	if (keycode == UP_KEYCODE)
-	{
-		new_pos.x = prog->player.player_pos.x + speed_cos;
-		new_pos.y = prog->player.player_pos.y + speed_sin;
-		if (is_hit_wall(*prog, new_pos))
-			return (1);
-		prog->player.player_pos = new_pos;
-	}
-	else if (keycode == DOWN_KEYCODE)
-	{
-		new_pos.x = prog->player.player_pos.x - speed_cos;
-		new_pos.y = prog->player.player_pos.y - speed_sin;
-		if (is_hit_wall(*prog, new_pos))
-			return (1);
-		prog->player.player_pos = new_pos;
-	}
-	else if (keycode == LEFT_KEYCODE)
-	{
-		new_pos.x = prog->player.player_pos.x - speed_sin;
-		new_pos.y = prog->player.player_pos.y + speed_cos;
-
-		if (is_hit_wall(*prog, new_pos))
-			return (1);
-		prog->player.player_pos = new_pos;
-	}
-	else if (keycode == RIGHT_KEYCODE)
-	{
-		new_pos.x = prog->player.player_pos.x + speed_sin;
-		new_pos.y = prog->player.player_pos.y - speed_cos;
-		if (is_hit_wall(*prog, new_pos))
-			return (1);
-		prog->player.player_pos = new_pos;
-	}
-	else if (keycode == RIGHT_ARROW_KEYCODE)
-	{
-		 prog->player.player_angle -= degree_to_rad(3);
-	}
-	else if (keycode == LEFT_ARROW_KEYCODE)
-	{
-		 prog->player.player_angle += degree_to_rad(3);
-	}
-	/* prog->player.player_angle = normalize_angle(prog->player.player_angle); */
-	
+	ud_direction = ((keycode == UP_KEYCODE) * 1) + ((keycode == DOWN_KEYCODE) * -1);
+	rl_direction = ((keycode == RIGHT_KEYCODE) * 1) + ((keycode == LEFT_KEYCODE) * -1);
+	handle_player_movement(prog, rl_direction, ud_direction);
+	handle_player_rotation(prog, keycode);
 	move_player(prog);
 	return (0);
 }
