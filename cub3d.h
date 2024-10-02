@@ -76,7 +76,6 @@ typedef struct	s_cub3d
 	void		*mlx_win;
 	t_data     img_data;
 	t_data     game_img;
-	t_ray 		*rays;
 }	t_cub3d;
 
 t_cub3d	*getData(t_cub3d *tosave);
@@ -90,9 +89,9 @@ int	keyboard_press_handler(int keycode, t_cub3d *prog);
 double degree_to_rad(double angle);
 void destroy_window(t_cub3d *prog);
 void draw_line(t_data *data, t_vector start, t_vector end, int color);
-int	is_hit_wall1(t_cub3d prog, t_vector position, int is_ray_up, int is_ray_right);
 int	is_hit_wall(t_cub3d prog, t_vector position);
 void	draw_rays(t_cub3d prog);
 double	normalize_angle(double angle);
 void rec(t_data *data, t_vector v, int color, t_vector size);
+int    is_on_boundtry(t_cub3d prog, t_vector position);
 #endif

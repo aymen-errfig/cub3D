@@ -1,5 +1,6 @@
 #include "cub3d.h"
 #include <math.h>
+#include <float.h>
 
 double calculate_distance(t_vector v1, t_vector v2) 
 {
@@ -27,7 +28,7 @@ t_vector horizontal_intersection(t_vector   current, t_cub3d prog, double angle,
         h_step.x *= -1;
     if (ray.is_ray_right && h_step.x < 0)
         h_step.x *= -1;
-    while (1)
+    while (is_on_boundtry(prog, h_intersection))
     {
        
         if (is_hit_wall(prog,(t_vector) {.x=h_intersection.x,.y=h_intersection.y - ray.is_ray_up })) 
@@ -35,11 +36,11 @@ t_vector horizontal_intersection(t_vector   current, t_cub3d prog, double angle,
              hitWall = 1;
             break;
         }
-	current = h_intersection;
+current = h_intersection;
         h_intersection.x += h_step.x; h_intersection.y += h_step.y; 
     }
      if (hitWall == 0)
-        ray.distance = INFINITY;
+        ray.distance = FLT_MAX;
     return (h_intersection);
 }
 
@@ -61,18 +62,18 @@ t_vector vertical_intersection(t_vector   current, t_cub3d prog, double angle, t
         v_step.y *= -1;
     if (ray.is_ray_down && v_step.y < 0)
         v_step.y *= -1;
-    while (1)
+    while (is_on_boundtry(prog, v_intersection))
     {
-          if (is_hit_wall(prog,(t_vector) {.x=v_intersection.x - ray.is_ray_left,.y=v_intersection.y  })) {
+          if (is_hit_wall(prog,(t_vector) {.x=v_intersection.x - ray.is_ray_left,.y=v_intersection.y})) 
+  {
             hitWall = 1;
             break;
           }
-	    current = v_intersection;
-        v_intersection.x += v_step.x; v_intersection.y += v_step.y; 
+           v_intersection.x += v_step.x; v_intersection.y += v_step.y; 
     }
-     if (hitWall == 0)
-        ray.distance = INFINITY;
-    return (v_intersection);
+    if (hitWall == 0)
+        ray.distance = FLT_MAX;
+     return (v_intersection);
 }
 
 void dda_algo(t_cub3d prog, double angle, t_ray *ray)
@@ -96,24 +97,35 @@ void dda_algo(t_cub3d prog, double angle, t_ray *ray)
 		ray->ray_pos = v_intersection;
 		ray->distance = calculate_distance(player, v_intersection);
 	}
-    if (ray->distance < 35)
-        ray->distance = 35;
-     printf("%f\n", ray->distance);
-    double wall_height = ((GRID_SIZE * HEIGHT) / ray->distance);
-    printf("%f\n", wall_height);
-    t_vector begin;
-    begin.y = (HEIGHT / 2.0) - (wall_height / 2.0);
-    begin.x = ray->index;
-    t_vector end;
-    end.y = (HEIGHT / 2.0) + (wall_height / 2.0);
-    end.x = ray->index;
-    // draw_line(&prog.img_data, begin, end, 0x00FF00);
-    draw_line(&prog.img_data, prog.player.player_pos, ray->ray_pos, 0xFF00FF);
-}
-
-void    draw_walls(t_cub3d prog)
-{
+    // if (ray->distance < 35)
+    //     ray->distance = 35;
+    //  printf("%f\n", ray->distance);
+    // double wall_height = ((GRID_SIZE * HEIGHT) / ray->distance);
+    // printf("%f\n", wall_height);
+    // t_vector begin;
+    // begin.y = (HEIGHT / 2) - (wall_height / 2);
+    // begin.x = ray->index;
+    // t_vector end;
+    // end.y = (HEIGHT / 2) + (wall_height / 2);
+    // end.x = ray->index;
     
+    // while (++y < end)
+    // {
+    //     draw_line(&prog.img_data, prog.player.player_pos, ray->ray_pos, 0xFF00FF);
+    // }
+	double distancePorjectionPlane = (WIDTH/2.) / tan(degree_to_rad(30));
+	double wallStripHeight = (GRID_SIZE / (ray->distance * 25.0)) * distancePorjectionPlane;
+    wallStripHeight *= 1.0;
+	printf ("%f %f\n", distancePorjectionPlane, wallStripHeight);
+	t_vector wall;
+	wall.x = ray->index;
+	wall.y = (HEIGHT/2.0) - (wallStripHeight / 2.0);
+	t_vector width;
+	width.x = 1;
+	width.y = wallStripHeight;
+	rec(&prog.game_img, wall, 0xFFFF00, width);
+	// draw_line(&prog.game_img, begin, end, 0x00FF00);
+	draw_line(&prog.img_data, prog.player.player_pos, ray->ray_pos, 0xFF00FF);
 }
 
 void	draw_rays(t_cub3d prog)

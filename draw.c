@@ -2,7 +2,8 @@
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
-	if (x >= WIDTH || y >= HEIGHT || y <0 || x < 0)
+	printf ("wall:%d %d\n", x, y);
+	if (x > WIDTH || y > HEIGHT || y <0 || x < 0)
 		return ;
 	char	*dst;
 	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
@@ -46,16 +47,15 @@ void draw_minimap(t_cub3d *prog)
 {
 	int i = 0;
 	int j = 0;
-	t_vector rectange ;
 	while (i < 7)
 	{
 		j = 0;
 		while (j < 9)
 		{
-			rectange = (t_vector) {.x = GRID_SIZE*j, .y=GRID_SIZE*i};
+			t_vector rectange = (t_vector) {.x = GRID_SIZE*j, .y=GRID_SIZE*i};
 			if (prog->map[i][j] == 1)
 			{
-				draw_rectangle(&prog->img_data, rectange, 0xF00000, GRID_SIZE, 0);
+				draw_rectangle(&prog->img_data, rectange, 0xFF0000, GRID_SIZE, 1);
 			}
 			else
 			{
