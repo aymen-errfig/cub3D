@@ -97,17 +97,18 @@ void dda_algo(t_cub3d prog, double angle, t_ray *ray)
 		ray->ray_pos = v_intersection;
 		ray->distance = calculate_distance(player, v_intersection);
 	}
+    ray->distance *= cos(degree_to_rad(angle - prog.player.player_angle));
     if (ray->distance < GRID_SIZE)
         ray->distance = GRID_SIZE;
-    double wall_height = ((GRID_SIZE * HEIGHT) / ray->distance);
+    double wall_height = floor((GRID_SIZE * HEIGHT) / ray->distance); 
     t_vector begin;
-    begin.y = (HEIGHT / 2) - (wall_height / 2);
+    begin.y = (HEIGHT / 2.0) - (wall_height / 2.0);
     begin.x = ray->index;
     t_vector end;
-    end.y = (HEIGHT / 2) + (wall_height / 2);
+    end.y = (HEIGHT / 2.0) + (wall_height / 2.0);
     end.x = ray->index;
-	draw_line(&prog.game_img, begin, end, 0x00FF00);
-	draw_line(&prog.img_data, prog.player.player_pos, ray->ray_pos, 0xFF00FF);
+    draw_line(&prog.game_img, begin, end, 0x00FF00);
+    draw_line(&prog.img_data, prog.player.player_pos, ray->ray_pos, 0xFF00FF);
 }
 
 void	draw_rays(t_cub3d prog)
