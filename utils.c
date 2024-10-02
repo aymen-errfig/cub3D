@@ -12,8 +12,13 @@ int    is_hit_wall(t_cub3d prog, t_vector position)
 {
     if (!is_on_boundtry(prog, position))
         return (1);
+	
+	printf ("position:%f %f\n",position.x, position.y);
     int y = (int)floor(position.y / GRID_SIZE);
     int x = (int)floor(position.x / GRID_SIZE);
+	printf ("position:%d %d\n",x, y);
+	if (y >= 7 || x >= 9 || x < 0 || y < 0)
+		return (1);
     return (prog.map[y][x]);
 }
 
@@ -34,7 +39,7 @@ void rec(t_data *data, t_vector v, int color, t_vector size)
 {
     int i = (int)floor(v.x);
     int j = (int)floor(v.y);
-	
+
     while (i < (int)v.x+size.x && i < WIDTH)
     {
         j = (int)floor(v.y);

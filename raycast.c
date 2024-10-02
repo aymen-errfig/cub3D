@@ -97,34 +97,31 @@ void dda_algo(t_cub3d prog, double angle, t_ray *ray)
 		ray->ray_pos = v_intersection;
 		ray->distance = calculate_distance(player, v_intersection);
 	}
-    // if (ray->distance < 35)
-    //     ray->distance = 35;
-    //  printf("%f\n", ray->distance);
-    // double wall_height = ((GRID_SIZE * HEIGHT) / ray->distance);
-    // printf("%f\n", wall_height);
-    // t_vector begin;
-    // begin.y = (HEIGHT / 2) - (wall_height / 2);
-    // begin.x = ray->index;
-    // t_vector end;
-    // end.y = (HEIGHT / 2) + (wall_height / 2);
-    // end.x = ray->index;
-    
-    // while (++y < end)
-    // {
-    //     draw_line(&prog.img_data, prog.player.player_pos, ray->ray_pos, 0xFF00FF);
-    // }
-	double distancePorjectionPlane = (WIDTH/2.) / tan(degree_to_rad(30));
-	double wallStripHeight = (GRID_SIZE / (ray->distance * 25.0)) * distancePorjectionPlane;
-    wallStripHeight *= 1.0;
-	printf ("%f %f\n", distancePorjectionPlane, wallStripHeight);
-	t_vector wall;
-	wall.x = ray->index;
-	wall.y = (HEIGHT/2.0) - (wallStripHeight / 2.0);
-	t_vector width;
-	width.x = 1;
-	width.y = wallStripHeight;
-	rec(&prog.game_img, wall, 0xFFFF00, width);
-	// draw_line(&prog.game_img, begin, end, 0x00FF00);
+    if (ray->distance < GRID_SIZE)
+        ray->distance = GRID_SIZE;
+    //ray->distance = 50 - ray->distance;
+     //printf("%f\n", ray->distance);
+    double wall_height = ((GRID_SIZE * HEIGHT) / ray->distance);
+    //printf("%f\n", wall_height);
+    t_vector begin;
+    begin.y = (HEIGHT / 2) - (wall_height / 2);
+    begin.x = ray->index;
+    t_vector end;
+    end.y = (HEIGHT / 2) + (wall_height / 2);
+    end.x = ray->index;
+ 
+	// double distancePorjectionPlane = (WIDTH/2.) / tan(degree_to_rad(30));
+	// double wallStripHeight = (GRID_SIZE / (ray->distance * 25.0)) * distancePorjectionPlane;
+    // wallStripHeight *= 1.0;
+	// printf ("%f %f\n", distancePorjectionPlane, wallStripHeight);
+	// t_vector wall;
+	// wall.x = ray->index;
+	// wall.y = (HEIGHT/2.0) - (wallStripHeight / 2.0);
+	// t_vector width;
+	// width.x = 1;
+	// width.y = wallStripHeight;
+	// rec(&prog.game_img, wall, 0xFFFF00, width);
+	draw_line(&prog.game_img, begin, end, 0x00FF00);
 	draw_line(&prog.img_data, prog.player.player_pos, ray->ray_pos, 0xFF00FF);
 }
 

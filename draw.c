@@ -2,7 +2,6 @@
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
-	printf ("wall:%d %d\n", x, y);
 	if (x > WIDTH || y > HEIGHT || y <0 || x < 0)
 		return ;
 	char	*dst;

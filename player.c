@@ -16,7 +16,7 @@ int	move_player(t_cub3d *prog)
 {
 	mlx_destroy_image(prog->mlx_ptr, prog->img_data.img);
 	mlx_destroy_image(prog->mlx_ptr, prog->game_img.img);
-	prog->img_data.img = mlx_new_image(prog->mlx_ptr, MINIPAM_H, MINIPAM_W);
+	prog->img_data.img = mlx_new_image(prog->mlx_ptr, MINIPAM_W, MINIPAM_H);
 	if (!prog->img_data.img)
 		exit(1);
 	prog->img_data.addr = mlx_get_data_addr(prog->img_data.img, &prog->img_data.bits_per_pixel,
