@@ -65,7 +65,7 @@ t_vector vertical_intersection(t_vector   current, t_cub3d prog, double angle, t
     while (is_on_boundtry(prog, v_intersection))
     {
           if (is_hit_wall(prog,(t_vector) {.x=v_intersection.x - ray.is_ray_left,.y=v_intersection.y})) 
-  {
+	  {
             hitWall = 1;
             break;
           }
@@ -91,25 +91,57 @@ void dda_algo(t_cub3d prog, double angle, t_ray *ray)
     	v_intersection = vertical_intersection(player, prog, angle, *ray);
 	ray->ray_pos = h_intersection;
 	ray->distance = calculate_distance(player, h_intersection);
-
+	ray->is_vertical = 0;
 	if (calculate_distance(player, v_intersection) < ray->distance) 
 	{
 		ray->ray_pos = v_intersection;
+		ray->is_vertical = 1;
 		ray->distance = calculate_distance(player, v_intersection);
 	}
-    ray->distance *= cos(angle - prog.player.player_angle);
-    if (ray->distance < GRID_SIZE)
-        ray->distance = GRID_SIZE;
-    double wall_height = floor((GRID_SIZE * HEIGHT) / ray->distance); 
-    t_vector begin;
-    begin.y = (HEIGHT / 2.0) - (wall_height / 2.0);
-    begin.x = ray->index;
-    t_vector end;
-    end.y = (HEIGHT / 2.0) + (wall_height / 2.0);
-    end.x = ray->index;
-    draw_line(&prog.game_img, (t_vector) {ray->index, 0}, begin, 0x2BFAFA);
-    draw_line(&prog.game_img, begin, end, 0x00FF00);
-    draw_line(&prog.game_img, end, (t_vector) {ray->index, HEIGHT}, 0x953553);
+       ray->distance *= cos(angle - prog.player.player_angle);
+       if (ray->distance < GRID_SIZE)
+        	ray->distance = GRID_SIZE;
+    
+   int wall_height = floor((GRID_SIZE * HEIGHT) / ray->distance); 
+    int wall_start =  (HEIGHT/2) - (wall_height/2);
+
+    wall_start *= (wall_start > 0);
+    int wall_end =  (HEIGHT/2) + (wall_height/2);
+    if (wall_end > HEIGHT)
+	    wall_end = HEIGHT;
+    t_vector ciel = (t_vector){ray->index, 0};
+    // draw cieling
+    while (ciel.y < wall_start)
+    {
+	    my_mlx_pixel_put(&prog.game_img,  ciel.x, ciel.y, 0x2BFAFA);
+	    ciel.y++;
+    }
+    int texture_x;
+    if (ray->is_vertical)
+	texture_x = fmod((ray->ray_pos.y* (prog.wall_img.width/GRID_SIZE)), prog.wall_img.width);
+    else
+	texture_x = fmod((ray->ray_pos.x* (prog.wall_img.width/GRID_SIZE)), prog.wall_img.width);
+    int offsety;
+    int texture_y;
+
+    /* int strip_wall_height = (GRID_SIZE I); */
+    offsety = prog.wall_img.width / wall_height;
+    int ycord = (wall_start - (HEIGHT / 2.0) + (wall_height / 2)) * offsety;
+    ycord *= (ycord > 0);
+    // draw walls
+    while (ciel.y < wall_end)
+    {
+	    /* texture_y = (ciel.y - wall_start) * (prog.wall_img.width / wall_height); */
+	    my_mlx_pixel_put(&prog.game_img,  ciel.x, ciel.y, get_color(&prog.wall_img, (int)texture_x, (int)ycord));
+	    ycord += offsety;
+	    ciel.y++;
+    }
+    // drwa floors
+    while (ciel.y < HEIGHT)
+    {
+	    my_mlx_pixel_put(&prog.game_img,  ciel.x, ciel.y, 0xFF00FF);
+	    ciel.y++;
+    }    	    	
     draw_line(&prog.img_data, prog.player.player_pos, ray->ray_pos, 0xFF00FF);
 }
 

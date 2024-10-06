@@ -4,9 +4,9 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
 	if (x > WIDTH || y > HEIGHT || y <0 || x < 0)
 		return ;
-	char	*dst;
-	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-	*(unsigned int*)dst = color;
+	int	*dst;
+	dst = &data->addr[y * (data->line_length / 4) + x];
+	*(int*)dst = color;
 }
 
 void draw_rectangle(t_data *data, t_vector v, int color, int size, int is_line)
@@ -23,6 +23,28 @@ void draw_rectangle(t_data *data, t_vector v, int color, int size, int is_line)
 		}
 		i++;
 	}
+}
+
+int    reverse_bytes(int c)
+{
+    int    b;
+
+    b = 0;
+    b |= (c >> 24) & 0xFF;
+    b |= (c >> 16) & 0xFF;
+    b |= (c >> 8) & 0xFF;
+    b |= (c ) & 0xFF;
+    return (b);
+}
+
+unsigned int	get_color(t_data *data, int x, int y)
+{
+	int	*dst;
+
+	if (x > data->width || y > data->height || y < 0 || x < 0)
+		return (-1);
+	dst = &data->addr[y * (data->line_length / 4) + x];
+	return ((unsigned int)*dst);
 }
 
 void draw_minimap(t_cub3d *prog)

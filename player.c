@@ -14,7 +14,7 @@ t_player player_init(void)
 
 int	move_player(t_cub3d *prog)
 {
-	rec(&prog->game_img, (t_vector){0, 0}, 0, (t_vector){WIDTH, HEIGHT});
+	/* rec(&prog->game_img, (t_vector){0, 0}, 0, (t_vector){WIDTH, HEIGHT}); */
 	draw_minimap(prog);
 	draw_rays(*prog);
 	mlx_put_image_to_window(prog->mlx_ptr, prog->mlx_win, prog->game_img.img, 0, 0); 

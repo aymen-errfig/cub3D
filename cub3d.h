@@ -30,11 +30,13 @@
 #define RIGHT_ARROW_KEYCODE  123
 
 typedef struct	s_data {
-	void	*img;
-	char	*addr;
+	void*	img;
+	int*	    addr;
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
+	int		width;
+	int		height;
 }	t_data;
 
 typedef struct s_vector
@@ -63,6 +65,7 @@ typedef struct s_ray
     int is_ray_left;
     int index;
     double distance;
+    int	is_vertical;
     t_vector ray_pos;
 }	t_ray;
 
@@ -76,6 +79,7 @@ typedef struct	s_cub3d
 	void		*mlx_win;
 	t_data     img_data;
 	t_data     game_img;
+	t_data     wall_img;
 }	t_cub3d;
 
 t_cub3d	*getData(t_cub3d *tosave);
@@ -94,4 +98,5 @@ void	draw_rays(t_cub3d prog);
 double	normalize_angle(double angle);
 void rec(t_data *data, t_vector v, int color, t_vector size);
 int    is_on_boundtry(t_cub3d prog, t_vector position);
+unsigned int	get_color(t_data *data, int x, int y);
 #endif
