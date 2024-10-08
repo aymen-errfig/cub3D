@@ -73,7 +73,7 @@ t_vector vertical_intersection(t_vector   current, t_cub3d prog, double angle, t
     }
     if (hitWall == 0)
         ray.distance = FLT_MAX;
-     return (v_intersection);
+    return (v_intersection);
 }
 
 void dda_algo(t_cub3d prog, double angle, t_ray *ray)
@@ -102,11 +102,11 @@ void dda_algo(t_cub3d prog, double angle, t_ray *ray)
        if (ray->distance < GRID_SIZE)
         	ray->distance = GRID_SIZE;
     
-   int wall_height = floor((GRID_SIZE * HEIGHT) / ray->distance); 
-    int wall_start =  (HEIGHT/2) - (wall_height/2);
+  double wall_height =  (GRID_SIZE / ray->distance) * (WIDTH / 2) / tan(degree_to_rad(60) / 2);
+  double wall_start =  (HEIGHT/2) - (wall_height/2);
 
     wall_start *= (wall_start > 0);
-    int wall_end =  (HEIGHT/2) + (wall_height/2);
+    double wall_end =  (HEIGHT/2) + (wall_height/2);
     if (wall_end > HEIGHT)
 	    wall_end = HEIGHT;
     t_vector ciel = (t_vector){ray->index, 0};
@@ -121,18 +121,17 @@ void dda_algo(t_cub3d prog, double angle, t_ray *ray)
 	texture_x = fmod((ray->ray_pos.y* (prog.wall_img.width/GRID_SIZE)), prog.wall_img.width);
     else
 	texture_x = fmod((ray->ray_pos.x* (prog.wall_img.width/GRID_SIZE)), prog.wall_img.width);
-    int offsety;
-    int texture_y;
+    double offsety;
+    double texture_y;
+    offsety = (double)prog.wall_img.width / wall_height;
+    double ycord = (wall_start - (HEIGHT / 2) + (wall_height / 2)) * offsety;
 
-    /* int strip_wall_height = (GRID_SIZE I); */
-    offsety = prog.wall_img.width / wall_height;
-    int ycord = (wall_start - (HEIGHT / 2.0) + (wall_height / 2)) * offsety;
     ycord *= (ycord > 0);
     // draw walls
     while (ciel.y < wall_end)
     {
-	    /* texture_y = (ciel.y - wall_start) * (prog.wall_img.width / wall_height); */
-	    my_mlx_pixel_put(&prog.game_img,  ciel.x, ciel.y, get_color(&prog.wall_img, (int)texture_x, (int)ycord));
+	    int color = prog.wall_img.addr[(int) ycord * prog.wall_img.width + (int)texture_x];
+	    my_mlx_pixel_put(&prog.game_img,  ciel.x, ciel.y, color);
 	    ycord += offsety;
 	    ciel.y++;
     }

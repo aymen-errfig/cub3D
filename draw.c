@@ -25,18 +25,6 @@ void draw_rectangle(t_data *data, t_vector v, int color, int size, int is_line)
 	}
 }
 
-int    reverse_bytes(int c)
-{
-    int    b;
-
-    b = 0;
-    b |= (c >> 24) & 0xFF;
-    b |= (c >> 16) & 0xFF;
-    b |= (c >> 8) & 0xFF;
-    b |= (c ) & 0xFF;
-    return (b);
-}
-
 unsigned int	get_color(t_data *data, int x, int y)
 {
 	int	*dst;

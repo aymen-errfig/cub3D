@@ -52,8 +52,11 @@ int main(void)
 	prog.game_img.addr = (int *) mlx_get_data_addr(prog.game_img.img, &prog.game_img.bits_per_pixel,
 			&prog.game_img.line_length, &prog.game_img.endian);
 
-        prog.wall_img.img = mlx_xpm_file_to_image(prog.mlx_ptr, "assets/wall.xpm", &prog.wall_img.width, &prog.wall_img.height);
+        /* prog.wall_img.img = mlx_xpm_file_to_image(prog.mlx_ptr, "assets/doom.xpm", &prog.wall_img.width, &prog.wall_img.height); */
+        prog.wall_img.img = mlx_xpm_file_to_image(prog.mlx_ptr, "assets/walls.xpm", &prog.wall_img.width, &prog.wall_img.height);
 	if (!prog.wall_img.img)
+		exit(1);
+	if (prog.wall_img.width * prog.wall_img.height == 0)
 		exit(1);
 	prog.wall_img.addr = (int *) mlx_get_data_addr(prog.wall_img.img, &prog.wall_img.bits_per_pixel,
 			&prog.wall_img.line_length, &prog.wall_img.endian);
