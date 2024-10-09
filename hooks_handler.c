@@ -42,9 +42,9 @@ void handle_player_rotation(t_cub3d *prog, int keycode)
 
 	move_angle = 0;
 	if (keycode == RIGHT_ARROW_KEYCODE)
-	move_angle = 1;
+		move_angle = 1;
 	else if (keycode == LEFT_ARROW_KEYCODE)
-	move_angle = -1;
+		move_angle = -1;
 	prog->player.player_angle += move_angle * degree_to_rad(3);
 }
 

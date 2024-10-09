@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   player.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aoukouho <aoukouho@student.1337.ma>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/09 14:04:13 by aoukouho          #+#    #+#             */
+/*   Updated: 2024/10/09 14:04:17 by aoukouho         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 t_player player_init(void)
@@ -14,7 +26,6 @@ t_player player_init(void)
 
 int	move_player(t_cub3d *prog)
 {
-	/* rec(&prog->game_img, (t_vector){0, 0}, 0, (t_vector){WIDTH, HEIGHT}); */
 	draw_minimap(prog);
 	draw_rays(*prog);
 	mlx_put_image_to_window(prog->mlx_ptr, prog->mlx_win, prog->game_img.img, 0, 0); 

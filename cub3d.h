@@ -99,4 +99,5 @@ double	normalize_angle(double angle);
 void rec(t_data *data, t_vector v, int color, t_vector size);
 int    is_on_boundtry(t_cub3d prog, t_vector position);
 unsigned int	get_color(t_data *data, int x, int y);
+void 		render_frame(t_cub3d prog, double angle, t_ray *ray);
 #endif

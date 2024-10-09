@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aoukouho <aoukouho@student.1337.ma>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/09 14:04:09 by aoukouho          #+#    #+#             */
+/*   Updated: 2024/10/09 14:29:57 by aoukouho         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 void destroy_window(t_cub3d *prog)
@@ -53,14 +65,13 @@ int main(void)
 			&prog.game_img.line_length, &prog.game_img.endian);
 
         /* prog.wall_img.img = mlx_xpm_file_to_image(prog.mlx_ptr, "assets/doom.xpm", &prog.wall_img.width, &prog.wall_img.height); */
-        prog.wall_img.img = mlx_xpm_file_to_image(prog.mlx_ptr, "assets/walls.xpm", &prog.wall_img.width, &prog.wall_img.height);
+        prog.wall_img.img = mlx_xpm_file_to_image(prog.mlx_ptr, "assets/wall.xpm", &prog.wall_img.width, &prog.wall_img.height);
 	if (!prog.wall_img.img)
 		exit(1);
 	if (prog.wall_img.width * prog.wall_img.height == 0)
 		exit(1);
 	prog.wall_img.addr = (int *) mlx_get_data_addr(prog.wall_img.img, &prog.wall_img.bits_per_pixel,
 			&prog.wall_img.line_length, &prog.wall_img.endian);
-
 	prog.player = player_init();
 	move_player(&prog);
 	mlx_put_image_to_window(prog.mlx_ptr, prog.mlx_win, prog.img_data.img, 0, 0);
