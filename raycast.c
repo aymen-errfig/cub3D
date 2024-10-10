@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aoukouho <aoukouho@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: aerrfig <aerrfig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 14:04:04 by aoukouho          #+#    #+#             */
-/*   Updated: 2024/10/09 17:37:41 by aoukouho         ###   ########.fr       */
+/*   Updated: 2024/10/10 10:22:57 by aerrfig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,7 +149,6 @@ void dda_algo(t_cub3d prog, double angle, t_ray *ray)
 	    /* ciel.y++; */
     /* } */    	    	
     render_frame(prog, angle, ray);
-    draw_line(&prog.img_data, prog.player.player_pos, ray->ray_pos, 0xFF00FF);
 }
 
 void	draw_rays(t_cub3d prog)

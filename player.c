@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aoukouho <aoukouho@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: aerrfig <aerrfig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 14:04:13 by aoukouho          #+#    #+#             */
-/*   Updated: 2024/10/09 14:04:17 by aoukouho         ###   ########.fr       */
+/*   Updated: 2024/10/10 12:12:03 by aerrfig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_player player_init(void)
 {
 	t_player  player;
 
-	player.player_pos = (t_vector) {.x = 250.0, .y=150.0};
+	player.player_pos = (t_vector) {.x = 33.0, .y=33.0};
 	player.turn_direction = 0;
 	player.walk_direction = 0;
 	player.player_angle = degree_to_rad(0); 

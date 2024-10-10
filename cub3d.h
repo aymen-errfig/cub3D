@@ -17,8 +17,8 @@
 # define WIDTH 900
 # define HEIGHT 700
 
-# define MINIPAM_W (9 * GRID_SIZE)
-# define MINIPAM_H (7 * GRID_SIZE)
+# define MINIPAM_W (8 * GRID_SIZE)
+# define MINIPAM_H (8 * GRID_SIZE)
 
 
 #define UP_KEYCODE  13
@@ -26,8 +26,8 @@
 #define LEFT_KEYCODE  2
 #define RIGHT_KEYCODE  0
 
-#define LEFT_ARROW_KEYCODE  124
-#define RIGHT_ARROW_KEYCODE  123
+#define LEFT_ARROW_KEYCODE  123
+#define RIGHT_ARROW_KEYCODE  124
 
 typedef struct	s_data {
 	void*	img;
@@ -73,6 +73,7 @@ typedef struct	s_cub3d
 {
 	char		**map;
 	t_player	player;
+	t_vector	map_size;
 	int			screen_w;
 	int			screen_h;
 	void		*mlx_ptr;
@@ -85,7 +86,7 @@ typedef struct	s_cub3d
 t_cub3d	*getData(t_cub3d *tosave);
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
-void draw_rectangle(t_data *data, t_vector v, int color, int size, int is_line);
+void draw_rectangle(t_data *data, t_vector v, int color, int size);
 void draw_minimap(t_cub3d *prog);
 t_player player_init(void);
 int	move_player(t_cub3d *prog);

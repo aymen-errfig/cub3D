@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aoukouho <aoukouho@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: aerrfig <aerrfig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 14:04:21 by aoukouho          #+#    #+#             */
-/*   Updated: 2024/10/09 14:04:22 by aoukouho         ###   ########.fr       */
+/*   Updated: 2024/10/10 10:20:03 by aerrfig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int    is_hit_wall(t_cub3d prog, t_vector position)
         return (1);
     int y = (int)floor(position.y / GRID_SIZE);
     int x = (int)floor(position.x / GRID_SIZE);
-	if (y >= 7 || x >= 9 || x < 0 || y < 0)
+	if (y >= prog.map_size.y || x >= prog.map_size.x || x < 0 || y < 0)
 		return (1);
     return (prog.map[y][x]);
 }

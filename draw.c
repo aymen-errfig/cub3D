@@ -9,7 +9,7 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	*(int*)dst = color;
 }
 
-void draw_rectangle(t_data *data, t_vector v, int color, int size, int is_line)
+void draw_rectangle(t_data *data, t_vector v, int color, int size)
 {
 	int i = v.x ;
 	int j = v.y ;
@@ -37,26 +37,37 @@ unsigned int	get_color(t_data *data, int x, int y)
 
 void draw_minimap(t_cub3d *prog)
 {
-	int i = 0;
-	int j = 0;
-	while (i < 7)
+	int	i;
+	int	i_map;
+	int	j;
+	int	j_map;
+
+	i = (GRID_SIZE*6) - prog->player.player_pos.y;
+	j = (GRID_SIZE*6) - prog->player.player_pos.x;
+	i_map = MINIPAM_H;
+	draw_rectangle(&prog->img_data, (t_vector){0,0}, 0x000000, MINIPAM_H);
+	while (i_map > 0)
 	{
-		j = 0;
-		while (j < 9)
+		j_map = MINIPAM_H;
+		j = (GRID_SIZE*6) - prog->player.player_pos.x;
+		while (j_map > 0)
 		{
-			t_vector rectange = (t_vector) {.x = GRID_SIZE*j, .y=GRID_SIZE*i};
-			if (prog->map[i][j] == 1)
-			{
-				draw_rectangle(&prog->img_data, rectange, 0xFF0000, GRID_SIZE, 1);
-			}
+			if (j < 0 || i < 0 || j >= GRID_SIZE*10 || i >= GRID_SIZE*10)
+				my_mlx_pixel_put(&prog->img_data, j_map, i_map, 0x0000FF);
 			else
 			{
-				draw_rectangle(&prog->img_data, rectange, 0xFFFFFF, GRID_SIZE, 0);
+				if (prog->map[9-(int)floor(i/GRID_SIZE)][9-(int)floor(j/GRID_SIZE)])
+					my_mlx_pixel_put(&prog->img_data, j_map, i_map, 0xFF0000);
+				else
+					my_mlx_pixel_put(&prog->img_data, j_map, i_map, 0xFFFFFF);
 			}
 			j++;
+			j_map--;
 		}
 		i++;
+		i_map--;
 	}
+	draw_rectangle(&prog->img_data, (t_vector){(GRID_SIZE*4 - 5), (GRID_SIZE*4 - 5)}, 0x00FF00, 10);
 }
 
 void swap(double *x, double *y)

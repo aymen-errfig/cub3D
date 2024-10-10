@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wall.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aoukouho <aoukouho@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: aerrfig <aerrfig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 17:27:06 by aoukouho          #+#    #+#             */
-/*   Updated: 2024/10/09 18:14:49 by aoukouho         ###   ########.fr       */
+/*   Updated: 2024/10/10 10:26:04 by aerrfig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	draw_cieling(t_data img, double wall_start, t_vector *pixel)
 {
 	while (pixel->y < wall_start)
 	{
-		my_mlx_pixel_put(&img, pixel->x, pixel->y, 0x2BFAFA);
+		my_mlx_pixel_put(&img, pixel->x, pixel->y, 0x87CEEB);
 		(pixel->y++);
 	}
 }
@@ -48,7 +48,7 @@ void	draw_floor(t_cub3d prog, double wall_end, t_vector *pixel)
 {
     while (pixel->y < HEIGHT)
     {
-	    my_mlx_pixel_put(&prog.game_img,  pixel->x, pixel->y, 0xFF0000);
+	    my_mlx_pixel_put(&prog.game_img,  pixel->x, pixel->y, 0x136d15);
 	   (pixel->y++);
     }
 }
