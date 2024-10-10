@@ -77,6 +77,9 @@ int main(void)
 	prog.wall_img.addr = (int *) mlx_get_data_addr(prog.wall_img.img, &prog.wall_img.bits_per_pixel,
 			&prog.wall_img.line_length, &prog.wall_img.endian);
 	prog.player = player_init();
+	prog.gun_img.img = mlx_xpm_file_to_image(prog.mlx_ptr, "assets/gun.xpm", &prog.gun_img.width, &prog.gun_img.height);
+	if (!prog.gun_img.img)
+		exit(1);
 	move_player(&prog);
 	mlx_put_image_to_window(prog.mlx_ptr, prog.mlx_win, prog.img_data.img, 0, 0);
 	mlx_hook(prog.mlx_win, 02, 1L<<1, keyboard_press_handler, &prog);

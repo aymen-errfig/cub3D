@@ -81,6 +81,7 @@ typedef struct	s_cub3d
 	t_data     img_data;
 	t_data     game_img;
 	t_data     wall_img;
+	t_data     gun_img;
 }	t_cub3d;
 
 t_cub3d	*getData(t_cub3d *tosave);

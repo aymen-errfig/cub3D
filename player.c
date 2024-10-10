@@ -30,5 +30,6 @@ int	move_player(t_cub3d *prog)
 	draw_rays(*prog);
 	mlx_put_image_to_window(prog->mlx_ptr, prog->mlx_win, prog->game_img.img, 0, 0); 
 	mlx_put_image_to_window(prog->mlx_ptr, prog->mlx_win, prog->img_data.img, 0, 0);
+	mlx_put_image_to_window(prog->mlx_ptr, prog->mlx_win, prog->gun_img.img, (WIDTH*0.5) - (prog->gun_img.width*0.5), HEIGHT-prog->gun_img.height);
 	return (0);
 }
