@@ -4,7 +4,7 @@ CFLAGS = #-Wall -Wextra -Werror
 # CFLAGS = -O2
 # CFLAGS += -Wpedantic
 
-SRCS = 	draw.c hooks_handler.c main.c player.c raycast.c utils.c raycasting/wall.c
+SRCS = 	draw.c hooks_handler.c main.c player.c raycast.c utils.c raycasting/wall.c mouse_handler.c
 OBJS = $(SRCS:.c=.o)
 NAME = cub3d
 HEADERS = cub3d.h
