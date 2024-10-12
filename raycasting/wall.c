@@ -6,7 +6,7 @@
 /*   By: aerrfig <aerrfig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 17:27:06 by aoukouho          #+#    #+#             */
-/*   Updated: 2024/10/10 10:26:04 by aerrfig          ###   ########.fr       */
+/*   Updated: 2024/10/11 16:04:06 by aerrfig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,10 @@ void render_frame(t_cub3d prog, double angle, t_ray *ray)
 	t_vector texture;
 
 	wall_height = floor((GRID_SIZE * HEIGHT) / ray->distance); 
-        wall_border.x =  (HEIGHT/2) - (wall_height/2);
-        wall_border.x *= (wall_border.x > 0);
-        wall_border.y =  (HEIGHT/2) + (wall_height/2);
-        if (wall_border.y > HEIGHT)
+    wall_border.x =  (HEIGHT/2) - (wall_height/2);
+    wall_border.x *= (wall_border.x > 0);
+    wall_border.y =  (HEIGHT/2) + (wall_height/2);
+    if (wall_border.y > HEIGHT)
 		wall_border.y = HEIGHT;
 	pixel = (t_vector){ray->index, 0};
 	draw_cieling(prog.game_img, wall_border.x, &pixel);

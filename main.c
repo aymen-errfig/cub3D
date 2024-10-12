@@ -6,7 +6,7 @@
 /*   By: aerrfig <aerrfig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 14:04:09 by aoukouho          #+#    #+#             */
-/*   Updated: 2024/10/10 10:29:44 by aerrfig          ###   ########.fr       */
+/*   Updated: 2024/10/11 10:53:21 by aerrfig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,9 +67,9 @@ int main(void)
 	// to protect
 	prog.game_img.addr = (int *) mlx_get_data_addr(prog.game_img.img, &prog.game_img.bits_per_pixel,
 			&prog.game_img.line_length, &prog.game_img.endian);
-
-        /* prog.wall_img.img = mlx_xpm_file_to_image(prog.mlx_ptr, "assets/doom.xpm", &prog.wall_img.width, &prog.wall_img.height); */
-        prog.wall_img.img = mlx_xpm_file_to_image(prog.mlx_ptr, "assets/wall.xpm", &prog.wall_img.width, &prog.wall_img.height);
+	prog.wall_img.img = mlx_xpm_file_to_image(prog.mlx_ptr, "assets/wall.xpm", &prog.wall_img.width, &prog.wall_img.height);
+	prog.gun_img.img = mlx_xpm_file_to_image(prog.mlx_ptr, "assets/gun1.xpm", &prog.gun_img.width, &prog.gun_img.height);
+	prog.gun_img2.img = mlx_xpm_file_to_image(prog.mlx_ptr, "assets/gun2.xpm", &prog.gun_img2.width, &prog.gun_img2.height);
 	if (!prog.wall_img.img)
 		exit(1);
 	if (prog.wall_img.width * prog.wall_img.height == 0)
@@ -77,9 +77,9 @@ int main(void)
 	prog.wall_img.addr = (int *) mlx_get_data_addr(prog.wall_img.img, &prog.wall_img.bits_per_pixel,
 			&prog.wall_img.line_length, &prog.wall_img.endian);
 	prog.player = player_init();
-	move_player(&prog);
 	mlx_put_image_to_window(prog.mlx_ptr, prog.mlx_win, prog.img_data.img, 0, 0);
 	mlx_hook(prog.mlx_win, 02, 1L<<1, keyboard_press_handler, &prog);
+	mlx_loop_hook(prog.mlx_ptr, move_player, &prog);
 	mlx_loop(prog.mlx_ptr);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: aerrfig <aerrfig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 14:04:13 by aoukouho          #+#    #+#             */
-/*   Updated: 2024/10/10 12:12:03 by aerrfig          ###   ########.fr       */
+/*   Updated: 2024/10/11 12:51:57 by aerrfig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,21 @@ t_player player_init(void)
 
 int	move_player(t_cub3d *prog)
 {
+	static int	time = 0;
+	mlx_clear_window(prog->mlx_ptr, prog->mlx_win);
 	draw_minimap(prog);
 	draw_rays(*prog);
 	mlx_put_image_to_window(prog->mlx_ptr, prog->mlx_win, prog->game_img.img, 0, 0); 
 	mlx_put_image_to_window(prog->mlx_ptr, prog->mlx_win, prog->img_data.img, 0, 0);
+	time += prog->is_shooting;
+	if (time == 20)
+	{
+		prog->is_shooting = 0;
+		time = 0;
+	}
+	if (time < 10)
+		mlx_put_image_to_window(prog->mlx_ptr, prog->mlx_win, prog->gun_img.img, (WIDTH*0.5)-(prog->gun_img.width / 2), HEIGHT-prog->gun_img.height);
+	else
+		mlx_put_image_to_window(prog->mlx_ptr, prog->mlx_win, prog->gun_img2.img, (WIDTH*0.5)-(prog->gun_img2.width / 2), HEIGHT-prog->gun_img2.height);
 	return (0);
 }

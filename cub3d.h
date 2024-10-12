@@ -29,6 +29,8 @@
 #define LEFT_ARROW_KEYCODE  123
 #define RIGHT_ARROW_KEYCODE  124
 
+#define SPACE 49
+
 typedef struct	s_data {
 	void*	img;
 	int*	    addr;
@@ -80,7 +82,11 @@ typedef struct	s_cub3d
 	void		*mlx_win;
 	t_data     img_data;
 	t_data     game_img;
+	t_data     gun_img;
+	t_data     gun_img2;
+	t_data     black_img;
 	t_data     wall_img;
+	char		is_shooting;
 }	t_cub3d;
 
 t_cub3d	*getData(t_cub3d *tosave);
@@ -100,5 +106,5 @@ double	normalize_angle(double angle);
 void rec(t_data *data, t_vector v, int color, t_vector size);
 int    is_on_boundtry(t_cub3d prog, t_vector position);
 unsigned int	get_color(t_data *data, int x, int y);
-void 		render_frame(t_cub3d prog, double angle, t_ray *ray);
+void	render_frame(t_cub3d prog, double angle, t_ray *ray);
 #endif
