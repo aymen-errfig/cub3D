@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aerrfig <aerrfig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aoukouho <aoukouho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 14:04:09 by aoukouho          #+#    #+#             */
-/*   Updated: 2024/10/10 20:29:01 by aoukouho         ###   ########.fr       */
+/*   Updated: 2024/10/12 15:08:38 by aoukouho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int main(void)
 		    prog.map[i][j] = map[i][j];
 		}
 	}
-	prog.map_size = (t_vector){10, 10};
+	prog.map_size = (t_vec){10, 10};
 	prog.mlx_ptr = mlx_init();
 	if (!prog.mlx_ptr)
 		exit(-1);

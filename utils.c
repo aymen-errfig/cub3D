@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aerrfig <aerrfig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aoukouho <aoukouho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 14:04:21 by aoukouho          #+#    #+#             */
-/*   Updated: 2024/10/10 10:20:03 by aerrfig          ###   ########.fr       */
+/*   Updated: 2024/10/12 15:08:38 by aoukouho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_cub3d	*getData(t_cub3d *tosave)
 	return (saved);
 }
 
-int    is_hit_wall(t_cub3d prog, t_vector position)
+int    is_hit_wall(t_cub3d prog, t_vec position)
 {
     if (!is_on_boundtry(prog, position))
         return (1);
@@ -31,7 +31,7 @@ int    is_hit_wall(t_cub3d prog, t_vector position)
     return (prog.map[y][x]);
 }
 
-int    is_on_boundtry(t_cub3d prog, t_vector position)
+int    is_on_boundtry(t_cub3d prog, t_vec position)
 {
     return (position.x < WIDTH && position.y < HEIGHT && position.x > 0 && position.y > 0);
 }
@@ -44,7 +44,7 @@ double	normalize_angle(double angle)
 	return (angle);
 }
 
-void rec(t_data *data, t_vector v, int color, t_vector size)
+void rec(t_data *data, t_vec v, int color, t_vec size)
 {
     int i = (int)floor(v.x);
     int j = (int)floor(v.y);

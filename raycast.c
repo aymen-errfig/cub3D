@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aerrfig <aerrfig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aoukouho <aoukouho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 14:04:04 by aoukouho          #+#    #+#             */
-/*   Updated: 2024/10/10 10:22:57 by aerrfig          ###   ########.fr       */
+/*   Updated: 2024/10/12 15:08:38 by aoukouho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <math.h>
 #include <float.h>
 
-double calculate_distance(t_vector v1, t_vector v2) 
+double calculate_distance(t_vec v1, t_vec v2) 
 {
     double distance;
 
@@ -22,10 +22,10 @@ double calculate_distance(t_vector v1, t_vector v2)
     return distance;
 }
 
-t_vector horizontal_intersection(t_vector   current, t_cub3d prog, double angle, t_ray ray)
+t_vec horizontal_intersection(t_vec   current, t_cub3d prog, double angle, t_ray ray)
 {
-    t_vector h_intersection;
-    t_vector h_step;
+    t_vec h_intersection;
+    t_vec h_step;
     int hitWall = 0;
 
     h_intersection.y = floor(prog.player.player_pos.y / GRID_SIZE) * GRID_SIZE; 
@@ -43,7 +43,7 @@ t_vector horizontal_intersection(t_vector   current, t_cub3d prog, double angle,
     while (is_on_boundtry(prog, h_intersection))
     {
        
-        if (is_hit_wall(prog,(t_vector) {.x=h_intersection.x,.y=h_intersection.y - ray.is_ray_up })) 
+        if (is_hit_wall(prog,(t_vec) {.x=h_intersection.x,.y=h_intersection.y - ray.is_ray_up })) 
         {
              hitWall = 1;
             break;
@@ -56,10 +56,10 @@ t_vector horizontal_intersection(t_vector   current, t_cub3d prog, double angle,
     return (h_intersection);
 }
 
-t_vector vertical_intersection(t_vector   current, t_cub3d prog, double angle, t_ray ray)
+t_vec vertical_intersection(t_vec   current, t_cub3d prog, double angle, t_ray ray)
 {
-    t_vector v_intersection;
-    t_vector v_step;
+    t_vec v_intersection;
+    t_vec v_step;
     int    hitWall = 0;
 
      v_intersection.x = floor(prog.player.player_pos.x / GRID_SIZE) * GRID_SIZE;
@@ -76,7 +76,7 @@ t_vector vertical_intersection(t_vector   current, t_cub3d prog, double angle, t
         v_step.y *= -1;
     while (is_on_boundtry(prog, v_intersection))
     {
-          if (is_hit_wall(prog,(t_vector) {.x=v_intersection.x - ray.is_ray_left,.y=v_intersection.y})) 
+          if (is_hit_wall(prog,(t_vec) {.x=v_intersection.x - ray.is_ray_left,.y=v_intersection.y})) 
 	  {
             hitWall = 1;
             break;
@@ -90,9 +90,9 @@ t_vector vertical_intersection(t_vector   current, t_cub3d prog, double angle, t
 
 void dda_algo(t_cub3d prog, double angle, t_ray *ray)
 {
-	t_vector h_intersection;
-    	t_vector v_intersection;
-    	t_vector player;
+	t_vec h_intersection;
+    	t_vec v_intersection;
+    	t_vec player;
 
 	player = prog.player.player_pos;
 	ray->is_ray_up = (angle < 0 || angle > M_PI);
@@ -117,7 +117,7 @@ void dda_algo(t_cub3d prog, double angle, t_ray *ray)
       /* double wall_end =  (HEIGHT/2) + (wall_height/2); */
       /* if (wall_end > HEIGHT) */
 	    /* wall_end = HEIGHT; */
-      /* t_vector ciel = (t_vector){ray->index, 0}; */
+      /* t_vec ciel = (t_vec){ray->index, 0}; */
     /* // draw cieling */
      /* while (ciel.y < wall_start) */
     /* { */

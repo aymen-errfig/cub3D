@@ -40,15 +40,15 @@ typedef struct	s_data {
 	int		height;
 }	t_data;
 
-typedef struct s_vector
+typedef struct s_vec
 {
 	double	x;
 	double	y;
-}	t_vector;
+}	t_vec;
 
 typedef struct s_player
 {
-	t_vector	player_pos;
+	t_vec	player_pos;
 	int			speed;
 	int			fov;
 	int			radius;
@@ -67,14 +67,14 @@ typedef struct s_ray
     int index;
     double distance;
     int	is_vertical;
-    t_vector ray_pos;
+    t_vec ray_pos;
 }	t_ray;
 
 typedef struct	s_cub3d
 {
 	char		**map;
 	t_player	player;
-	t_vector	map_size;
+	t_vec	map_size;
 	int			screen_w;
 	int			screen_h;
 	void		*mlx_ptr;
@@ -88,20 +88,22 @@ typedef struct	s_cub3d
 t_cub3d	*getData(t_cub3d *tosave);
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
-void draw_rectangle(t_data *data, t_vector v, int color, int size);
+void draw_rectangle(t_data *data, t_vec v, int color, int size);
 void draw_minimap(t_cub3d *prog);
 t_player player_init(void);
 int	move_player(t_cub3d *prog);
 int	keyboard_press_handler(int keycode, t_cub3d *prog);
 double degree_to_rad(double angle);
 void destroy_window(t_cub3d *prog);
-void draw_line(t_data *data, t_vector start, t_vector end, int color);
-int	is_hit_wall(t_cub3d prog, t_vector position);
+void draw_line(t_data *data, t_vec start, t_vec end, int color);
+int	is_hit_wall(t_cub3d prog, t_vec position);
 void	draw_rays(t_cub3d prog);
 double	normalize_angle(double angle);
-void rec(t_data *data, t_vector v, int color, t_vector size);
-int    is_on_boundtry(t_cub3d prog, t_vector position);
+void rec(t_data *data, t_vec v, int color, t_vec size);
+int    is_on_boundtry(t_cub3d prog, t_vec position);
 unsigned int	get_color(t_data *data, int x, int y);
 void 		render_frame(t_cub3d prog, double angle, t_ray *ray);
 int		mouse_handler(int keycode, int x, int y, t_cub3d *prog);
+t_vec	calculate_texture(t_cub3d *prog, t_ray *ray, double wheight);
+int	get_pixel_color(t_cub3d *prog, t_vec texture, double ycord);
 #endif

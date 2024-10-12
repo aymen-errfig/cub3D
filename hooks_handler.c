@@ -15,7 +15,7 @@ int is_not_valid_key(int keycode)
 
 int handle_player_movement(t_cub3d *prog, int rl_direction, int ud_direction)
 {
-	t_vector new_pos;
+	t_vec new_pos;
 	int speed;
 
 	speed = 5;
@@ -52,7 +52,7 @@ int keyboard_press_handler(int keycode, t_cub3d *prog)
 {
 	int speed;
 	int move_angle;
-	t_vector new_pos;
+	t_vec new_pos;
 	int rl_direction;
 	int ud_direction;
 
