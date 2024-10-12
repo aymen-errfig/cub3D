@@ -6,7 +6,7 @@
 /*   By: aoukouho <aoukouho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 14:04:09 by aoukouho          #+#    #+#             */
-/*   Updated: 2024/10/12 15:08:38 by aoukouho         ###   ########.fr       */
+/*   Updated: 2024/10/12 16:51:35 by aoukouho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,9 @@ int main(void)
 		exit(1);
 	move_player(&prog);
 	mlx_put_image_to_window(prog.mlx_ptr, prog.mlx_win, prog.img_data.img, 0, 0);
-	mlx_hook(prog.mlx_win, 02, 1L<<1, keyboard_press_handler, &prog);
-	mlx_mouse_hook(prog.mlx_win, mouse_handler, &prog);
+	mlx_hook(prog.mlx_win, 6, 1L<<6, mouse_handler, &prog);
+	mlx_hook(prog.mlx_win, 2, 1L<<1, keyboard_press_handler, &prog);
 	mlx_loop(prog.mlx_ptr);
+	destroy_window(&prog);
 	return (0);
 }

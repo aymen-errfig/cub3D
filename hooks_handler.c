@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   hooks_handler.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aoukouho <aoukouho@student.1337.ma>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/12 15:35:52 by aoukouho          #+#    #+#             */
+/*   Updated: 2024/10/12 16:46:35 by aoukouho         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 void clear_resource(t_cub3d *prog)
@@ -13,7 +25,7 @@ int is_not_valid_key(int keycode)
 	keycode != LEFT_KEYCODE && keycode != 53 && keycode != RIGHT_ARROW_KEYCODE && keycode != LEFT_ARROW_KEYCODE);
 }
 
-int handle_player_movement(t_cub3d *prog, int rl_direction, int ud_direction)
+int	handle_player_movement(t_cub3d *prog, int rl_direction, int ud_direction)
 {
 	t_vec new_pos;
 	int speed;
@@ -22,13 +34,13 @@ int handle_player_movement(t_cub3d *prog, int rl_direction, int ud_direction)
 	new_pos =  prog->player.player_pos;
 	if (ud_direction != 0)
 	{
-	new_pos.x += ((cos(prog->player.player_angle) * ud_direction) * speed);
-	new_pos.y += ((sin(prog->player.player_angle) * ud_direction) * speed);
+		new_pos.x += ((cos(prog->player.player_angle) * ud_direction) * speed);
+		new_pos.y += ((sin(prog->player.player_angle) * ud_direction) * speed);
 	}
 	if (rl_direction != 0)
 	{
-	new_pos.x += ((sin(prog->player.player_angle) * rl_direction) * speed);
-	new_pos.y -=  ((cos(prog->player.player_angle) * rl_direction) * speed);
+		new_pos.x += ((sin(prog->player.player_angle) * rl_direction) * speed);
+		new_pos.y -=  ((cos(prog->player.player_angle) * rl_direction) * speed);
 	}
 	if (is_hit_wall(*prog, new_pos))
 		return (1);
@@ -66,7 +78,7 @@ int keyboard_press_handler(int keycode, t_cub3d *prog)
 	ud_direction = ((keycode == UP_KEYCODE) * 1) + ((keycode == DOWN_KEYCODE) * -1);
 	rl_direction = ((keycode == RIGHT_KEYCODE) * 1) + ((keycode == LEFT_KEYCODE) * -1);
 	handle_player_movement(prog, rl_direction, ud_direction);
-	handle_player_rotation(prog, keycode);
+	/* handle_player_rotation(prog, keycode); */
 	move_player(prog);
 	return (0);
 }

@@ -7,14 +7,19 @@ CFLAGS = #-Wall -Wextra -Werror
 SRCS = 	draw.c hooks_handler.c main.c player.c raycast.c utils.c raycasting/wall.c raycasting/utils.c mouse_handler.c
 OBJS = $(SRCS:.c=.o)
 NAME = cub3d
-HEADERS = cub3d.h
-LINKERS = -lmlx -framework OpenGL -framework AppKit -g -fsanitize=address
+MLX_DIR = minilibx_opengl
+INC = -I $(MLX_DIR) -I .
+HEADERS = cub3d.h $(MLX_DIR)/mlx.h 
+LINKERS = -L$(MLX_DIR) -lmlx -framework OpenGL -framework AppKit -g -fsanitize=address
 
 all: $(NAME) 
 
-$(NAME): $(OBJS)
-	$(CC) $(OBJS) $(LINKERS) -o $(NAME) 
+$(NAME): $(OBJS) mlx
+	$(CC) $(OBJS) $(INC) $(LINKERS) -o $(NAME) 
 	@echo "compiling the mandatory part"
+
+mlx:
+	make -C $(MLX_DIR)
 
 %.o: %.c $(HEADERS)
 	@$(CC) $(CFLAGS) -c $< -o $@

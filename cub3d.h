@@ -1,12 +1,25 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aoukouho <aoukouho@student.1337.ma>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/12 15:36:25 by aoukouho          #+#    #+#             */
+/*   Updated: 2024/10/12 16:47:30 by aoukouho         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CUB3D_H
 #define CUB3D_H
-#include <stdlib.h>
-#include <stdio.h>
-#include <math.h>
-#include <mlx.h>
-#include <unistd.h>
-
-
+# include <stdlib.h>
+# include <stdio.h>
+# include <math.h>
+# include <mlx.h>
+# include <unistd.h>
+# include <math.h>
+# include <float.h>
+ 
 # define N 0
 # define S 1
 # define W 2
@@ -15,8 +28,8 @@
 # define GRID_SIZE 32
 # define FOV_SCALE 0.69813170079
 
-# define WIDTH 900
-# define HEIGHT 700
+# define WIDTH 2000
+# define HEIGHT 1000
 
 # define MINIPAM_W (8 * GRID_SIZE)
 # define MINIPAM_H (8 * GRID_SIZE)
@@ -103,7 +116,7 @@ void rec(t_data *data, t_vec v, int color, t_vec size);
 int    is_on_boundtry(t_cub3d prog, t_vec position);
 unsigned int	get_color(t_data *data, int x, int y);
 void 		render_frame(t_cub3d prog, double angle, t_ray *ray);
-int		mouse_handler(int keycode, int x, int y, t_cub3d *prog);
+int		mouse_handler(int x, int y, t_cub3d *prog);
 t_vec	calculate_texture(t_cub3d *prog, t_ray *ray, double wheight);
 int	get_pixel_color(t_cub3d *prog, t_vec texture, double ycord);
 #endif

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   draw.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aoukouho <aoukouho@student.1337.ma>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/12 15:35:47 by aoukouho          #+#    #+#             */
+/*   Updated: 2024/10/12 15:35:49 by aoukouho         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
@@ -23,16 +35,6 @@ void draw_rectangle(t_data *data, t_vec v, int color, int size)
 		}
 		i++;
 	}
-}
-
-unsigned int	get_color(t_data *data, int x, int y)
-{
-	int	*dst;
-
-	if (x > data->width || y > data->height || y < 0 || x < 0)
-		return (-1);
-	dst = &data->addr[y * (data->line_length / 4) + x];
-	return ((unsigned int)*dst);
 }
 
 void draw_minimap(t_cub3d *prog)
@@ -68,34 +70,4 @@ void draw_minimap(t_cub3d *prog)
 		i_map--;
 	}
 	draw_rectangle(&prog->img_data, (t_vec){(GRID_SIZE*4 - 5), (GRID_SIZE*4 - 5)}, 0x00FF00, 10);
-}
-
-void swap(double *x, double *y)
-{
-	double tmp;
-
-	tmp = *x;
-	*x = *y;
-	*y = tmp;
-}
-
-void draw_line(t_data *data, t_vec start, t_vec end, int color) 
-{
-    int i;
-
-    double x = end.x - start.x;
-    double y = end.y - start.y;
-    double length = sqrt(x * x + y * y);
-    double addx = x / length;
-    double addy = y / length;
-    x = start.x;
-    y = start.y;
-
-    for (i = 0; i < length; i += 1) {
-		if (x >= WIDTH || y >= HEIGHT || y <0 || x < 0)
-			return ;
-	    my_mlx_pixel_put(data,(int)round(x), (int)round(y),color );
-        x += addx;
-        y += addy;
-    }
 }

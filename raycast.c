@@ -6,13 +6,11 @@
 /*   By: aoukouho <aoukouho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 14:04:04 by aoukouho          #+#    #+#             */
-/*   Updated: 2024/10/12 15:08:38 by aoukouho         ###   ########.fr       */
+/*   Updated: 2024/10/12 16:14:32 by aoukouho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include <math.h>
-#include <float.h>
 
 double calculate_distance(t_vec v1, t_vec v2) 
 {
@@ -110,45 +108,8 @@ void dda_algo(t_cub3d prog, double angle, t_ray *ray)
 		ray->is_vertical = 1;
 		ray->distance = calculate_distance(player, v_intersection);
 	}
-       ray->distance *= cos(angle - prog.player.player_angle);
-       /* double wall_height =  (GRID_SIZE / ray->distance) * (WIDTH / 2.0) / tan(degree_to_rad(60) / 2); */
-       /* double wall_start =  (HEIGHT/2) - (wall_height/2); */
-      /* wall_start *= (wall_start > 0); */
-      /* double wall_end =  (HEIGHT/2) + (wall_height/2); */
-      /* if (wall_end > HEIGHT) */
-	    /* wall_end = HEIGHT; */
-      /* t_vec ciel = (t_vec){ray->index, 0}; */
-    /* // draw cieling */
-     /* while (ciel.y < wall_start) */
-    /* { */
-	    /* my_mlx_pixel_put(&prog.game_img,  ciel.x, ciel.y, 0x2BFAFA); */
-	    /* ciel.y++; */
-    /* } */
-    /* int texture_x; */
-    /* if (ray->is_vertical) */
-	/* texture_x = fmod((ray->ray_pos.y* (prog.wall_img.width/GRID_SIZE)), prog.wall_img.width); */
-    /* else */
-	/* texture_x = fmod((ray->ray_pos.x* (prog.wall_img.width/GRID_SIZE)), prog.wall_img.width); */
-    /* double offsety; */
-    /* double texture_y; */
-    /* offsety = (double)prog.wall_img.width / wall_height; */
-    /* double ycord = (wall_start - (HEIGHT / 2) + (wall_height / 2)) * offsety; */
-    /* ycord *= (ycord > 0); */
-    /* // draw walls */
-    /* while (ciel.y < wall_end) */
-    /* { */
-	    /* int color = prog.wall_img.addr[(int) ycord * prog.wall_img.width + (int)texture_x]; */
-	    /* my_mlx_pixel_put(&prog.game_img,  ciel.x, ciel.y, color); */
-	    /* ycord += offsety; */
-	    /* ciel.y++; */
-    /* } */
-    /* // drwa floors */
-    /* while (ciel.y < HEIGHT) */
-    /* { */
-	    /* my_mlx_pixel_put(&prog.game_img,  ciel.x, ciel.y, 0xFF00FF); */
-	    /* ciel.y++; */
-    /* } */    	    	
-    render_frame(prog, angle, ray);
+	ray->distance *= cos(angle - prog.player.player_angle);
+	render_frame(prog, angle, ray);
 }
 
 void	draw_rays(t_cub3d prog)
