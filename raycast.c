@@ -6,7 +6,7 @@
 /*   By: aerrfig <aerrfig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 14:04:04 by aoukouho          #+#    #+#             */
-/*   Updated: 2024/10/11 12:27:46 by aerrfig          ###   ########.fr       */
+/*   Updated: 2024/10/14 14:51:31 by aerrfig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ t_vector horizontal_intersection(t_vector   current, t_cub3d prog, double angle,
         h_step.x *= -1;
     if (ray.is_ray_right && h_step.x < 0)
         h_step.x *= -1;
-    while (is_on_boundtry(prog, h_intersection))
+    while (is_on_boundtry(h_intersection))
     {
        
         if (is_hit_wall(prog,(t_vector) {.x=h_intersection.x,.y=h_intersection.y - ray.is_ray_up })) 
@@ -56,8 +56,9 @@ t_vector horizontal_intersection(t_vector   current, t_cub3d prog, double angle,
     return (h_intersection);
 }
 
-t_vector vertical_intersection(t_vector   current, t_cub3d prog, double angle, t_ray ray)
+t_vector vertical_intersection(t_vector current, t_cub3d prog, double angle, t_ray ray)
 {
+    (void)current;
     t_vector v_intersection;
     t_vector v_step;
     int    hitWall = 0;
@@ -74,7 +75,7 @@ t_vector vertical_intersection(t_vector   current, t_cub3d prog, double angle, t
         v_step.y *= -1;
     if (ray.is_ray_down && v_step.y < 0)
         v_step.y *= -1;
-    while (is_on_boundtry(prog, v_intersection))
+    while (is_on_boundtry(v_intersection))
     {
           if (is_hit_wall(prog,(t_vector) {.x=v_intersection.x - ray.is_ray_left,.y=v_intersection.y})) 
 	  {

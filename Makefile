@@ -8,7 +8,7 @@ SRCS = 	draw.c hooks_handler.c main.c player.c raycast.c utils.c raycasting/wall
 OBJS = $(SRCS:.c=.o)
 NAME = cub3d
 HEADERS = cub3d.h
-LINKERS = -lmlx -framework OpenGL -framework AppKit -g -fsanitize=address
+LINKERS = -lmlx -framework OpenGL -framework AppKit# -g -fsanitize=address
 
 all: $(NAME) 
 

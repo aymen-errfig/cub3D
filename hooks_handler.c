@@ -52,8 +52,6 @@ void handle_player_rotation(t_cub3d *prog, int keycode)
 int keyboard_press_handler(int keycode, t_cub3d *prog)
 {
 	int speed;
-	int move_angle;
-	t_vector new_pos;
 	int rl_direction;
 	int ud_direction;
 
