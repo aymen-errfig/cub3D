@@ -6,11 +6,12 @@
 /*   By: aoukouho <aoukouho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 14:04:21 by aoukouho          #+#    #+#             */
-/*   Updated: 2024/10/12 15:08:38 by aoukouho         ###   ########.fr       */
+/*   Updated: 2024/10/14 18:34:28 by aoukouho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+#include <stdio.h>
 
 t_cub3d	*getData(t_cub3d *tosave)
 {
@@ -28,6 +29,7 @@ int    is_hit_wall(t_cub3d prog, t_vec position)
     int x = (int)floor(position.x / GRID_SIZE);
 	if (y >= prog.map_size.y || x >= prog.map_size.x || x < 0 || y < 0)
 		return (1);
+    printf("[%d]\n",prog.map[y][x]);
     return (prog.map[y][x]);
 }
 

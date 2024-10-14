@@ -6,7 +6,7 @@
 /*   By: aoukouho <aoukouho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 14:04:13 by aoukouho          #+#    #+#             */
-/*   Updated: 2024/10/12 15:08:38 by aoukouho         ###   ########.fr       */
+/*   Updated: 2024/10/14 18:07:50 by aoukouho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_player player_init(void)
 
 int	move_player(t_cub3d *prog)
 {
-	draw_minimap(prog);
+	//draw_minimap(prog);
 	draw_rays(*prog);
 	mlx_put_image_to_window(prog->mlx_ptr, prog->mlx_win, prog->game_img.img, 0, 0); 
 	mlx_put_image_to_window(prog->mlx_ptr, prog->mlx_win, prog->img_data.img, 0, 0);

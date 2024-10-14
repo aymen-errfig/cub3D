@@ -6,7 +6,7 @@
 /*   By: aoukouho <aoukouho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 17:27:06 by aoukouho          #+#    #+#             */
-/*   Updated: 2024/10/12 15:25:45 by aoukouho         ###   ########.fr       */
+/*   Updated: 2024/10/14 18:18:05 by aoukouho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	draw_wall(t_ray *ray, double wheight, t_vec wborder, t_vec *pixel)
 	ycord *= (ycord > 0);
 	while (pixel->y < wborder.y)
 	{
-		color = get_pixel_color(prog, texture, ycord);
+		color = get_pixel_color(prog, texture, ycord, *ray);
 		my_mlx_pixel_put(&prog->game_img, pixel->x, pixel->y, color);
 		ycord += texture.y;
 		pixel->y++;

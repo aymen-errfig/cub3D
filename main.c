@@ -6,7 +6,7 @@
 /*   By: aoukouho <aoukouho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 14:04:09 by aoukouho          #+#    #+#             */
-/*   Updated: 2024/10/12 16:51:35 by aoukouho         ###   ########.fr       */
+/*   Updated: 2024/10/14 19:46:14 by aoukouho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ int main(void)
 		{1, 1, 1, 1 ,1, 1, 1, 1 , 1, 1},
 		{1, 0, 0, 0 ,0, 0, 0, 0 , 0, 1},
 		{1, 0, 0, 0 ,0, 0, 0, 0 , 0, 1},
-		{1, 0, 1, 1 ,0, 1, 1, 0 , 0, 1},
-		{1, 0, 1, 0 ,0, 0, 1, 0 , 0, 1},
-		{1, 0, 1, 0, 0, 0, 1, 0 , 0, 1},
+		{1, 0, 0, 1 ,2, 1, 0, 0 , 0, 1},
+		{1, 0, 0, 0 ,0, 0, 0, 0 , 0, 1},
+		{1, 0, 0, 0, 0, 0, 0, 0 , 0, 1},
 		{1, 0, 0, 0 ,0, 0, 0, 0 , 0, 1},
 		{1, 0, 0, 0 ,0, 0, 0, 0 , 0, 1},
 		{1, 0, 0, 0 ,0, 0, 0, 0 , 0, 1},
@@ -69,17 +69,27 @@ int main(void)
 			&prog.game_img.line_length, &prog.game_img.endian);
 
         /* prog.wall_img.img = mlx_xpm_file_to_image(prog.mlx_ptr, "assets/doom.xpm", &prog.wall_img.width, &prog.wall_img.height); */
-        prog.wall_img.img = mlx_xpm_file_to_image(prog.mlx_ptr, "assets/wall.xpm", &prog.wall_img.width, &prog.wall_img.height);
+    prog.wall_img.img = mlx_xpm_file_to_image(prog.mlx_ptr, "assets/wall.xpm", &prog.wall_img.width, &prog.wall_img.height);
 	if (!prog.wall_img.img)
 		exit(1);
 	if (prog.wall_img.width * prog.wall_img.height == 0)
 		exit(1);
 	prog.wall_img.addr = (int *) mlx_get_data_addr(prog.wall_img.img, &prog.wall_img.bits_per_pixel,
 			&prog.wall_img.line_length, &prog.wall_img.endian);
+
 	prog.player = player_init();
 	prog.gun_img.img = mlx_xpm_file_to_image(prog.mlx_ptr, "assets/gun.xpm", &prog.gun_img.width, &prog.gun_img.height);
 	if (!prog.gun_img.img)
 		exit(1);
+
+	prog.door_img.img = mlx_xpm_file_to_image(prog.mlx_ptr, "assets/door.xpm", &prog.door_img.width, &prog.door_img.height);
+	if (!prog.door_img.img)
+		exit(1);
+	if (prog.door_img.width * prog.door_img.height == 0)
+		exit(1);
+	prog.door_img.addr = (int *) mlx_get_data_addr(prog.door_img.img, &prog.door_img.bits_per_pixel,
+			&prog.door_img.line_length, &prog.door_img.endian);
+
 	move_player(&prog);
 	mlx_put_image_to_window(prog.mlx_ptr, prog.mlx_win, prog.img_data.img, 0, 0);
 	mlx_hook(prog.mlx_win, 6, 1L<<6, mouse_handler, &prog);

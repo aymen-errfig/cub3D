@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aoukouho <aoukouho@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: aoukouho <aoukouho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 15:36:25 by aoukouho          #+#    #+#             */
-/*   Updated: 2024/10/12 16:47:30 by aoukouho         ###   ########.fr       */
+/*   Updated: 2024/10/14 18:24:49 by aoukouho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ typedef struct s_ray
     double distance;
     int	is_vertical;
     t_vec ray_pos;
+	int	  is_door;
 }	t_ray;
 
 typedef struct	s_cub3d
@@ -96,6 +97,7 @@ typedef struct	s_cub3d
 	t_data     game_img;
 	t_data     wall_img;
 	t_data     gun_img;
+	t_data     door_img;
 }	t_cub3d;
 
 t_cub3d	*getData(t_cub3d *tosave);
@@ -118,5 +120,5 @@ unsigned int	get_color(t_data *data, int x, int y);
 void 		render_frame(t_cub3d prog, double angle, t_ray *ray);
 int		mouse_handler(int x, int y, t_cub3d *prog);
 t_vec	calculate_texture(t_cub3d *prog, t_ray *ray, double wheight);
-int	get_pixel_color(t_cub3d *prog, t_vec texture, double ycord);
+int	get_pixel_color(t_cub3d *prog, t_vec texture, double ycord,t_ray ray);
 #endif
