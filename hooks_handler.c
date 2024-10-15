@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks_handler.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aoukouho <aoukouho@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aerrfig <aerrfig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 15:35:52 by aoukouho          #+#    #+#             */
-/*   Updated: 2024/10/15 14:13:15 by aoukouho         ###   ########.fr       */
+/*   Updated: 2024/10/15 14:36:07 by aerrfig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,6 @@ int keyboard_press_handler(int keycode, t_cub3d *prog)
 	rl_direction = 0;
 	speed = 20;
 	ud_direction = ((keycode == UP_KEYCODE) * 1) + ((keycode == DOWN_KEYCODE) * -1);
-	if (keycode == SPACE)
-		prog->is_shooting = 1;
 	rl_direction = ((keycode == RIGHT_KEYCODE) * 1) + ((keycode == LEFT_KEYCODE) * -1);
 	handle_player_movement(prog, rl_direction, ud_direction);
 	handle_player_rotation(prog, keycode);

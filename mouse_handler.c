@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mouse_handler.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aoukouho <aoukouho@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: aerrfig <aerrfig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 20:26:35 by aoukouho          #+#    #+#             */
-/*   Updated: 2024/10/12 16:42:29 by aoukouho         ###   ########.fr       */
+/*   Updated: 2024/10/15 14:49:32 by aerrfig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,5 @@ int	mouse_handler(int x, int y, t_cub3d *prog)
 	mouse_angle = atan2(x - player.x, y - player.y);
 	mouse_angle = normalize_angle(mouse_angle);
 	prog->player.player_angle = mouse_angle;
-	move_player(prog);
 	return (0);
 }

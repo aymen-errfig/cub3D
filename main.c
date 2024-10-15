@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aoukouho <aoukouho@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aerrfig <aerrfig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 14:04:09 by aoukouho          #+#    #+#             */
-/*   Updated: 2024/10/14 19:46:14 by aoukouho         ###   ########.fr       */
+/*   Updated: 2024/10/15 14:47:20 by aerrfig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,14 @@ void destroy_window(t_cub3d *prog)
 double degree_to_rad(double angle)
 {
 	return (angle * M_PI / 180.0);
+}
+
+int mouse_controls(int mouse_key, int x, int y, t_cub3d *prog)
+{
+	printf("%d\n", mouse_key);
+	if (mouse_key == 1)
+		prog->is_shooting = 1;
+	return (0);
 }
 
 int main(void)
@@ -52,6 +60,7 @@ int main(void)
 		}
 	}
 	prog.map_size = (t_vec){10, 10};
+	prog.is_shooting = 0;
 	prog.mlx_ptr = mlx_init();
 	if (!prog.mlx_ptr)
 		exit(-1);
@@ -92,7 +101,9 @@ int main(void)
 	prog.door_img.addr = (int *) mlx_get_data_addr(prog.door_img.img, &prog.door_img.bits_per_pixel,
 			&prog.door_img.line_length, &prog.door_img.endian);
 	mlx_put_image_to_window(prog.mlx_ptr, prog.mlx_win, prog.img_data.img, 0, 0);
+	mlx_mouse_hide();
 	mlx_hook(prog.mlx_win, 6, 1L<<6, mouse_handler, &prog);
+	mlx_mouse_hook(prog.mlx_win, mouse_controls, &prog);
 	mlx_hook(prog.mlx_win, 2, 1L<<1, keyboard_press_handler, &prog);
 	mlx_loop_hook(prog.mlx_ptr, move_player, &prog);
 	mlx_loop(prog.mlx_ptr);

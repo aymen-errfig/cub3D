@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aoukouho <aoukouho@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aerrfig <aerrfig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 15:36:25 by aoukouho          #+#    #+#             */
-/*   Updated: 2024/10/15 14:13:49 by aoukouho         ###   ########.fr       */
+/*   Updated: 2024/10/15 14:52:23 by aerrfig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <math.h>
-# include <mlx.h>
+# include "minilibx_opengl/mlx.h"
 # include <unistd.h>
 # include <math.h>
 # include <float.h>
@@ -28,8 +28,8 @@
 # define GRID_SIZE 32
 # define FOV_SCALE 0.69813170079
 
-# define WIDTH 2000
-# define HEIGHT 1000
+# define WIDTH 1920
+# define HEIGHT 1080
 
 # define MINIPAM_W (8 * GRID_SIZE)
 # define MINIPAM_H (8 * GRID_SIZE)
