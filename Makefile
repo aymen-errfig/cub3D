@@ -10,7 +10,7 @@ NAME = cub3d
 MLX_DIR = minilibx_opengl
 INC = -I $(MLX_DIR) -I .
 HEADERS = cub3d.h $(MLX_DIR)/mlx.h 
-LINKERS = -L$(MLX_DIR) -lmlx -framework OpenGL -framework AppKit -g -fsanitize=address
+LINKERS = -L$(MLX_DIR) -lmlx -framework OpenGL -framework AppKit #-g -fsanitize=address
 
 all: $(NAME) 
 

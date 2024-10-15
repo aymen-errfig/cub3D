@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks_handler.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aoukouho <aoukouho@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: aoukouho <aoukouho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 15:35:52 by aoukouho          #+#    #+#             */
-/*   Updated: 2024/10/12 16:46:35 by aoukouho         ###   ########.fr       */
+/*   Updated: 2024/10/15 14:13:15 by aoukouho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ void clear_resource(t_cub3d *prog)
 int is_not_valid_key(int keycode)
 {
 	return (keycode != 258 && keycode != UP_KEYCODE && keycode != DOWN_KEYCODE && keycode != RIGHT_KEYCODE && 
-	keycode != LEFT_KEYCODE && keycode != 53 && keycode != RIGHT_ARROW_KEYCODE && keycode != LEFT_ARROW_KEYCODE);
+	keycode != LEFT_KEYCODE && keycode != 53 && keycode != RIGHT_ARROW_KEYCODE && keycode != LEFT_ARROW_KEYCODE &&
+	keycode != SPACE);
 }
 
 int	handle_player_movement(t_cub3d *prog, int rl_direction, int ud_direction)
@@ -68,6 +69,7 @@ int keyboard_press_handler(int keycode, t_cub3d *prog)
 	int rl_direction;
 	int ud_direction;
 
+	printf("%d\n", keycode);
 	if (is_not_valid_key(keycode))
 		return (1);
 	if (keycode == 53)
@@ -76,9 +78,10 @@ int keyboard_press_handler(int keycode, t_cub3d *prog)
 	rl_direction = 0;
 	speed = 20;
 	ud_direction = ((keycode == UP_KEYCODE) * 1) + ((keycode == DOWN_KEYCODE) * -1);
+	if (keycode == SPACE)
+		prog->is_shooting = 1;
 	rl_direction = ((keycode == RIGHT_KEYCODE) * 1) + ((keycode == LEFT_KEYCODE) * -1);
 	handle_player_movement(prog, rl_direction, ud_direction);
 	handle_player_rotation(prog, keycode);
-	move_player(prog);
 	return (0);
 }

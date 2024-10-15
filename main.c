@@ -51,7 +51,7 @@ int main(void)
 		    prog.map[i][j] = map[i][j];
 		}
 	}
-	prog.map_size = (t_vec){32, 150};
+	prog.map_size = (t_vec){10, 10};
 	prog.mlx_ptr = mlx_init();
 	if (!prog.mlx_ptr)
 		exit(-1);
@@ -77,8 +77,11 @@ int main(void)
 			&prog.wall_img.line_length, &prog.wall_img.endian);
 
 	prog.player = player_init();
-	prog.gun_img.img = mlx_xpm_file_to_image(prog.mlx_ptr, "assets/gun.xpm", &prog.gun_img.width, &prog.gun_img.height);
+	prog.gun_img.img = mlx_xpm_file_to_image(prog.mlx_ptr, "assets/gun1.xpm", &prog.gun_img.width, &prog.gun_img.height);
 	if (!prog.gun_img.img)
+		exit(1);
+	prog.gun_img2.img = mlx_xpm_file_to_image(prog.mlx_ptr, "assets/gun2.xpm", &prog.gun_img2.width, &prog.gun_img2.height);
+	if (!prog.gun_img2.img)
 		exit(1);
 
 	prog.door_img.img = mlx_xpm_file_to_image(prog.mlx_ptr, "assets/door.xpm", &prog.door_img.width, &prog.door_img.height);
@@ -88,11 +91,10 @@ int main(void)
 		exit(1);
 	prog.door_img.addr = (int *) mlx_get_data_addr(prog.door_img.img, &prog.door_img.bits_per_pixel,
 			&prog.door_img.line_length, &prog.door_img.endian);
-	move_player(&prog);
 	mlx_put_image_to_window(prog.mlx_ptr, prog.mlx_win, prog.img_data.img, 0, 0);
 	mlx_hook(prog.mlx_win, 6, 1L<<6, mouse_handler, &prog);
 	mlx_hook(prog.mlx_win, 2, 1L<<1, keyboard_press_handler, &prog);
+	mlx_loop_hook(prog.mlx_ptr, move_player, &prog);
 	mlx_loop(prog.mlx_ptr);
-	destroy_window(&prog);
 	return (0);
 }

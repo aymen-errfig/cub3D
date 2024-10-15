@@ -6,7 +6,7 @@
 /*   By: aoukouho <aoukouho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 15:36:25 by aoukouho          #+#    #+#             */
-/*   Updated: 2024/10/14 18:24:49 by aoukouho         ###   ########.fr       */
+/*   Updated: 2024/10/15 14:13:49 by aoukouho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@
 
 #define LEFT_ARROW_KEYCODE  123
 #define RIGHT_ARROW_KEYCODE  124
+
+#define SPACE 49
 
 typedef struct	s_data {
 	void*	img;
@@ -95,9 +97,12 @@ typedef struct	s_cub3d
 	void		*mlx_win;
 	t_data     img_data;
 	t_data     game_img;
-	t_data     wall_img;
 	t_data     gun_img;
+	t_data     gun_img2;
+	t_data     black_img;
+	t_data     wall_img;
 	t_data     door_img;
+	char		is_shooting;
 }	t_cub3d;
 
 t_cub3d	*getData(t_cub3d *tosave);
