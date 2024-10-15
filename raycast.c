@@ -17,16 +17,15 @@ double calculate_distance(t_vec v1, t_vec v2)
     double distance;
 
     distance = sqrt(pow(v2.x - v1.x, 2) + pow(v2.y - v1.y, 2));
-    return distance;
+    return (distance);
 }
 
 t_vec horizontal_intersection(t_vec   current, t_cub3d prog, double angle, t_ray *ray)
 {
     t_vec h_intersection;
     t_vec h_step;
-    int hitWall = 0;
+    int   what;
 
-    ray->is_door = (0);
     h_intersection.y = floor(prog.player.player_pos.y / GRID_SIZE) * GRID_SIZE; 
     if (ray->is_ray_down)
         h_intersection.y += GRID_SIZE;
@@ -39,20 +38,17 @@ t_vec horizontal_intersection(t_vec   current, t_cub3d prog, double angle, t_ray
         h_step.x *= -1;
     if (ray->is_ray_right && h_step.x < 0)
         h_step.x *= -1;
-    while (is_on_boundtry(prog, h_intersection))
+    while (1)
     {
-       int what = is_hit_wall(prog,(t_vec) {.x=h_intersection.x,.y=h_intersection.y - ray->is_ray_up });
-        if (what != 0) 
+         what = is_hit_wall(prog,(t_vec) {.x=h_intersection.x,.y=h_intersection.y - ray->is_ray_up });
+	if (what != '0') 
         {
-            ray->is_door = (what == 2);
-             hitWall = 1;
+            ray->is_door = (what == '2');
             break;
         }
 	current = h_intersection;
         h_intersection.x += h_step.x; h_intersection.y += h_step.y; 
     }
-     if (hitWall == 0)
-        ray->distance = FLT_MAX;
     return (h_intersection);
 }
 
@@ -60,9 +56,8 @@ t_vec vertical_intersection(t_vec   current, t_cub3d prog, double angle, t_ray *
 {
     t_vec v_intersection;
     t_vec v_step;
-    int    hitWall = 0;
+    int   what;
 
-    /* ray->is_door = (0); */
     v_intersection.x = floor(prog.player.player_pos.x / GRID_SIZE) * GRID_SIZE;
     if (ray->is_ray_right)
         v_intersection.x += GRID_SIZE;
@@ -75,19 +70,16 @@ t_vec vertical_intersection(t_vec   current, t_cub3d prog, double angle, t_ray *
         v_step.y *= -1;
     if (ray->is_ray_down && v_step.y < 0)
         v_step.y *= -1;
-    while (is_on_boundtry(prog, v_intersection))
+    while (1)
     {
-	   int what = is_hit_wall(prog,(t_vec) {.x=v_intersection.x - ray->is_ray_left,.y=v_intersection.y});
-          if (what) 
+	  what = is_hit_wall(prog,(t_vec) {.x=v_intersection.x - ray->is_ray_left,.y=v_intersection.y}); 
+	  if (what != '0') 
 	  {
-            ray->is_door = (what == 2);
-            hitWall = 1;
+            ray->is_door = (what == '2');
             break;
           }
            v_intersection.x += v_step.x; v_intersection.y += v_step.y; 
     }
-    if (hitWall == 0)
-        ray->distance = FLT_MAX;
     return (v_intersection);
 }
 
@@ -97,10 +89,11 @@ void dda_algo(t_cub3d prog, double angle, t_ray *ray)
     	t_vec v_intersection;
     	t_vec player;
 	player = prog.player.player_pos;
+
 	ray->is_ray_up = (angle < 0 || angle > M_PI);
     	ray->is_ray_down = !ray->is_ray_up;
-    	ray->is_ray_right = angle > 3 * M_PI / 2 || angle < M_PI / 2;
-    	ray->is_ray_left = !ray->is_ray_right;
+    	ray->is_ray_left = angle > M_PI / 2 && angle < 3 * M_PI / 2;
+    	ray->is_ray_right = !ray->is_ray_left;
     	h_intersection = horizontal_intersection(player, prog, angle, ray);
     	v_intersection = vertical_intersection(player, prog, angle, ray);
 	ray->ray_pos = h_intersection;
@@ -132,6 +125,4 @@ void	draw_rays(t_cub3d prog)
 		dda_algo(prog, angle, &ray);
 		angle += FOV_SCALE / WIDTH;
 	}
-
-    // exit(12);
 }

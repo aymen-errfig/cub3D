@@ -42,7 +42,7 @@ int	handle_player_movement(t_cub3d *prog, int rl_direction, int ud_direction)
 		new_pos.x += ((sin(prog->player.player_angle) * rl_direction) * speed);
 		new_pos.y -=  ((cos(prog->player.player_angle) * rl_direction) * speed);
 	}
-	if (is_hit_wall(*prog, new_pos))
+	if (is_hit_wall(*prog, new_pos) != '0')
 		return (1);
 	prog->player.player_pos = new_pos;
 	return (0);
@@ -78,7 +78,7 @@ int keyboard_press_handler(int keycode, t_cub3d *prog)
 	ud_direction = ((keycode == UP_KEYCODE) * 1) + ((keycode == DOWN_KEYCODE) * -1);
 	rl_direction = ((keycode == RIGHT_KEYCODE) * 1) + ((keycode == LEFT_KEYCODE) * -1);
 	handle_player_movement(prog, rl_direction, ud_direction);
-	/* handle_player_rotation(prog, keycode); */
+	handle_player_rotation(prog, keycode);
 	move_player(prog);
 	return (0);
 }

@@ -30,29 +30,28 @@ int main(void)
 
 	getData(&prog);
 
-	int map[10][10] = {
-		{1, 1, 1, 1 ,1, 1, 1, 1 , 1, 1},
-		{1, 0, 0, 0 ,0, 0, 0, 0 , 0, 1},
-		{1, 0, 0, 0 ,0, 0, 0, 0 , 0, 1},
-		{1, 0, 0, 1 ,2, 1, 0, 0 , 0, 1},
-		{1, 0, 0, 0 ,0, 0, 0, 0 , 0, 1},
-		{1, 0, 0, 0, 0, 0, 0, 0 , 0, 1},
-		{1, 0, 0, 0 ,0, 0, 0, 0 , 0, 1},
-		{1, 0, 0, 0 ,0, 0, 0, 0 , 0, 1},
-		{1, 0, 0, 0 ,0, 0, 0, 0 , 0, 1},
-		{1, 1, 1, 1 ,1, 1, 1, 1 , 1, 1},
+	char map[10][10] = {
+		{'1', '1', '1', '1', '1', '1', '1', '1', '1', '1'},
+		{'1', '0', '0', '0', '0', '0', '0', '0', '0', '1'},
+		{'1', '0', '0', '0', '0', '0', '0', '0', '0', '1'},
+		{'1', '0', '0', '1', '2', '1', '0', '0', '0', '1'},
+		{'1', '0', '0', '0', '0', '0', '0', '0', '0', '1'},
+		{'1', '0', '0', '0', '0', '0', '0', '0', '0', '1'},
+		{'1', '0', '0', '0', '0', '0', '0', '0', '0', '1'},
+		{'1', '0', '0', '0', '0', '0', '0', '0', '0', '1'},
+		{'1', '0', '0', '0', '0', '0', '0', '0', '0', '1'},
+		{'1', '1', '1', '1', '1', '1', '1', '1', '1', '1'}
 	};
-	 // Allocate memory for rows
-	prog.map = malloc(10 * sizeof(int *));
+	prog.map = malloc(10 * sizeof(char *));
 	for (int i = 0; i < 10; i++) {
-         prog.map [i] = malloc(10 * sizeof(int)); 
+         prog.map [i] = malloc(10 * sizeof(char)); 
 	}
 	for (int i = 0; i < 10; i++) {
 		for (int j = 0; j < 10; j++) {
 		    prog.map[i][j] = map[i][j];
 		}
 	}
-	prog.map_size = (t_vec){10, 10};
+	prog.map_size = (t_vec){32, 150};
 	prog.mlx_ptr = mlx_init();
 	if (!prog.mlx_ptr)
 		exit(-1);
@@ -89,7 +88,6 @@ int main(void)
 		exit(1);
 	prog.door_img.addr = (int *) mlx_get_data_addr(prog.door_img.img, &prog.door_img.bits_per_pixel,
 			&prog.door_img.line_length, &prog.door_img.endian);
-
 	move_player(&prog);
 	mlx_put_image_to_window(prog.mlx_ptr, prog.mlx_win, prog.img_data.img, 0, 0);
 	mlx_hook(prog.mlx_win, 6, 1L<<6, mouse_handler, &prog);

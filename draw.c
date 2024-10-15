@@ -58,8 +58,10 @@ void draw_minimap(t_cub3d *prog)
 				my_mlx_pixel_put(&prog->img_data, j_map, i_map, 0x0000FF);
 			else
 			{
-				if (prog->map[9-(int)floor(i/GRID_SIZE)][9-(int)floor(j/GRID_SIZE)])
+				if (prog->map[9-(int)floor(i/GRID_SIZE)][9-(int)floor(j/GRID_SIZE)] == '1')
 					my_mlx_pixel_put(&prog->img_data, j_map, i_map, 0xFF0000);
+				else if (prog->map[9-(int)floor(i/GRID_SIZE)][9-(int)floor(j/GRID_SIZE)] == '2')
+					my_mlx_pixel_put(&prog->img_data, j_map, i_map, 0x00FF00);
 				else
 					my_mlx_pixel_put(&prog->img_data, j_map, i_map, 0xFFFFFF);
 			}

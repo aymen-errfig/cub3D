@@ -23,14 +23,15 @@ t_cub3d	*getData(t_cub3d *tosave)
 
 int    is_hit_wall(t_cub3d prog, t_vec position)
 {
-    if (!is_on_boundtry(prog, position))
-        return (1);
-    int y = (int)floor(position.y / GRID_SIZE);
-    int x = (int)floor(position.x / GRID_SIZE);
+	int	x;
+	int	y;
+    	if (!is_on_boundtry(prog, position))
+		return (1);
+	y = (int)floor(position.y / GRID_SIZE);
+    	x = (int)floor(position.x / GRID_SIZE);
 	if (y >= prog.map_size.y || x >= prog.map_size.x || x < 0 || y < 0)
 		return (1);
-    printf("[%d]\n",prog.map[y][x]);
-    return (prog.map[y][x]);
+    	return (prog.map[y][x]);
 }
 
 int    is_on_boundtry(t_cub3d prog, t_vec position)

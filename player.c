@@ -16,7 +16,7 @@ t_player player_init(void)
 {
 	t_player  player;
 
-	player.player_pos = (t_vec) {.x = 33.0, .y=33.0};
+	player.player_pos = (t_vec) {.x = 33.0, .y=150.0};
 	player.turn_direction = 0;
 	player.walk_direction = 0;
 	player.player_angle = degree_to_rad(0); 
@@ -26,7 +26,7 @@ t_player player_init(void)
 
 int	move_player(t_cub3d *prog)
 {
-	//draw_minimap(prog);
+	draw_minimap(prog);
 	draw_rays(*prog);
 	mlx_put_image_to_window(prog->mlx_ptr, prog->mlx_win, prog->game_img.img, 0, 0); 
 	mlx_put_image_to_window(prog->mlx_ptr, prog->mlx_win, prog->img_data.img, 0, 0);

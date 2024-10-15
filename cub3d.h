@@ -81,7 +81,7 @@ typedef struct s_ray
     double distance;
     int	is_vertical;
     t_vec ray_pos;
-	int	  is_door;
+    int	  is_door;
 }	t_ray;
 
 typedef struct	s_cub3d
