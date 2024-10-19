@@ -16,13 +16,17 @@ all: $(NAME)
 
 $(NAME): $(OBJS) mlx
 	$(CC) $(OBJS) $(INC) $(LINKERS) -o $(NAME) 
-	@echo "compiling the mandatory part"
+	@echo "\033[32m   ______      __   _____ ____  "
+	@echo "\033[32m  / ____/_  __/ /_ |__  // __ \ "
+	@echo "\033[32m / /   / / / / __ \ /_ </ / / / "
+	@echo "\033[32m/ /___/ /_/ / /_/ /__/ / /_/ /  "
+	@echo "\033[32m\____/\__,_/_.___/____/_____/   usage: ./Cub3D <map.cub> [--save]"
 
 mlx:
 	make -C $(MLX_DIR)
 
 %.o: %.c $(HEADERS)
-	@$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) $(INC) -c $< -o $@
 
 re: fclean all
 

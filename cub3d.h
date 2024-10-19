@@ -15,7 +15,7 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <math.h>
-# include "minilibx_opengl/mlx.h"
+# include "mlx.h"
 # include <unistd.h>
 # include <math.h>
 # include <float.h>
@@ -26,7 +26,7 @@
 # define E 3
 
 # define GRID_SIZE 32
-# define FOV_SCALE 0.69813170079
+# define FOV_SCALE (60 * (M_PI / 180))
 
 # define WIDTH 1920
 # define HEIGHT 1080

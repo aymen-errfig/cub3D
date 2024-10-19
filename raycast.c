@@ -75,7 +75,8 @@ t_vec vertical_intersection(t_vec   current, t_cub3d prog, double angle, t_ray *
 	  what = is_hit_wall(prog,(t_vec) {.x=v_intersection.x - ray->is_ray_left,.y=v_intersection.y}); 
 	  if (what != '0') 
 	  {
-            ray->is_door = (what == '2');
+		  /* if (!ray->is_door ) */
+		  /*   ray->is_door = (what == '2'); */
             break;
           }
            v_intersection.x += v_step.x; v_intersection.y += v_step.y; 
