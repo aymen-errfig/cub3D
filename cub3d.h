@@ -84,6 +84,8 @@ typedef struct s_ray
     int	is_vertical;
     t_vec ray_pos;
     int	  is_door;
+    int	  is_door_h;
+    int	  is_door_v;
 }	t_ray;
 
 typedef struct	s_cub3d
@@ -116,7 +118,7 @@ int	keyboard_press_handler(int keycode, t_cub3d *prog);
 double degree_to_rad(double angle);
 void destroy_window(t_cub3d *prog);
 void draw_line(t_data *data, t_vec start, t_vec end, int color);
-int	is_hit_wall(t_cub3d prog, t_vec position);
+int	is_hit_wall(t_cub3d prog, t_vec position, t_vec *current, t_vec step);
 void	draw_rays(t_cub3d prog);
 double	normalize_angle(double angle);
 void rec(t_data *data, t_vec v, int color, t_vec size);

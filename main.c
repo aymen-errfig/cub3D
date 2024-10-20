@@ -36,8 +36,11 @@ void    load_image(t_cub3d prog,t_data *img, char *path, int load_attribute)
     img->img = mlx_xpm_file_to_image(prog.mlx_ptr, path, &img->width, &img->height);
     if (!img->img)
         return ;
-    if (img->width * img->height == 0)
-        exit(1);
+    /* if (img->width * img->height == 0) */
+    /*     exit(1); */
+    /* if (img->width >= WIDTH ||  img->height >= HEIGHT) */
+    /*     exit(2); */
+
     if (load_attribute == 1)
         img->addr = (int *)mlx_get_data_addr(img->img, &img->bits_per_pixel, &img->line_length, &img->endian);
 }
@@ -52,11 +55,11 @@ int main(void)
 		{'1', '0', '0', '0', '0', '0', '0', '0', '0', '1'},
 		{'1', '0', '0', '0', '0', '0', '0', '0', '0', '1'},
 		{'1', '0', '0', '1', '2', '1', '0', '0', '0', '1'},
+		{'1', '0', '0', '2', '0', '2', '0', '0', '0', '1'},
+		{'1', '0', '0', '2', '0', '1', '0', '0', '0', '1'},
+		{'1', '0', '0', '1', '1', '1', '0', '0', '0', '1'},
 		{'1', '0', '0', '0', '0', '0', '0', '0', '0', '1'},
 		{'1', '0', '0', '0', '0', '0', '0', '0', '0', '1'},
-		{'1', '0', '0', '0', '0', '0', '0', '0', '0', '1'},
-		{'1', '0', '0', '0', '0', '0', '0', '0', '0', '1'},
-		{'1', '0', '0', '1', '2', '1', '0', '0', '0', '1'},
 		{'1', '1', '1', '1', '1', '1', '1', '1', '1', '1'}
 	};
 	prog.map = malloc(10 * sizeof(char *));
@@ -72,7 +75,7 @@ int main(void)
 	prog.is_shooting = 0;
 	prog.mlx_ptr = mlx_init();
 	if (!prog.mlx_ptr)
-		exit(-1);
+		exit(3);
 	prog.mlx_win = mlx_new_window(prog.mlx_ptr, WIDTH, HEIGHT, "Cub3d");
 	// to protect
 	prog.img_data.img = mlx_new_image(prog.mlx_ptr, MINIPAM_W, MINIPAM_H);
@@ -82,7 +85,7 @@ int main(void)
 
 	prog.game_img.img = mlx_new_image(prog.mlx_ptr, WIDTH, HEIGHT);
 	if (!prog.game_img.img)
-		exit(1);
+		exit(4);
 	prog.player = player_init();
 	prog.game_img.addr = (int *) mlx_get_data_addr(prog.game_img.img, &prog.game_img.bits_per_pixel,
 			&prog.game_img.line_length, &prog.game_img.endian);

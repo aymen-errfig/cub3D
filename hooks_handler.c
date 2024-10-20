@@ -43,7 +43,7 @@ int	handle_player_movement(t_cub3d *prog, int rl_direction, int ud_direction)
 		new_pos.x += ((sin(prog->player.player_angle) * rl_direction) * speed);
 		new_pos.y -=  ((cos(prog->player.player_angle) * rl_direction) * speed);
 	}
-	if (is_hit_wall(*prog, new_pos) != '0')
+	if (is_hit_wall(*prog, new_pos, &new_pos, new_pos) != '0')
 		return (1);
 	prog->player.player_pos = new_pos;
 	return (0);

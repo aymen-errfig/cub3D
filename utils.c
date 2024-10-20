@@ -21,7 +21,7 @@ t_cub3d	*getData(t_cub3d *tosave)
 	return (saved);
 }
 
-int    is_hit_wall(t_cub3d prog, t_vec position)
+int    is_hit_wall(t_cub3d prog, t_vec position, t_vec *current, t_vec step)
 {
 	int	x;
 	int	y;
@@ -31,6 +31,11 @@ int    is_hit_wall(t_cub3d prog, t_vec position)
     	x = (int)floor(position.x / GRID_SIZE);
 	if (y >= prog.map_size.y || x >= prog.map_size.x || x < 0 || y < 0)
 		return (1);
+	/* if (prog.map[y][x] == '2') */
+	/* { */
+	/* 	current->x = step.x/2; */
+	/* 	current->y = step.y/2; */
+	/* } */
     	return (prog.map[y][x]);
 }
 
