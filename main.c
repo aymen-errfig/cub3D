@@ -6,7 +6,7 @@
 /*   By: aerrfig <aerrfig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 14:04:09 by aoukouho          #+#    #+#             */
-/*   Updated: 2024/10/15 14:47:20 by aerrfig          ###   ########.fr       */
+/*   Updated: 2024/10/29 11:57:42 by aerrfig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,40 +26,26 @@ double degree_to_rad(double angle)
 
 int mouse_controls(int mouse_key, int x, int y, t_cub3d *prog)
 {
-	printf("%d\n", mouse_key);
 	if (mouse_key == 1)
 		prog->is_shooting = 1;
 	return (0);
 }
-
-int main(void)
+void f()
+{
+	system("leaks cub3d");
+}
+int main(int argc, char *argv[])
 {
 	t_cub3d	prog;
 
+	// atexit(f);
+	
+	prog.assets = parse_map(argv[1]);
+	if (prog.assets.err)
+		exit(-1);
 	getData(&prog);
-
-	char map[10][10] = {
-		{'1', '1', '1', '1', '1', '1', '1', '1', '1', '1'},
-		{'1', '0', '0', '0', '0', '0', '0', '0', '0', '1'},
-		{'1', '0', '0', '0', '0', '0', '0', '0', '0', '1'},
-		{'1', '0', '0', '1', '2', '1', '0', '0', '0', '1'},
-		{'1', '0', '0', '0', '0', '0', '0', '0', '0', '1'},
-		{'1', '0', '0', '0', '0', '0', '0', '0', '0', '1'},
-		{'1', '0', '0', '0', '0', '0', '0', '0', '0', '1'},
-		{'1', '0', '0', '0', '0', '0', '0', '0', '0', '1'},
-		{'1', '0', '0', '0', '0', '0', '0', '0', '0', '1'},
-		{'1', '1', '1', '1', '1', '1', '1', '1', '1', '1'}
-	};
-	prog.map = malloc(10 * sizeof(char *));
-	for (int i = 0; i < 10; i++) {
-         prog.map [i] = malloc(10 * sizeof(char)); 
-	}
-	for (int i = 0; i < 10; i++) {
-		for (int j = 0; j < 10; j++) {
-		    prog.map[i][j] = map[i][j];
-		}
-	}
-	prog.map_size = (t_vec){10, 10};
+	prog.map = prog.assets.map;
+	prog.map_size = (t_vec_i){prog.assets.map_width, prog.assets.map_height};
 	prog.is_shooting = 0;
 	prog.mlx_ptr = mlx_init();
 	if (!prog.mlx_ptr)
@@ -75,8 +61,6 @@ int main(void)
 	// to protect
 	prog.game_img.addr = (int *) mlx_get_data_addr(prog.game_img.img, &prog.game_img.bits_per_pixel,
 			&prog.game_img.line_length, &prog.game_img.endian);
-
-        /* prog.wall_img.img = mlx_xpm_file_to_image(prog.mlx_ptr, "assets/doom.xpm", &prog.wall_img.width, &prog.wall_img.height); */
     prog.wall_img.img = mlx_xpm_file_to_image(prog.mlx_ptr, "assets/wall.xpm", &prog.wall_img.width, &prog.wall_img.height);
 	if (!prog.wall_img.img)
 		exit(1);
@@ -85,7 +69,7 @@ int main(void)
 	prog.wall_img.addr = (int *) mlx_get_data_addr(prog.wall_img.img, &prog.wall_img.bits_per_pixel,
 			&prog.wall_img.line_length, &prog.wall_img.endian);
 
-	prog.player = player_init();
+	prog.player = player_init(&prog);
 	prog.gun_img.img = mlx_xpm_file_to_image(prog.mlx_ptr, "assets/gun1.xpm", &prog.gun_img.width, &prog.gun_img.height);
 	if (!prog.gun_img.img)
 		exit(1);
