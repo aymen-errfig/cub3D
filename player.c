@@ -6,7 +6,7 @@
 /*   By: aerrfig <aerrfig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 14:04:13 by aoukouho          #+#    #+#             */
-/*   Updated: 2024/10/29 13:21:39 by aerrfig          ###   ########.fr       */
+/*   Updated: 2024/10/29 14:01:17 by aerrfig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ t_player player_init(t_cub3d *prog)
 {
 	t_player  player;
 
-	player.player_pos.x = prog->assets.player_pos.x * GRID_SIZE;
-	player.player_pos.y = prog->assets.player_pos.y * GRID_SIZE;
+	player.player_pos.x = prog->assets.player_pos.x * GRID_SIZE + (GRID_SIZE / 2);
+	player.player_pos.y = prog->assets.player_pos.y * GRID_SIZE + (GRID_SIZE / 2);
 	player.turn_direction = 0;
 	player.walk_direction = 0;
 	player.player_angle = degree_to_rad(0); 

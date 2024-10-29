@@ -6,7 +6,7 @@
 /*   By: aerrfig <aerrfig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 14:04:21 by aoukouho          #+#    #+#             */
-/*   Updated: 2024/10/29 13:17:50 by aerrfig          ###   ########.fr       */
+/*   Updated: 2024/10/29 13:56:35 by aerrfig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@ int    is_hit_wall(t_cub3d prog, t_vec position)
 	int	y;
 
     if (!is_on_boundtry(prog, position))
-		return (0);
+		return ('1');
 	y = (int)floor(position.y / GRID_SIZE);
     x = (int)floor(position.x / GRID_SIZE);
 	if (y >= prog.map_size.y || x >= prog.map_size.x || x < 0 || y < 0)
-		return (0);
+		return ('1');
     return (prog.map[y][x]);
 }
 
