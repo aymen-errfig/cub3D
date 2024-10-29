@@ -6,7 +6,7 @@
 /*   By: aerrfig <aerrfig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 15:36:25 by aoukouho          #+#    #+#             */
-/*   Updated: 2024/10/29 13:12:35 by aerrfig          ###   ########.fr       */
+/*   Updated: 2024/10/29 13:17:02 by aerrfig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,7 +147,7 @@ t_cub3d	*getData(t_cub3d *tosave);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 void draw_rectangle(t_data *data, t_vec v, int color, int size);
 void draw_minimap(t_cub3d *prog);
-t_player player_init(void);
+t_player player_init(t_cub3d *prog);
 int	move_player(t_cub3d *prog);
 int	keyboard_press_handler(int keycode, t_cub3d *prog);
 double degree_to_rad(double angle);

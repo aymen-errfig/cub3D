@@ -6,7 +6,7 @@
 /*   By: aerrfig <aerrfig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 15:35:52 by aoukouho          #+#    #+#             */
-/*   Updated: 2024/10/29 12:01:22 by aerrfig          ###   ########.fr       */
+/*   Updated: 2024/10/29 13:16:40 by aerrfig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	handle_player_movement(t_cub3d *prog, int rl_direction, int ud_direction)
 		new_pos.x += ((sin(prog->player.player_angle) * rl_direction) * speed);
 		new_pos.y -=  ((cos(prog->player.player_angle) * rl_direction) * speed);
 	}
-	if (is_hit_wall(*prog, new_pos, &new_pos, new_pos) != '0')
+	if (is_hit_wall(*prog, new_pos) != '0')
 		return (1);
 	prog->player.player_pos = new_pos;
 	return (0);

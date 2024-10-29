@@ -6,7 +6,7 @@
 /*   By: aerrfig <aerrfig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 14:04:09 by aoukouho          #+#    #+#             */
-/*   Updated: 2024/10/29 13:15:04 by aerrfig          ###   ########.fr       */
+/*   Updated: 2024/10/29 13:19:36 by aerrfig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int main(int argc, char *argv[])
 	prog.game_img.img = mlx_new_image(prog.mlx_ptr, WIDTH, HEIGHT);
 	if (!prog.game_img.img)
 		exit(4);
-	prog.player = player_init();
+	prog.player = player_init(&prog);
 	prog.game_img.addr = (int *) mlx_get_data_addr(prog.game_img.img, &prog.game_img.bits_per_pixel,
 			&prog.game_img.line_length, &prog.game_img.endian);
 	load_image(prog, &prog.wall_img, "assets/wall.xpm", 1);

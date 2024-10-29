@@ -6,7 +6,7 @@
 /*   By: aerrfig <aerrfig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 14:04:04 by aoukouho          #+#    #+#             */
-/*   Updated: 2024/10/29 13:11:34 by aerrfig          ###   ########.fr       */
+/*   Updated: 2024/10/29 13:17:26 by aerrfig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ t_vec	horizontal_intersection(t_vec   current, t_cub3d prog, double angle, t_ray
         h_step.x *= -1;
     while (1)
     {
-        what = is_hit_wall(prog,(t_vec) {.x=h_intersection.x,.y=h_intersection.y - ray->is_ray_up }, &h_intersection, h_step);
+        what = is_hit_wall(prog,(t_vec) {.x=h_intersection.x,.y=h_intersection.y - ray->is_ray_up });
         if (what != '0') 
         {
             ray->is_door_h = (what == '2');
@@ -72,7 +72,7 @@ t_vec	vertical_intersection(t_vec   current, t_cub3d prog, double angle, t_ray *
         v_step.y *= -1;
     while (1)
     {
-	  what = is_hit_wall(prog,(t_vec) {.x=v_intersection.x - ray->is_ray_left,.y=v_intersection.y}, &v_intersection, v_step); 
+	  what = is_hit_wall(prog,(t_vec) {.x=v_intersection.x - ray->is_ray_left,.y=v_intersection.y}); 
 	  if (what != '0') 
 	  {
 		ray->is_door_v = (what == '2');
