@@ -6,7 +6,7 @@
 /*   By: aerrfig <aerrfig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 15:35:52 by aoukouho          #+#    #+#             */
-/*   Updated: 2024/10/29 13:16:40 by aerrfig          ###   ########.fr       */
+/*   Updated: 2024/10/29 13:21:36 by aerrfig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	handle_player_movement(t_cub3d *prog, int rl_direction, int ud_direction)
 	t_vec new_pos;
 	int speed;
 
-	speed = 10;
+	speed = 5;
 	new_pos =  prog->player.player_pos;
 	if (ud_direction != 0)
 	{
@@ -63,7 +63,6 @@ void handle_player_rotation(t_cub3d *prog, int keycode)
 
 int keyboard_press_handler(int keycode, t_cub3d *prog)
 {
-	int speed;
 	int move_angle;
 	t_vec new_pos;
 	int rl_direction;
@@ -75,7 +74,6 @@ int keyboard_press_handler(int keycode, t_cub3d *prog)
 		clear_resource(prog);
 	ud_direction = 0;
 	rl_direction = 0;
-	speed = 15;
 	ud_direction = ((keycode == UP_KEYCODE) * 1) + ((keycode == DOWN_KEYCODE) * -1);
 	rl_direction = ((keycode == RIGHT_KEYCODE) * 1) + ((keycode == LEFT_KEYCODE) * -1);
 	handle_player_movement(prog, rl_direction, ud_direction);
