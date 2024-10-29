@@ -6,7 +6,7 @@
 /*   By: aerrfig <aerrfig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 14:04:21 by aoukouho          #+#    #+#             */
-/*   Updated: 2024/10/28 10:58:57 by aerrfig          ###   ########.fr       */
+/*   Updated: 2024/10/29 13:15:44 by aerrfig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_cub3d	*getData(t_cub3d *tosave)
 	return (saved);
 }
 
-int    is_hit_wall(t_cub3d prog, t_vec position)
+int    is_hit_wall(t_cub3d prog, t_vec position, t_vec *current, t_vec step)
 {
 	int	x;
 	int	y;

@@ -6,7 +6,7 @@
 /*   By: aerrfig <aerrfig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 15:36:25 by aoukouho          #+#    #+#             */
-/*   Updated: 2024/10/29 11:57:39 by aerrfig          ###   ########.fr       */
+/*   Updated: 2024/10/29 13:12:35 by aerrfig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 # define E 3
 
 # define GRID_SIZE 32
-# define FOV_SCALE 0.69813170079
+# define FOV_SCALE (60 * (M_PI / 180))
 
 # define WIDTH 1920
 # define HEIGHT 1080
@@ -93,15 +93,17 @@ typedef struct s_player
 
 typedef struct s_ray
 {
-	int		is_ray_up;
-	int		is_ray_down;
-	int		is_ray_right;
-	int		is_ray_left;
-	int		index;
-	double	distance;
-	int		is_vertical;
-	t_vec	ray_pos;
-	int	 	is_door;
+    int is_ray_up;
+    int is_ray_down;
+    int is_ray_right;
+    int is_ray_left;
+    int index;
+    double distance;
+    int	is_vertical;
+    t_vec ray_pos;
+    int	  is_door_h;
+    int	  is_door;
+    int	  is_door_v;
 }	t_ray;
 
 typedef	struct s_assets {
@@ -142,19 +144,21 @@ typedef struct	s_cub3d
 
 t_cub3d	*getData(t_cub3d *tosave);
 
-void		my_mlx_pixel_put(t_data *data, int x, int y, int color);
-void		draw_rectangle(t_data *data, t_vec v, int color, int size);
-void		draw_minimap(t_cub3d *prog);
-t_player	player_init(t_cub3d *prog);
-int			move_player(t_cub3d *prog);
-int			keyboard_press_handler(int keycode, t_cub3d *prog);
-double		degree_to_rad(double angle);
-void		destroy_window(t_cub3d *prog);
-int			is_hit_wall(t_cub3d prog, t_vec position);
-void		draw_rays(t_cub3d prog);
-double		normalize_angle(double angle);
-void		rec(t_data *data, t_vec v, int color, t_vec size);
-int			is_on_boundtry(t_cub3d prog, t_vec position);
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
+void draw_rectangle(t_data *data, t_vec v, int color, int size);
+void draw_minimap(t_cub3d *prog);
+t_player player_init(void);
+int	move_player(t_cub3d *prog);
+int	keyboard_press_handler(int keycode, t_cub3d *prog);
+double degree_to_rad(double angle);
+void destroy_window(t_cub3d *prog);
+void draw_line(t_data *data, t_vec start, t_vec end, int color);
+int	is_hit_wall(t_cub3d prog, t_vec position);
+void	draw_rays(t_cub3d prog);
+double	normalize_angle(double angle);
+void rec(t_data *data, t_vec v, int color, t_vec size);
+int    is_on_boundtry(t_cub3d prog, t_vec position);
+unsigned int	get_color(t_data *data, int x, int y);
 void 		render_frame(t_cub3d prog, double angle, t_ray *ray);
 int			mouse_handler(int x, int y, t_cub3d *prog);
 t_vec		calculate_texture(t_cub3d *prog, t_ray *ray, double wheight);
