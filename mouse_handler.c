@@ -11,10 +11,8 @@
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include <unistd.h>
-#include <sys/time.h>
 
-int mouse_handler(int x, int y, t_cub3d *prog)
+int	mouse_handler(int x, int y, t_cub3d *prog)
 {
 	static int	last_x = 0;
 	static int	last_y = 0;
@@ -29,5 +27,5 @@ int mouse_handler(int x, int y, t_cub3d *prog)
 	prog->player.player_angle = normalize_angle(prog->player.player_angle);
 	mlx_mouse_move(prog->mlx_win, center_x, center_y);
 	last_x = center_x;
-	return 0;
+	return (0);
 }

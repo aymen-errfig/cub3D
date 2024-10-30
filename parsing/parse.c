@@ -16,8 +16,8 @@ int	check_ext(char *fname)
 
 int	rgb_parsing(char *line)
 {
-	char			**code;
-	int				color;
+	char	**code;
+	int		color;
 
 	code = ft_split(line, ',');
 	if (!code || !*code)
@@ -25,9 +25,7 @@ int	rgb_parsing(char *line)
 	if (ft_2dlen(code) == 3 && !ft_atoi(code[0]).is_flow
 		&& !ft_atoi(code[1]).is_flow && !ft_atoi(code[2]).is_flow)
 	{
-		color = ((ft_atoi(code[0]).num & 0x0ff) << 16)
-			| ((ft_atoi(code[1]).num & 0x0ff) << 8)
-			| (ft_atoi(code[2]).num & 0x0ff);
+		color = ((ft_atoi(code[0]).num & 0x0ff) << 16) | ((ft_atoi(code[1]).num & 0x0ff) << 8) | (ft_atoi(code[2]).num & 0x0ff);
 		return (color);
 	}
 	else
@@ -92,10 +90,11 @@ t_assets	parse_map(char *file_name)
 	fd = check_ext(file_name);
 	fd2 = check_ext(file_name);
 	data.map_start = 0;
-	data = (t_assets){.no = 0, .so = 0, .ea = 0, .we = 0, .err = 0,
-		.floor_c = -1, .cell_c = -1, .map = 0, .map_start = 0, .map_height = 0, .map_width = 0};
+	data = (t_assets){.no = 0, .so = 0, .ea = 0, .we = 0, .err = 0, .floor_c =
+		-1, .cell_c = -1, .map = 0, .map_start = 0, .map_height = 0,
+		.map_width = 0};
 	if (fd < 0 || fd2 < 0)
-		exit (-1);
+		exit(-1);
 	line = get_next_line(fd);
 	while (line && !is_all_assets(data))
 	{
@@ -106,7 +105,8 @@ t_assets	parse_map(char *file_name)
 	}
 	if (!is_all_assets(data))
 	{
-		printf("%d-%d-%d-%d\n", ft_strlen(data.no), ft_strlen(data.so), ft_strlen(data.ea), ft_strlen(data.we));
+		printf("%d-%d-%d-%d\n", ft_strlen(data.no), ft_strlen(data.so),
+			ft_strlen(data.ea), ft_strlen(data.we));
 		data.err = 1;
 	}
 	else

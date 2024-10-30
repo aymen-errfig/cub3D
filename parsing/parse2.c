@@ -109,8 +109,8 @@ int	fill_map(t_assets *data, int fd1, int fd2)
 	{
 		if (ft_strlen(line) > 1 && line[ft_strlen(line) - 1] == '\n')
 			line[ft_strlen(line) - 1] = 0;
-		data->map[y++] = ft_strjoin(line,
-				gimme_spaces(data->map_width - ft_strlen(line)));
+		data->map[y++] = ft_strjoin(line, gimme_spaces(data->map_width
+					- ft_strlen(line)));
 		line = get_next_line(fd2);
 	}
 	return (!is_valid_map(data));

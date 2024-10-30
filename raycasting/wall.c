@@ -23,10 +23,10 @@ void	draw_cieling(t_data img, double wall_start, t_vec *pixel)
 
 void	draw_wall(t_ray *ray, double wheight, t_vec wborder, t_vec *pixel)
 {
-	t_vec		texture;
-	int			color;
-	double		ycord;
-	t_cub3d		*prog;
+	t_vec	texture;
+	int		color;
+	double	ycord;
+	t_cub3d	*prog;
 
 	prog = getData(NULL);
 	texture = calculate_texture(prog, ray, wheight);
