@@ -6,7 +6,7 @@
 /*   By: aerrfig <aerrfig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 14:04:04 by aoukouho          #+#    #+#             */
-/*   Updated: 2024/10/29 13:58:34 by aerrfig          ###   ########.fr       */
+/*   Updated: 2024/10/29 14:20:42 by aerrfig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,7 +131,6 @@ void draw_rays(t_cub3d prog)
 		dda_algo(prog, angle, &ray);
 		if (ray.is_vertical && ray.is_door)
 			ray.is_door = 0;
-		printf("is door:%d\n", ray.is_door);
 		angle += FOV_SCALE / WIDTH;
 	}
 }
