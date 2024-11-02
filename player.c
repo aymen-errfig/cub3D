@@ -6,7 +6,7 @@
 /*   By: aerrfig <aerrfig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 14:04:13 by aoukouho          #+#    #+#             */
-/*   Updated: 2024/10/29 14:01:17 by aerrfig          ###   ########.fr       */
+/*   Updated: 2024/11/02 14:57:15 by aerrfig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	move_player(t_cub3d *prog)
 
 	mlx_clear_window(prog->mlx_ptr, prog->mlx_win);
 	draw_minimap(prog);
-	draw_rays(*prog);
+	draw_rays(prog);
 	mlx_put_image_to_window(prog->mlx_ptr, prog->mlx_win, prog->game_img.img, 0,
 		0);
 	mlx_put_image_to_window(prog->mlx_ptr, prog->mlx_win, prog->img_data.img, 0,

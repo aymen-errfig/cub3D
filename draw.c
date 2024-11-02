@@ -6,7 +6,7 @@
 /*   By: aerrfig <aerrfig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 15:35:47 by aoukouho          #+#    #+#             */
-/*   Updated: 2024/10/29 14:24:58 by aerrfig          ###   ########.fr       */
+/*   Updated: 2024/11/01 13:11:40 by aerrfig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,9 @@ void	draw_minimap(t_cub3d *prog)
 				else if (prog->map[(int)(i / GRID_SIZE)][(int)(j
 						/ GRID_SIZE)] == ' ')
 					my_mlx_pixel_put(&prog->img_data, j_map, i_map, 0x0000FF);
+				else if (prog->map[(int)(i / GRID_SIZE)][(int)(j
+						/ GRID_SIZE)] == 'D')
+					my_mlx_pixel_put(&prog->img_data, j_map, i_map, 0x00FFF0);
 				else
 					my_mlx_pixel_put(&prog->img_data, j_map, i_map, 0xFFFFFF);
 			}

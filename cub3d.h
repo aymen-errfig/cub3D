@@ -6,7 +6,7 @@
 /*   By: aerrfig <aerrfig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 15:36:25 by aoukouho          #+#    #+#             */
-/*   Updated: 2024/10/30 12:17:11 by aerrfig          ###   ########.fr       */
+/*   Updated: 2024/11/02 14:56:55 by aerrfig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,8 @@ typedef struct s_ray
 	int			is_door_h;
 	int			is_door;
 	int			is_door_v;
+	t_vec_i		door_pos;
+	int			see_beyond;
 }				t_ray;
 
 typedef struct s_assets
@@ -138,6 +140,7 @@ typedef struct s_cub3d
 	t_data		black_img;
 	t_data		wall_img;
 	t_data		door_img;
+	int			animate_do;
 	char		is_shooting;
 }				t_cub3d;
 
@@ -153,7 +156,7 @@ double			degree_to_rad(double angle);
 void			destroy_window(t_cub3d *prog);
 void			draw_line(t_data *data, t_vec start, t_vec end, int color);
 int				is_hit_wall(t_cub3d prog, t_vec position);
-void			draw_rays(t_cub3d prog);
+void			draw_rays(t_cub3d *prog);
 double			normalize_angle(double angle);
 void			rec(t_data *data, t_vec v, int color, t_vec size);
 int				is_on_boundtry(t_cub3d prog, t_vec position);

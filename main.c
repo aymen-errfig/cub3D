@@ -6,7 +6,7 @@
 /*   By: aerrfig <aerrfig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 14:04:09 by aoukouho          #+#    #+#             */
-/*   Updated: 2024/10/29 14:19:00 by aerrfig          ###   ########.fr       */
+/*   Updated: 2024/11/02 14:50:08 by aerrfig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,11 @@ double	degree_to_rad(double angle)
 int	mouse_controls(int mouse_key, int x, int y, t_cub3d *prog)
 {
 	if (mouse_key == 1)
+	{
 		prog->is_shooting = 1;
+	}
+	else if (mouse_key == 2)
+		prog->animate_do = 1;
 	return (0);
 }
 
