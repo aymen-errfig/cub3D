@@ -12,12 +12,12 @@
 
 #include "cub3d.h"
 
-void	destroy_window(t_cub3d *prog)
-{
-	mlx_destroy_image(prog->mlx_ptr, prog->img_data.img);
-	mlx_destroy_window(prog->mlx_ptr, prog->mlx_win);
-	exit(0);
-}
+/* void	destroy_window(t_cub3d *prog) */
+/* { */
+/* 	mlx_destroy_image(prog->mlx_ptr, prog->img_data.img); */
+/* 	mlx_destroy_window(prog->mlx_ptr, prog->mlx_win); */
+/* 	exit(0); */
+/* } */
 
 double	degree_to_rad(double angle)
 {
@@ -33,21 +33,6 @@ int	mouse_controls(int mouse_key, int x, int y, t_cub3d *prog)
 	else if (mouse_key == 2)
 		prog->animate_do = 1;
 	return (0);
-}
-
-void	load_image(t_cub3d prog, t_data *img, char *path, int load_attribute)
-{
-	img->img = mlx_xpm_file_to_image(prog.mlx_ptr, path, &img->width,
-			&img->height);
-	if (!img->img)
-		return ;
-	/* if (img->width * img->height == 0) */
-	/*     exit(1); */
-	/* if (img->width >= WIDTH ||  img->height >= HEIGHT) */
-	/*     exit(2); */
-	if (load_attribute == 1)
-		img->addr = (int *)mlx_get_data_addr(img->img, &img->bits_per_pixel,
-				&img->line_length, &img->endian);
 }
 
 int	main(int argc, char *argv[])
@@ -81,10 +66,11 @@ int	main(int argc, char *argv[])
 	prog.game_img.addr = (int *)mlx_get_data_addr(prog.game_img.img,
 			&prog.game_img.bits_per_pixel, &prog.game_img.line_length,
 			&prog.game_img.endian);
-	load_image(prog, &prog.wall_img, "assets/wall.xpm", 1);
-	load_image(prog, &prog.gun_img, "assets/gun1.xpm", 0);
-	load_image(prog, &prog.gun_img2, "assets/gun2.xpm", 0);
-	load_image(prog, &prog.door_img, "assets/door.xpm", 1);
+	/* load_image(prog, &prog.wall_img, "assets/wall.xpm", 1); */
+	/* load_image(prog, &prog.gun_img, "assets/gun1.xpm", 0); */
+	/* load_image(prog, &prog.gun_img2, "assets/gun2.xpm", 0); */
+	/* load_image(prog, &prog.door_img, "assets/door.xpm", 1); */
+	load_texture(&prog);
 	mlx_put_image_to_window(prog.mlx_ptr, prog.mlx_win, prog.img_data.img, 0,
 		0);
 	mlx_mouse_hide();

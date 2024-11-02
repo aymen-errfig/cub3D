@@ -179,5 +179,8 @@ int				ft_strncmp(char *s1, char *s2, int n);
 char			*ft_remspace(char *line);
 int				fill_map(t_assets *data, int fd1, int fd2);
 void			get_map_size(t_assets *data, int fd1, int fd2);
+int	load_texture(t_cub3d	*prog);
+void	load_image(t_cub3d prog, t_data *img, char *path, int load_attribute);
+void	destroy_window(t_cub3d *prog);
 
 #endif
