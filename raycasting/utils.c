@@ -6,7 +6,7 @@
 /*   By: aerrfig <aerrfig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 14:56:11 by aoukouho          #+#    #+#             */
-/*   Updated: 2024/11/02 17:14:35 by aerrfig          ###   ########.fr       */
+/*   Updated: 2024/11/04 20:10:31 by aoukouho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,3 +39,5 @@ int	get_pixel_color(t_cub3d *prog, t_vec texture, double ycord, t_ray ray)
 	color = img.addr[(int)ycord * img.width + (int)texture.x];
 	return (color);
 }
+
+

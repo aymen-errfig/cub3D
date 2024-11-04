@@ -6,7 +6,7 @@
 /*   By: aerrfig <aerrfig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 15:36:25 by aoukouho          #+#    #+#             */
-/*   Updated: 2024/11/04 17:14:41 by aoukouho         ###   ########.fr       */
+/*   Updated: 2024/11/04 20:12:19 by aoukouho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -188,4 +188,6 @@ int	init_game(t_cub3d *prog);
 void	exit_failure();
 void	clear_resource(t_cub3d *prog, int counter);
 double	calculate_distance(t_vec v1, t_vec v2);
+t_vec	h_intersection(t_cub3d prog, double angle, t_ray *ray);
+t_vec	v_intersection(t_cub3d prog, double angle, t_ray *ray);
 #endif

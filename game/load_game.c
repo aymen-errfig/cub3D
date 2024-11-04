@@ -6,7 +6,7 @@
 /*   By: aoukouho <aoukouho@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 16:42:43 by aoukouho          #+#    #+#             */
-/*   Updated: 2024/11/04 18:07:50 by aoukouho         ###   ########.fr       */
+/*   Updated: 2024/11/04 20:08:06 by aoukouho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../cub3d.h"
@@ -50,4 +50,5 @@ int	init_game(t_cub3d *prog)
 		clear_resource(prog, 1);
 		return (exit_failure(), 1);
 	}
+	return (0);
 }

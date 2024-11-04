@@ -4,9 +4,9 @@ CFLAGS = #-Wall -Wextra -Werror
 # CFLAGS = -O2
 # CFLAGS += -Wpedantic
 
-SRCS = 	draw.c hooks_handler.c main.c player.c manage_assests.c utils.c utils2.c raycasting/wall.c raycasting/raycast.c  raycasting/utils.c  mouse_handler.c \
-		parsing/get_next_line.c parsing/get_next_line_utils.c parsing/parse.c parsing/split.c parsing/utils.c \
-		parsing/parse2.c  game/load_game.c game/utils.c
+SRCS = 	draw.c game/load_game.c game/utils.c hooks_handler.c main.c manage_assests.c mouse_handler.c parsing/get_next_line.c parsing/get_next_line_utils.c parsing/parse.c parsing/parse2.c parsing/split.c parsing/utils.c player.c raycasting/h_intersection.c raycasting/raycast.c raycasting/utils.c raycasting/v_intersection.c raycasting/wall.c utils.c utils2.c
+
+
 
 OBJS = $(SRCS:.c=.o)
 NAME = cub3d
