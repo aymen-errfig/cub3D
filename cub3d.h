@@ -6,7 +6,7 @@
 /*   By: aerrfig <aerrfig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 15:36:25 by aoukouho          #+#    #+#             */
-/*   Updated: 2024/11/04 16:44:11 by aoukouho         ###   ########.fr       */
+/*   Updated: 2024/11/04 17:14:41 by aoukouho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -185,5 +185,6 @@ void	destroy_window(t_cub3d *prog);
 double	degree_to_rad(double angle);
 int	load_map(t_cub3d *prog, int argc, char *argv[]);
 int	init_game(t_cub3d *prog);
-
+void	exit_failure();
+void	clear_resource(t_cub3d *prog, int counter);
 #endif
