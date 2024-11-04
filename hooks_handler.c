@@ -76,10 +76,10 @@ int	keyboard_press_handler(int keycode, t_cub3d *prog)
 		clear_resource(prog);
 	ud_direction = 0;
 	rl_direction = 0;
-	ud_direction = ((keycode == UP_KEYCODE) * 1) + ((keycode == DOWN_KEYCODE) *
-			-1);
-	rl_direction = ((keycode == RIGHT_KEYCODE) * 1) + ((keycode == LEFT_KEYCODE)
-			* -1);
+	ud_direction = ((keycode == UP_KEYCODE) * 1);
+	ud_direction += ((keycode == DOWN_KEYCODE) * -1);
+	rl_direction = ((keycode == RIGHT_KEYCODE) * 1);
+	rl_direction += ((keycode == LEFT_KEYCODE) * -1);
 	handle_player_movement(prog, rl_direction, ud_direction);
 	handle_player_rotation(prog, keycode);
 	return (0);
