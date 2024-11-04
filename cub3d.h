@@ -6,7 +6,7 @@
 /*   By: aerrfig <aerrfig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 15:36:25 by aoukouho          #+#    #+#             */
-/*   Updated: 2024/11/02 14:56:55 by aerrfig          ###   ########.fr       */
+/*   Updated: 2024/11/04 16:44:11 by aoukouho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,5 +182,8 @@ void			get_map_size(t_assets *data, int fd1, int fd2);
 int	load_texture(t_cub3d	*prog);
 void	load_image(t_cub3d prog, t_data *img, char *path, int load_attribute);
 void	destroy_window(t_cub3d *prog);
+double	degree_to_rad(double angle);
+int	load_map(t_cub3d *prog, int argc, char *argv[]);
+int	init_game(t_cub3d *prog);
 
 #endif
