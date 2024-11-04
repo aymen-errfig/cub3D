@@ -16,3 +16,11 @@ double	degree_to_rad(double angle)
 {
 	return (angle * (M_PI / 180.0));
 }
+
+double	calculate_distance(t_vec v1, t_vec v2)
+{
+	double distance;
+
+	distance = sqrt(pow(v2.x - v1.x, 2) + pow(v2.y - v1.y, 2));
+	return (distance);
+}

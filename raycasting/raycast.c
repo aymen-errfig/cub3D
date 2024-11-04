@@ -12,14 +12,6 @@
 
 #include "../cub3d.h"
 
-double calculate_distance(t_vec v1, t_vec v2)
-{
-	double distance;
-
-	distance = sqrt(pow(v2.x - v1.x, 2) + pow(v2.y - v1.y, 2));
-	return (distance);
-}
-
 t_vec horizontal_intersection(t_vec current, t_cub3d prog, double angle,
 							  t_ray *ray)
 {

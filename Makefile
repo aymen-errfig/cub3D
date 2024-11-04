@@ -4,7 +4,7 @@ CFLAGS = #-Wall -Wextra -Werror
 # CFLAGS = -O2
 # CFLAGS += -Wpedantic
 
-SRCS = 	draw.c hooks_handler.c main.c player.c manage_assests.c raycast.c utils.c utils2.c raycasting/wall.c raycasting/utils.c  mouse_handler.c \
+SRCS = 	draw.c hooks_handler.c main.c player.c manage_assests.c utils.c utils2.c raycasting/wall.c raycasting/raycast.c  raycasting/utils.c  mouse_handler.c \
 		parsing/get_next_line.c parsing/get_next_line_utils.c parsing/parse.c parsing/split.c parsing/utils.c \
 		parsing/parse2.c  game/load_game.c game/utils.c
 

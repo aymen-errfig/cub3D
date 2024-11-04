@@ -187,4 +187,5 @@ int	load_map(t_cub3d *prog, int argc, char *argv[]);
 int	init_game(t_cub3d *prog);
 void	exit_failure();
 void	clear_resource(t_cub3d *prog, int counter);
+double	calculate_distance(t_vec v1, t_vec v2);
 #endif
