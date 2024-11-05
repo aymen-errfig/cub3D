@@ -6,7 +6,7 @@
 /*   By: aerrfig <aerrfig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 15:35:47 by aoukouho          #+#    #+#             */
-/*   Updated: 2024/11/01 13:11:40 by aerrfig          ###   ########.fr       */
+/*   Updated: 2024/11/05 18:05:31 by aerrfig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,35 @@ void	draw_rectangle(t_data *data, t_vec v, int color, int size)
 	}
 }
 
+static int	is_out_of_bounds(int i, int j, t_cub3d *prog)
+{
+	if (j < 0 || i < 0 || j >= GRID_SIZE * prog->map_size.x
+		|| i >= GRID_SIZE * prog->map_size.y)
+		return (1);
+	return (0);
+}
+
+static void	draw_map_pixel(t_cub3d *prog, int i, int j, int i_map, int j_map)
+{
+	if (is_out_of_bounds(i, j, prog))
+	{
+		my_mlx_pixel_put(&prog->img_data, j_map, i_map, 0x0000FF);
+	}
+	else
+	{
+		if (prog->map[(int)(i / GRID_SIZE)][(int)(j / GRID_SIZE)] == '1')
+			my_mlx_pixel_put(&prog->img_data, j_map, i_map, 0xFF0000);
+		else if (prog->map[(int)(i / GRID_SIZE)]
+			[(int)(j / GRID_SIZE)] == ' ')
+			my_mlx_pixel_put(&prog->img_data, j_map, i_map, 0x0000FF);
+		else if (prog->map[(int)(i / GRID_SIZE)]
+			[(int)(j / GRID_SIZE)] == 'D')
+			my_mlx_pixel_put(&prog->img_data, j_map, i_map, 0x00FFF0);
+		else
+			my_mlx_pixel_put(&prog->img_data, j_map, i_map, 0xFFFFFF);
+	}
+}
+
 void	draw_minimap(t_cub3d *prog)
 {
 	int	i;
@@ -58,29 +87,13 @@ void	draw_minimap(t_cub3d *prog)
 		j = (int)prog->player.player_pos.x - M_MAP_HALF;
 		while (j_map < MINIPAM_H)
 		{
-			if (j < 0 || i < 0 || j >= GRID_SIZE * (prog->map_size.x)
-				|| i >= GRID_SIZE * (prog->map_size.y))
-				my_mlx_pixel_put(&prog->img_data, j_map, i_map, 0x0000FF);
-			else
-			{
-				if (prog->map[(int)(i / GRID_SIZE)][(int)(j
-						/ GRID_SIZE)] == '1')
-					my_mlx_pixel_put(&prog->img_data, j_map, i_map, 0xFF0000);
-				else if (prog->map[(int)(i / GRID_SIZE)][(int)(j
-						/ GRID_SIZE)] == ' ')
-					my_mlx_pixel_put(&prog->img_data, j_map, i_map, 0x0000FF);
-				else if (prog->map[(int)(i / GRID_SIZE)][(int)(j
-						/ GRID_SIZE)] == 'D')
-					my_mlx_pixel_put(&prog->img_data, j_map, i_map, 0x00FFF0);
-				else
-					my_mlx_pixel_put(&prog->img_data, j_map, i_map, 0xFFFFFF);
-			}
+			draw_map_pixel(prog, i, j, i_map, j_map);
 			j++;
 			j_map++;
 		}
 		i++;
 		i_map++;
 	}
-	draw_rectangle(&prog->img_data, (t_vec){(M_MAP_HALF), (M_MAP_HALF)},
+	draw_rectangle(&prog->img_data, (t_vec){M_MAP_HALF, M_MAP_HALF},
 		0x00FF00, 10);
 }

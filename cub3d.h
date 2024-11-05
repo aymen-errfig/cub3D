@@ -6,7 +6,7 @@
 /*   By: aerrfig <aerrfig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 15:36:25 by aoukouho          #+#    #+#             */
-/*   Updated: 2024/11/04 20:12:19 by aoukouho         ###   ########.fr       */
+/*   Updated: 2024/11/05 17:40:58 by aerrfig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,7 +142,15 @@ typedef struct s_cub3d
 	t_data		door_img;
 	int			animate_do;
 	char		is_shooting;
+	int			anim;
 }				t_cub3d;
+
+typedef struct s_door_info
+{
+    int         seen_door;
+    double      anim;
+    t_vec_i     door_pos;
+}               t_door_info;
 
 t_cub3d			*getData(t_cub3d *tosave);
 
@@ -159,9 +167,9 @@ int				is_hit_wall(t_cub3d prog, t_vec position);
 void			draw_rays(t_cub3d *prog);
 double			normalize_angle(double angle);
 void			rec(t_data *data, t_vec v, int color, t_vec size);
-int				is_on_boundtry(t_cub3d prog, t_vec position);
+int				is_on_boundtry(t_vec position);
 unsigned int	get_color(t_data *data, int x, int y);
-void			render_frame(t_cub3d prog, double angle, t_ray *ray);
+void			render_frame(t_cub3d prog, t_ray *ray);
 int				mouse_handler(int x, int y, t_cub3d *prog);
 t_vec			calculate_texture(t_cub3d *prog, t_ray *ray, double wheight);
 int				get_pixel_color(t_cub3d *prog, t_vec texture, double ycord,
@@ -178,7 +186,7 @@ int				ft_2dlen(char **str);
 int				ft_strncmp(char *s1, char *s2, int n);
 char			*ft_remspace(char *line);
 int				fill_map(t_assets *data, int fd1, int fd2);
-void			get_map_size(t_assets *data, int fd1, int fd2);
+void			get_map_size(t_assets *data, int fd1);
 int	load_texture(t_cub3d	*prog);
 void	load_image(t_cub3d prog, t_data *img, char *path, int load_attribute);
 void	destroy_window(t_cub3d *prog);

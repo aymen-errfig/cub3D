@@ -1,5 +1,5 @@
 CC = cc
-CFLAGS = #-Wall -Wextra -Werror 
+CFLAGS = -Wall -Wextra -Werror 
 
 # CFLAGS = -O2
 # CFLAGS += -Wpedantic
@@ -29,7 +29,7 @@ mlx:
 	make -C $(MLX_DIR)
 
 %.o: %.c $(HEADERS)
-	@$(CC) $(CFLAGS) $(INC) -c $< -o $@
+	$(CC) $(CFLAGS) $(INC) -c $< -o $@
 
 re: fclean all
 
@@ -42,3 +42,7 @@ fclean: clean
 	@rm -rf $(NAME) 
 	@rm -rf $(MLX_DIR)/libmlx.a 
 	@echo "clean the executable files"
+
+
+
+PHONY: mlx

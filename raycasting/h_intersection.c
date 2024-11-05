@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   h_intersection.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aoukouho <aoukouho@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: aerrfig <aerrfig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 18:33:15 by aoukouho          #+#    #+#             */
-/*   Updated: 2024/11/04 20:10:56 by aoukouho         ###   ########.fr       */
+/*   Updated: 2024/11/05 18:01:45 by aerrfig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
-
 
 static t_vec	calculate_initial_h_intersection(t_cub3d prog, double angle,
 					t_ray *ray)
@@ -77,4 +76,3 @@ t_vec	h_intersection(t_cub3d prog, double angle, t_ray *ray)
 	}
 	return (h_intersection);
 }
-

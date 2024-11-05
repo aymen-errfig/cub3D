@@ -6,7 +6,7 @@
 /*   By: aerrfig <aerrfig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 14:04:09 by aoukouho          #+#    #+#             */
-/*   Updated: 2024/11/04 16:46:22 by aoukouho         ###   ########.fr       */
+/*   Updated: 2024/11/05 16:50:05 by aerrfig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,10 @@
 
 int	mouse_controls(int mouse_key, int x, int y, t_cub3d *prog)
 {
+	(void)x;
+	(void)y;
 	if (mouse_key == 1)
-	{
 		prog->is_shooting = 1;
-	}
-	else if (mouse_key == 2)
-		prog->animate_do = 1;
 	return (0);
 }
 

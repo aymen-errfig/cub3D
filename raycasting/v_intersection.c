@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   v_intersection.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aoukouho <aoukouho@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: aerrfig <aerrfig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 18:33:15 by aoukouho          #+#    #+#             */
-/*   Updated: 2024/11/04 20:12:37 by aoukouho         ###   ########.fr       */
+/*   Updated: 2024/11/05 18:01:59 by aerrfig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ static int	check_wall_hit(t_cub3d prog, t_ray *ray, t_vec *v_intersection)
 	}
 	return (0);
 }
-
 
 t_vec	v_intersection(t_cub3d prog, double angle, t_ray *ray)
 {

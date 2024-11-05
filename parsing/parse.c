@@ -59,7 +59,7 @@ int	is_all_assets(t_assets data)
 		&& ft_strlen(data.so) > 0);
 }
 
-void	get_map_size(t_assets *data, int fd1, int fd2)
+void	get_map_size(t_assets *data, int fd1)
 {
 	char	*line;
 

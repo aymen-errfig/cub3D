@@ -92,7 +92,7 @@ int	fill_map(t_assets *data, int fd1, int fd2)
 	char	*line;
 
 	1 && (off = -1, y = 0);
-	get_map_size(data, fd1, fd2);
+	get_map_size(data, fd1);
 	if (data->map_height < 1 || data->map_width < 1)
 		return (-1);
 	line = get_next_line(fd2);

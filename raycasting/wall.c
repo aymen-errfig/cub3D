@@ -6,7 +6,7 @@
 /*   By: aerrfig <aerrfig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 17:27:06 by aoukouho          #+#    #+#             */
-/*   Updated: 2024/11/02 17:12:00 by aerrfig          ###   ########.fr       */
+/*   Updated: 2024/11/05 16:11:02 by aerrfig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	draw_wall(t_ray *ray, double wheight, t_vec wborder, t_vec *pixel)
 	}
 }
 
-void	draw_floor(t_cub3d prog, double wall_end, t_vec *pixel)
+void	draw_floor(t_cub3d prog, t_vec *pixel)
 {
 	while (pixel->y < HEIGHT)
 	{
@@ -50,12 +50,11 @@ void	draw_floor(t_cub3d prog, double wall_end, t_vec *pixel)
 	}
 }
 
-void	render_frame(t_cub3d prog, double angle, t_ray *ray)
+void	render_frame(t_cub3d prog, t_ray *ray)
 {
 	double	wheight;
 	t_vec	pixel;
 	t_vec	wborder;
-	t_vec	texture;
 
 	wheight = floor((GRID_SIZE * HEIGHT) / ray->distance);
 	wborder.x = (HEIGHT / 2) - (wheight / 2);
@@ -66,5 +65,5 @@ void	render_frame(t_cub3d prog, double angle, t_ray *ray)
 	pixel = (t_vec){ray->index, 0};
 	draw_cieling(prog.game_img, wborder.x, &pixel);
 	draw_wall(ray, wheight, wborder, &pixel);
-	draw_floor(prog, wborder.y, &pixel);
+	draw_floor(prog, &pixel);
 }
