@@ -29,8 +29,8 @@
 # define GRID_SIZE 16
 # define FOV_SCALE (60 * (M_PI / 180))
 
-# define WIDTH 1920
-# define HEIGHT 1080
+# define WIDTH 1000
+# define HEIGHT 1000
 
 # define MINIPAM_W (16 * GRID_SIZE)
 # define M_MAP_HALF (8 * GRID_SIZE)

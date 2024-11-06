@@ -72,7 +72,7 @@ int	keyboard_press_handler(int keycode, t_cub3d *prog)
 		return (1);
 	if (keycode == 53)
 	{
-		clear_resource(prog, 2);
+		clear_resource(prog, 6);
 		exit(0);
 	}
 	ud_direction = 0;

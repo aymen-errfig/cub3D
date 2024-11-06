@@ -25,4 +25,12 @@ void	clear_resource(t_cub3d *prog, int counter)
 		mlx_destroy_image(prog->mlx_ptr, prog->img_data.img);
 	if (counter >= 2)
 		mlx_destroy_image(prog->mlx_ptr, prog->game_img.img);
+	if (counter >= 3)
+		mlx_destroy_image(prog->mlx_ptr, prog->wall_img.img);
+	if (counter >= 4)
+		mlx_destroy_image(prog->mlx_ptr, prog->gun_img.img);
+	if (counter >= 5)
+		mlx_destroy_image(prog->mlx_ptr, prog->gun_img2.img);
+	if (counter >= 6)
+		mlx_destroy_image(prog->mlx_ptr, prog->door_img.img);
 }

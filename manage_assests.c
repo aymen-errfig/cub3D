@@ -18,8 +18,9 @@ void	load_image(t_cub3d prog, t_data *img, char *path, int load_attribute)
 			&img->height);
 	if (!img->img)
 		return ;
-	/* if (img->width * img->height == 0) */
-	/*     exit(1); */
+	if (img->width == 0)
+		return ;
+	printf("size of image %s is %d %d\n", path, img->width, img->height);
 	/* if (img->width >= WIDTH ||  img->height >= HEIGHT) */
 	/*     exit(2); */
 	if (load_attribute == 1)
@@ -31,16 +32,16 @@ int	load_texture(t_cub3d	*prog)
 {
 	load_image(*prog, &prog->wall_img, "assets/wall.xpm", 1);
 	if (prog->wall_img.img == NULL)
-		return (1);
+		return (clear_resource(prog, 2), 1);
 	load_image(*prog, &prog->gun_img, "assets/gun1.xpm", 0);
 	if (prog->gun_img.img == NULL)
-		return (2);
+		return (clear_resource(prog, 3), 1);
 	load_image(*prog, &prog->gun_img2, "assets/gun2.xpm", 0);
 	if (prog->gun_img2.img == NULL)
-		return (3);
+		return (clear_resource(prog, 4), 1);
 	load_image(*prog, &prog->door_img, "assets/door.xpm", 1);
 	if (prog->door_img.img == NULL)
-		return (4);
+		return (clear_resource(prog, 5), 1);
 	return (0);
 }
 

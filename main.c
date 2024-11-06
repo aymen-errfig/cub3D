@@ -21,10 +21,16 @@ int	mouse_controls(int mouse_key, int x, int y, t_cub3d *prog)
 	return (0);
 }
 
+void	f()
+{
+	system("leaks cub3d");
+}
+
 int	main(int argc, char *argv[])
 {
 	t_cub3d	prog;
 
+	/* atexit(f); */
 	load_map(&prog, argc, argv);
 	init_game(&prog);
 	prog.player = player_init(&prog);
@@ -32,8 +38,7 @@ int	main(int argc, char *argv[])
 			&prog.game_img.bits_per_pixel, &prog.game_img.line_length,
 			&prog.game_img.endian);
 	load_texture(&prog);
-	mlx_put_image_to_window(prog.mlx_ptr, prog.mlx_win, prog.img_data.img, 0,
-		0);
+	mlx_put_image_to_window(prog.mlx_ptr, prog.mlx_win, prog.img_data.img, 0, 0);
 	mlx_mouse_hide();
 	mlx_hook(prog.mlx_win, 6, 1L << 6, mouse_handler, &prog);
 	mlx_mouse_hook(prog.mlx_win, mouse_controls, &prog);
