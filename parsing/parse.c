@@ -18,18 +18,29 @@ int	rgb_parsing(char *line)
 {
 	char	**code;
 	int		color;
+	int 	j;
 
 	code = ft_split(line, ',');
-	if (!code || !*code)
+	j = -1;
+	if (!code)
 		return (-1);
 	if (ft_2dlen(code) == 3 && !ft_atoi(code[0]).is_flow
 		&& !ft_atoi(code[1]).is_flow && !ft_atoi(code[2]).is_flow)
 	{
-		color = ((ft_atoi(code[0]).num & 0x0ff) << 16) | ((ft_atoi(code[1]).num & 0x0ff) << 8) | (ft_atoi(code[2]).num & 0x0ff);
-		return (color);
+		color = ((ft_atoi(code[0]).num & 0x0ff) << 16)
+			| ((ft_atoi(code[1]).num & 0x0ff) << 8) | (ft_atoi(code[2]).num & 0x0ff);
+		j = -1;
+		while (code[++j])
+			free(code[j]);
+		return (free(code), color);
 	}
 	else
-		return (-1);
+	{
+		j = -1;
+		while (code[++j])
+			free(code[j]);
+		return (free(code), -1);
+	}
 }
 
 void	check_assets(char *line, t_assets *data)
@@ -103,12 +114,9 @@ t_assets	parse_map(char *file_name)
 		line = get_next_line(fd);
 		data.map_start++;
 	}
+	free(line);
 	if (!is_all_assets(data))
-	{
-		printf("%d-%d-%d-%d\n", ft_strlen(data.no), ft_strlen(data.so),
-			ft_strlen(data.ea), ft_strlen(data.we));
 		data.err = 1;
-	}
 	else
 		data.err = fill_map(&data, fd, fd2);
 	return (data);

@@ -6,18 +6,11 @@
 /*   By: aerrfig <aerrfig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 15:35:52 by aoukouho          #+#    #+#             */
-/*   Updated: 2024/11/05 16:50:30 by aerrfig          ###   ########.fr       */
+/*   Updated: 2024/11/06 18:26:56 by aerrfig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-/* void	clear_resource(t_cub3d *prog) */
-/* { */
-/* 	free(prog->map); */
-/* 	destroy_window(prog); */
-/* 	exit(1); */
-/* } */
 
 int	is_not_valid_key(int keycode)
 {
@@ -77,7 +70,7 @@ int	keyboard_press_handler(int keycode, t_cub3d *prog)
 	}
 	ud_direction = 0;
 	rl_direction = 0;
-	prog->animate_do = (keycode == SPACE);
+	prog->animate_do = (keycode == SPACE) + prog->animate_do;
 	ud_direction = ((keycode == UP_KEYCODE) * 1);
 	ud_direction += ((keycode == DOWN_KEYCODE) * -1);
 	rl_direction = ((keycode == RIGHT_KEYCODE) * 1);

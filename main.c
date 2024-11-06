@@ -6,7 +6,7 @@
 /*   By: aerrfig <aerrfig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 14:04:09 by aoukouho          #+#    #+#             */
-/*   Updated: 2024/11/05 16:50:05 by aerrfig          ###   ########.fr       */
+/*   Updated: 2024/11/06 19:13:00 by aerrfig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	main(int argc, char *argv[])
 {
 	t_cub3d	prog;
 
-	/* atexit(f); */
+	atexit(f);
 	load_map(&prog, argc, argv);
 	init_game(&prog);
 	prog.player = player_init(&prog);

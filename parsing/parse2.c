@@ -90,6 +90,7 @@ int	fill_map(t_assets *data, int fd1, int fd2)
 	int		off;
 	int		y;
 	char	*line;
+	char	*s2;
 
 	1 && (off = -1, y = 0);
 	get_map_size(data, fd1);
@@ -101,6 +102,7 @@ int	fill_map(t_assets *data, int fd1, int fd2)
 		free(line);
 		line = get_next_line(fd2);
 	}
+	free(line);
 	data->map = malloc(sizeof(char *) * data->map_height);
 	if (!data->map)
 		return (-1);
@@ -109,8 +111,9 @@ int	fill_map(t_assets *data, int fd1, int fd2)
 	{
 		if (ft_strlen(line) > 1 && line[ft_strlen(line) - 1] == '\n')
 			line[ft_strlen(line) - 1] = 0;
-		data->map[y++] = ft_strjoin(line, gimme_spaces(data->map_width
-					- ft_strlen(line)));
+		s2 = gimme_spaces(data->map_width - ft_strlen(line));
+		data->map[y++] = ft_strjoin(line, s2);
+		free(s2);
 		line = get_next_line(fd2);
 	}
 	return (!is_valid_map(data));

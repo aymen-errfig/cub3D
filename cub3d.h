@@ -6,7 +6,7 @@
 /*   By: aerrfig <aerrfig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 15:36:25 by aoukouho          #+#    #+#             */
-/*   Updated: 2024/11/05 17:40:58 by aerrfig          ###   ########.fr       */
+/*   Updated: 2024/11/06 17:52:19 by aerrfig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@
 # define GRID_SIZE 16
 # define FOV_SCALE (60 * (M_PI / 180))
 
-# define WIDTH 1000
-# define HEIGHT 1000
+# define WIDTH 1920
+# define HEIGHT 1080
 
 # define MINIPAM_W (16 * GRID_SIZE)
 # define M_MAP_HALF (8 * GRID_SIZE)
