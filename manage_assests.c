@@ -6,7 +6,7 @@
 /*   By: aerrfig <aerrfig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 20:06:14 by aoukouho          #+#    #+#             */
-/*   Updated: 2024/11/07 14:55:47 by aerrfig          ###   ########.fr       */
+/*   Updated: 2024/11/07 16:09:43 by aerrfig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	load_image(t_cub3d prog, t_data *img, char *path, int load_attribute)
 	printf("size of image %s is %d %d\n", path, img->width, img->height);
 	if (img->width >= WIDTH ||  img->height >= HEIGHT)
     {
-        mlx_destroy_image(prog.mlx_ptr, img);
+        mlx_destroy_image(prog.mlx_ptr, img->img);
         img->img = NULL;
         return ;
     }

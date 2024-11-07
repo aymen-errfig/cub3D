@@ -6,7 +6,7 @@
 /*   By: aerrfig <aerrfig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 12:07:19 by aerrfig           #+#    #+#             */
-/*   Updated: 2024/11/07 12:18:33 by aerrfig          ###   ########.fr       */
+/*   Updated: 2024/11/07 16:24:15 by aerrfig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,13 +68,13 @@ void	check_assets(char *line, t_assets *data)
 	if (!ft_strncmp(line, "\n", 1))
 		data->err = data->err;
 	else if (!ft_strncmp(line, "WE ", 3))
-		data->we = ft_remspace(line + 2);
+		data->we = ft_strdup(ft_remspace(line + 2));
 	else if (!ft_strncmp(line, "NO ", 3))
-		data->no = ft_remspace(line + 2);
+		data->no = ft_strdup(ft_remspace(line + 2));
 	else if (!ft_strncmp(line, "EA ", 3))
-		data->ea = ft_remspace(line + 2);
+		data->ea = ft_strdup(ft_remspace(line + 2));
 	else if (!ft_strncmp(line, "SO ", 3))
-		data->so = ft_remspace(line + 2);
+		data->so = ft_strdup(ft_remspace(line + 2));
 	else if (!ft_strncmp(line, "C ", 2))
 		data->cell_c = rgb_parsing(line + 1);
 	else if (!ft_strncmp(line, "F ", 2))

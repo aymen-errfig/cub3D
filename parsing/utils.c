@@ -40,7 +40,7 @@ char	*ft_remspace(char *line)
 
 	if (!line)
 		return (0);
-	res = ft_strdup(line);
+	res = line;
 	while (*res == ' ' || *res == '\r' || *res == '\t')
 		res++;
 	return (res);

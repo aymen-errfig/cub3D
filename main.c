@@ -6,7 +6,7 @@
 /*   By: aerrfig <aerrfig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 14:04:09 by aoukouho          #+#    #+#             */
-/*   Updated: 2024/11/07 14:49:36 by aerrfig          ###   ########.fr       */
+/*   Updated: 2024/11/07 16:16:59 by aerrfig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,14 @@ void	f()
 	system("leaks cub3d");
 }
 
+void	clean_assets(t_cub3d *d)
+{
+	free(d->assets.ea);
+	free(d->assets.no);
+	free(d->assets.we);
+	free(d->assets.so);
+}
+
 int	main(int argc, char *argv[])
 {
 	t_cub3d	prog;
@@ -38,7 +46,7 @@ int	main(int argc, char *argv[])
 			&prog.game_img.bits_per_pixel, &prog.game_img.line_length,
 			&prog.game_img.endian);
 	if(load_texture(&prog))
-		return (1);
+		return (clean_assets(&prog), 0);
 	mlx_put_image_to_window(prog.mlx_ptr, prog.mlx_win, prog.img_data.img, 0, 0);
 	mlx_mouse_hide();
 	mlx_hook(prog.mlx_win, 6, 1L << 6, mouse_handler, &prog);
