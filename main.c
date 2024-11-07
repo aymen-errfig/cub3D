@@ -6,7 +6,7 @@
 /*   By: aerrfig <aerrfig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 14:04:09 by aoukouho          #+#    #+#             */
-/*   Updated: 2024/11/06 19:13:00 by aerrfig          ###   ########.fr       */
+/*   Updated: 2024/11/07 14:49:36 by aerrfig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ int	main(int argc, char *argv[])
 	prog.game_img.addr = (int *)mlx_get_data_addr(prog.game_img.img,
 			&prog.game_img.bits_per_pixel, &prog.game_img.line_length,
 			&prog.game_img.endian);
-	load_texture(&prog);
+	if(load_texture(&prog))
+		return (1);
 	mlx_put_image_to_window(prog.mlx_ptr, prog.mlx_win, prog.img_data.img, 0, 0);
 	mlx_mouse_hide();
 	mlx_hook(prog.mlx_win, 6, 1L << 6, mouse_handler, &prog);

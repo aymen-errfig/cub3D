@@ -6,7 +6,7 @@
 /*   By: aerrfig <aerrfig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 16:49:25 by aoukouho          #+#    #+#             */
-/*   Updated: 2024/11/06 18:47:28 by aerrfig          ###   ########.fr       */
+/*   Updated: 2024/11/07 14:52:27 by aerrfig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,7 @@ void	clear_assets(t_cub3d *prog)
 }
 
 void	clear_resource(t_cub3d *prog, int counter)
-{
-	//if (counter >= 0)
-		
+{		
 	if (counter >= 1)
 		mlx_destroy_image(prog->mlx_ptr, prog->img_data.img);
 	if (counter >= 2)

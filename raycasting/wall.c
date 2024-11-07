@@ -6,7 +6,7 @@
 /*   By: aerrfig <aerrfig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 17:27:06 by aoukouho          #+#    #+#             */
-/*   Updated: 2024/11/05 16:11:02 by aerrfig          ###   ########.fr       */
+/*   Updated: 2024/11/07 12:04:18 by aerrfig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ void	draw_wall(t_ray *ray, double wheight, t_vec wborder, t_vec *pixel)
 	double	ycord;
 	t_cub3d	*prog;
 
+	if (ray->is_door == 2)
+		return ;
 	prog = getData(NULL);
 	texture = calculate_texture(prog, ray, wheight);
 	ycord = (wborder.x - (HEIGHT / 2) + (wheight / 2)) * texture.y;

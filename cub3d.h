@@ -6,7 +6,7 @@
 /*   By: aerrfig <aerrfig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 15:36:25 by aoukouho          #+#    #+#             */
-/*   Updated: 2024/11/06 17:52:19 by aerrfig          ###   ########.fr       */
+/*   Updated: 2024/11/07 14:15:18 by aerrfig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,8 @@ typedef struct s_ray
 	int			is_door_v;
 	t_vec_i		door_pos;
 	int			see_beyond;
+	int			o_door;
+	t_vec_i		o_door_pos;
 }				t_ray;
 
 typedef struct s_assets

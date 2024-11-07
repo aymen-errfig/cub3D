@@ -6,7 +6,7 @@
 /*   By: aerrfig <aerrfig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 18:33:15 by aoukouho          #+#    #+#             */
-/*   Updated: 2024/11/05 18:01:45 by aerrfig          ###   ########.fr       */
+/*   Updated: 2024/11/07 14:12:14 by aerrfig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ static int	check_h_wall_hit(t_cub3d prog, t_ray *ray, t_vec *h_intersection)
 		}
 		return (1);
 	}
+	else if (what == 'O')
+		ray->o_door = 1;
 	return (0);
 }
 
