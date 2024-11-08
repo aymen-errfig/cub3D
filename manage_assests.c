@@ -20,13 +20,6 @@ void	load_image(t_cub3d prog, t_data *img, char *path, int load_attribute)
 		return ;
 	if (img->width == 0)
 		return ;
-	printf("size of image %s is %d %d\n", path, img->width, img->height);
-	if (img->width >= WIDTH ||  img->height >= HEIGHT)
-    {
-        mlx_destroy_image(prog.mlx_ptr, img->img);
-        img->img = NULL;
-        return ;
-    }
 	if (load_attribute == 1)
 		img->addr = (int *)mlx_get_data_addr(img->img, &img->bits_per_pixel,
 				&img->line_length, &img->endian);
@@ -34,7 +27,7 @@ void	load_image(t_cub3d prog, t_data *img, char *path, int load_attribute)
 
 int	load_texture(t_cub3d	*prog)
 {
-	load_image(*prog, &prog->wall_img, "assets/wall.xpm", 1);
+	load_image(*prog, &prog->wall_img, "assets/wall_nn.xpm", 1);
 	if (prog->wall_img.img == NULL)
 		return (clear_resource(prog, 2), 1);
 	load_image(*prog, &prog->gun_img, "assets/gun1.xpm", 0);

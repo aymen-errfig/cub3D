@@ -25,7 +25,7 @@ t_vec	calculate_texture(t_cub3d *prog, t_ray *ray, double wheight)
 	else
 		texture.x = fmod((ray->ray_pos.x * (img.width / GRID_SIZE)), img.width);
 	texture.x -= (prog->anim * 3) * (ray->is_door);
-	texture.y = (double)img.width / wheight;
+	texture.y = (double)img.height / wheight;
 	return (texture);
 }
 
