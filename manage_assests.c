@@ -6,7 +6,7 @@
 /*   By: aerrfig <aerrfig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 20:06:14 by aoukouho          #+#    #+#             */
-/*   Updated: 2024/11/07 16:09:43 by aerrfig          ###   ########.fr       */
+/*   Updated: 2024/11/08 15:49:18 by aerrfig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	load_image(t_cub3d prog, t_data *img, char *path, int load_attribute)
 
 int	load_texture(t_cub3d	*prog)
 {
-	load_image(*prog, &prog->wall_img, "assets/wall_nn.xpm", 1);
+	load_image(*prog, &prog->wall_img, "assets/d.xpm", 1);
 	if (prog->wall_img.img == NULL)
 		return (clear_resource(prog, 2), 1);
 	load_image(*prog, &prog->gun_img, "assets/gun1.xpm", 0);
