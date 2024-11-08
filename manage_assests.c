@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   manage_assests.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aerrfig <aerrfig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aoukouho <aoukouho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 20:06:14 by aoukouho          #+#    #+#             */
-/*   Updated: 2024/11/08 15:49:18 by aerrfig          ###   ########.fr       */
+/*   Updated: 2024/11/08 15:56:43 by aoukouho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ void	load_image(t_cub3d prog, t_data *img, char *path, int load_attribute)
 
 int	load_texture(t_cub3d	*prog)
 {
-	load_image(*prog, &prog->wall_img, "assets/d.xpm", 1);
-	if (prog->wall_img.img == NULL)
+	load_image(*prog, &prog->wall_n_img, "assets/d.xpn", 1);
+	if (prog->wall_n_img.img == NULL)
 		return (clear_resource(prog, 2), 1);
 	load_image(*prog, &prog->gun_img, "assets/gun1.xpm", 0);
 	if (prog->gun_img.img == NULL)
@@ -40,11 +40,4 @@ int	load_texture(t_cub3d	*prog)
 	if (prog->door_img.img == NULL)
 		return (clear_resource(prog, 5), 1);
 	return (0);
-}
-
-void	destroy_window(t_cub3d *prog)
-{
-	mlx_destroy_image(prog->mlx_ptr, prog->img_data.img);
-	mlx_destroy_window(prog->mlx_ptr, prog->mlx_win);
-	exit(0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aerrfig <aerrfig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aoukouho <aoukouho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 15:36:25 by aoukouho          #+#    #+#             */
-/*   Updated: 2024/11/07 14:15:18 by aerrfig          ###   ########.fr       */
+/*   Updated: 2024/11/08 15:56:43 by aoukouho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,7 +140,10 @@ typedef struct s_cub3d
 	t_data		gun_img;
 	t_data		gun_img2;
 	t_data		black_img;
-	t_data		wall_img;
+	t_data		wall_n_img;
+	t_data		wall_s_img;
+	t_data		wall_w_img;
+	t_data		wall_e_img;
 	t_data		door_img;
 	int			animate_do;
 	char		is_shooting;

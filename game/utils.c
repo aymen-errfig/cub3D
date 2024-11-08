@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aerrfig <aerrfig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aoukouho <aoukouho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 16:49:25 by aoukouho          #+#    #+#             */
-/*   Updated: 2024/11/07 16:15:29 by aerrfig          ###   ########.fr       */
+/*   Updated: 2024/11/08 15:56:43 by aoukouho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	clear_resource(t_cub3d *prog, int counter)
 	if (counter >= 2)
 		mlx_destroy_image(prog->mlx_ptr, prog->game_img.img);
 	if (counter >= 3)
-		mlx_destroy_image(prog->mlx_ptr, prog->wall_img.img);
+		mlx_destroy_image(prog->mlx_ptr, prog->wall_n_img.img);
 	if (counter >= 4)
 		mlx_destroy_image(prog->mlx_ptr, prog->gun_img.img);
 	if (counter >= 5)
