@@ -6,7 +6,7 @@
 /*   By: aerrfig <aerrfig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 14:04:04 by aoukouho          #+#    #+#             */
-/*   Updated: 2024/11/07 14:44:48 by aerrfig          ###   ########.fr       */
+/*   Updated: 2024/11/08 15:59:32 by aerrfig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,17 @@ void	handle_door(t_cub3d *prog, t_ray *ray, t_door_info *door)
 		ray->see_beyond = floor((GRID_SIZE * HEIGHT) / ray->distance)
 			* (door->anim / 100) * prog->animate_do;
 	}
+	if (ray->o_door)
+	{
+		ray->o_door_pos.x = ray->ray_pos.x / GRID_SIZE;
+		ray->o_door_pos.y = ray->ray_pos.y / GRID_SIZE;
+		if (prog->animate_do
+			&& prog->assets.map[ray->o_door_pos.y][ray->o_door_pos.x] == 'O')
+		{
+			prog->assets.map[ray->o_door_pos.y][ray->o_door_pos.x] = 'D';
+			prog->animate_do = 0;
+		}
+	}
 }
 
 void	handle_animate_door(t_cub3d *prog, t_door_info *door)
@@ -97,16 +108,6 @@ void	draw_rays(t_cub3d *prog)
 	{
 		angle = normalize_angle(angle);
 		update_ray_state(&ray, i, angle, *prog);
-		if (ray.o_door)
-		{
-			ray.o_door_pos.x = ray.ray_pos.x / GRID_SIZE;
-			ray.o_door_pos.y = ray.ray_pos.y / GRID_SIZE;
-			if (prog->animate_do && prog->assets.map[ray.o_door_pos.y][ray.o_door_pos.x] == 'O')
-			{
-				prog->assets.map[ray.o_door_pos.y][ray.o_door_pos.x] = 'D';
-				prog->animate_do = 0;
-			}
-		}
 		handle_door(prog, &ray, &door);
 		ray.see_beyond -= (ray.see_beyond > 0);
 		angle += FOV_SCALE / WIDTH;

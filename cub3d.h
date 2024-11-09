@@ -6,7 +6,7 @@
 /*   By: aerrfig <aerrfig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 15:36:25 by aoukouho          #+#    #+#             */
-/*   Updated: 2024/11/07 14:15:18 by aerrfig          ###   ########.fr       */
+/*   Updated: 2024/11/08 16:02:28 by aerrfig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,18 +140,21 @@ typedef struct s_cub3d
 	t_data		gun_img;
 	t_data		gun_img2;
 	t_data		black_img;
-	t_data		wall_img;
+	t_data		wall_n_img;
+	t_data		wall_s_img;
+	t_data		wall_w_img;
+	t_data		wall_e_img;
 	t_data		door_img;
 	int			animate_do;
 	char		is_shooting;
 	int			anim;
-}				t_cub3d;
+} t_cub3d;
 
 typedef struct s_door_info
 {
-    int         seen_door;
-    double      anim;
-    t_vec_i     door_pos;
+	int         seen_door;
+	double      anim;
+	t_vec_i     door_pos;
 }               t_door_info;
 
 t_cub3d			*getData(t_cub3d *tosave);
@@ -189,16 +192,16 @@ int				ft_strncmp(char *s1, char *s2, int n);
 char			*ft_remspace(char *line);
 int				fill_map(t_assets *data, int fd1, int fd2);
 void			get_map_size(t_assets *data, int fd1);
-int	load_texture(t_cub3d	*prog);
-void	load_image(t_cub3d prog, t_data *img, char *path, int load_attribute);
-void	destroy_window(t_cub3d *prog);
-double	degree_to_rad(double angle);
-int	load_map(t_cub3d *prog, int argc, char *argv[]);
-int	init_game(t_cub3d *prog);
-void	exit_failure();
-void	clear_resource(t_cub3d *prog, int counter);
-double	calculate_distance(t_vec v1, t_vec v2);
-t_vec	h_intersection(t_cub3d prog, double angle, t_ray *ray);
-t_vec	v_intersection(t_cub3d prog, double angle, t_ray *ray);
+int				load_texture(t_cub3d	*prog);
+void			load_image(t_cub3d prog, t_data *img, char *path, int load_attribute);
+void			destroy_window(t_cub3d *prog);
+double			degree_to_rad(double angle);
+int				load_map(t_cub3d *prog, int argc, char *argv[]);
+int				init_game(t_cub3d *prog);
+void			exit_failure();
+void			clear_resource(t_cub3d *prog, int counter);
+double			calculate_distance(t_vec v1, t_vec v2);
+t_vec			h_intersection(t_cub3d prog, double angle, t_ray *ray);
+t_vec			v_intersection(t_cub3d prog, double angle, t_ray *ray);
 
 #endif
