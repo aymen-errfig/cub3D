@@ -14,9 +14,12 @@
 
 void	draw_cieling(t_data img, double wall_start, t_vec *pixel)
 {
+	t_cub3d	*prog;
+
+	prog = getData(NULL);
 	while (pixel->y < wall_start)
 	{
-		my_mlx_pixel_put(&img, pixel->x, pixel->y, 0x87CEEB);
+		my_mlx_pixel_put(&img, pixel->x, pixel->y, prog->assets.cell_c);
 		(pixel->y++);
 	}
 }
@@ -45,7 +48,7 @@ void	draw_floor(t_cub3d prog, t_vec *pixel)
 {
 	while (pixel->y < HEIGHT)
 	{
-		my_mlx_pixel_put(&prog.game_img, pixel->x, pixel->y, 0x136d15);
+		my_mlx_pixel_put(&prog.game_img, pixel->x, pixel->y, prog.assets.floor_c);
 		pixel->y++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: aerrfig <aerrfig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 15:36:25 by aoukouho          #+#    #+#             */
-/*   Updated: 2024/11/08 16:02:28 by aerrfig          ###   ########.fr       */
+/*   Updated: 2024/11/09 15:04:08 by aerrfig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@
 # define S 1
 # define W 2
 # define E 3
+
+# define ALLOC_ERROR "Cannot find memory to allocate"
 
 # define GRID_SIZE 16
 # define FOV_SCALE (60 * (M_PI / 180))
@@ -144,6 +146,10 @@ typedef struct s_cub3d
 	t_data		wall_s_img;
 	t_data		wall_w_img;
 	t_data		wall_e_img;
+	t_data		wall_n_img;
+	t_data		wall_s_img;
+	t_data		wall_w_img;
+	t_data		wall_e_img;
 	t_data		door_img;
 	int			animate_do;
 	char		is_shooting;
@@ -203,5 +209,6 @@ void			clear_resource(t_cub3d *prog, int counter);
 double			calculate_distance(t_vec v1, t_vec v2);
 t_vec			h_intersection(t_cub3d prog, double angle, t_ray *ray);
 t_vec			v_intersection(t_cub3d prog, double angle, t_ray *ray);
+void	ft_error(char *s);
 
 #endif

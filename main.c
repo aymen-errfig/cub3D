@@ -46,7 +46,7 @@ int	main(int argc, char *argv[])
 			&prog.game_img.bits_per_pixel, &prog.game_img.line_length,
 			&prog.game_img.endian);
 	if(load_texture(&prog))
-		return (clean_assets(&prog), 0);
+		return (1);
 	mlx_put_image_to_window(prog.mlx_ptr, prog.mlx_win, prog.img_data.img, 0, 0);
 	mlx_mouse_hide();
 	mlx_hook(prog.mlx_win, 6, 1L << 6, mouse_handler, &prog);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   manage_assests.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aerrfig <aerrfig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aoukouho <aoukouho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 20:06:14 by aoukouho          #+#    #+#             */
-/*   Updated: 2024/11/08 15:49:18 by aerrfig          ###   ########.fr       */
+/*   Updated: 2024/11/08 15:56:43 by aoukouho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,24 +27,26 @@ void	load_image(t_cub3d prog, t_data *img, char *path, int load_attribute)
 
 int	load_texture(t_cub3d	*prog)
 {
-	load_image(*prog, &prog->wall_img, "assets/d.xpm", 1);
-	if (prog->wall_img.img == NULL)
+	load_image(*prog, &prog->wall_n_img, prog->assets.no, 1);
+	if (prog->wall_n_img.img == NULL)
 		return (clear_resource(prog, 2), 1);
+	load_image(*prog, &prog->wall_e_img, "./assets/wall3.xpm", 1);
+	if (prog->wall_e_img.img == NULL)
+		return (clear_resource(prog, 3), 1);
+	load_image(*prog, &prog->wall_s_img, "./assets/wall3.xpm", 1);
+	if (prog->wall_s_img.img == NULL)
+		return (clear_resource(prog, 4), 1);
+	load_image(*prog, &prog->wall_w_img, "./assets/wall3.xpm", 1);
+	if (prog->wall_w_img.img == NULL)
+		return (clear_resource(prog, 5), 1);
 	load_image(*prog, &prog->gun_img, "assets/gun1.xpm", 0);
 	if (prog->gun_img.img == NULL)
-		return (clear_resource(prog, 3), 1);
+		return (clear_resource(prog, 6), 1);
 	load_image(*prog, &prog->gun_img2, "assets/gun2.xpm", 0);
 	if (prog->gun_img2.img == NULL)
-		return (clear_resource(prog, 4), 1);
+		return (clear_resource(prog, 7), 1);
 	load_image(*prog, &prog->door_img, "assets/door.xpm", 1);
 	if (prog->door_img.img == NULL)
-		return (clear_resource(prog, 5), 1);
+		return (clear_resource(prog, 8), 1);
 	return (0);
-}
-
-void	destroy_window(t_cub3d *prog)
-{
-	mlx_destroy_image(prog->mlx_ptr, prog->img_data.img);
-	mlx_destroy_window(prog->mlx_ptr, prog->mlx_win);
-	exit(0);
 }
