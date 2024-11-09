@@ -6,7 +6,7 @@
 /*   By: aerrfig <aerrfig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 14:04:13 by aoukouho          #+#    #+#             */
-/*   Updated: 2024/11/02 14:57:15 by aerrfig          ###   ########.fr       */
+/*   Updated: 2024/11/09 17:55:53 by aerrfig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ t_player	player_init(t_cub3d *prog)
 int	move_player(t_cub3d *prog)
 {
 	static int	time = 0;
+	static int	time2 = 0;
+	static int	sign = 1;
 
 	mlx_clear_window(prog->mlx_ptr, prog->mlx_win);
 	draw_minimap(prog);
@@ -38,6 +40,13 @@ int	move_player(t_cub3d *prog)
 		0);
 	mlx_put_image_to_window(prog->mlx_ptr, prog->mlx_win, prog->img_data.img, 0,
 		0);
+	time2 += 1;
+	if (time2 == 420)
+	{
+		time2 = 0;
+		sign = -sign;
+	}
+	prog->assets.cell_c += (sign * (time2 / 250));
 	time += prog->is_shooting;
 	if (time == 10)
 	{

@@ -6,7 +6,7 @@
 /*   By: aerrfig <aerrfig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 15:56:02 by aerrfig           #+#    #+#             */
-/*   Updated: 2024/11/08 15:56:03 by aerrfig          ###   ########.fr       */
+/*   Updated: 2024/11/09 15:05:51 by aerrfig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ char	*ft_remspace(char *line)
 	res = line;
 	while (*res == ' ' || *res == '\r' || *res == '\t')
 		res++;
+	if (res[ft_strlen(res) - 1] == '\n')
+		res[ft_strlen(res) - 1] = 0;
 	return (res);
 }
 

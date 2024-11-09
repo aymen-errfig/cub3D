@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aoukouho <aoukouho@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aerrfig <aerrfig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 16:49:25 by aoukouho          #+#    #+#             */
-/*   Updated: 2024/11/08 15:56:43 by aoukouho         ###   ########.fr       */
+/*   Updated: 2024/11/09 18:05:49 by aerrfig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,4 +62,8 @@ void	clear_resource(t_cub3d *prog, int counter)
 		mlx_destroy_image(prog->mlx_ptr, prog->door_img.img);
 	mlx_destroy_window(prog->mlx_ptr, prog->mlx_win);
 	clear_assets(prog);
+	free(prog->assets.ea);
+	free(prog->assets.no);
+	free(prog->assets.we);
+	free(prog->assets.so);
 }

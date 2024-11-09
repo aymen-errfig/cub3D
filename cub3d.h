@@ -6,7 +6,7 @@
 /*   By: aerrfig <aerrfig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 15:36:25 by aoukouho          #+#    #+#             */
-/*   Updated: 2024/11/09 15:04:08 by aerrfig          ###   ########.fr       */
+/*   Updated: 2024/11/09 15:06:13 by aerrfig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,10 +142,6 @@ typedef struct s_cub3d
 	t_data		gun_img;
 	t_data		gun_img2;
 	t_data		black_img;
-	t_data		wall_n_img;
-	t_data		wall_s_img;
-	t_data		wall_w_img;
-	t_data		wall_e_img;
 	t_data		wall_n_img;
 	t_data		wall_s_img;
 	t_data		wall_w_img;

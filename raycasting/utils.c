@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aoukouho <aoukouho@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aerrfig <aerrfig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 14:56:11 by aoukouho          #+#    #+#             */
-/*   Updated: 2024/11/08 15:56:43 by aoukouho         ###   ########.fr       */
+/*   Updated: 2024/11/09 15:15:57 by aerrfig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_data	get_wall_texture(t_cub3d *prog, t_ray *ray)
 {
-	if (ray->is_door_v)
+	if (ray->is_vertical)
 	{
 		if (ray->is_ray_left)
 			return (prog->wall_e_img);

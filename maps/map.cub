@@ -1,14 +1,10 @@
-NO ./assets/wall3.xpm
+NO ./assets/d.xpm
 SO ./assets/wall3.xpm
-WE ./assets/wall3.xpm
+WE ./assets/ddd.xpm
+EA ./assets/dddds.xpm
 
-EA ./assets/wall3.xpm
-
-F 220,100,0
-C 100      ,   10, 255
-
-
-
+F 8, 41, 0
+C 0, 31, 82
 
 11111111111111111111111111
 10000000001100000000000011
