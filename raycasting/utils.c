@@ -12,14 +12,27 @@
 
 #include "../cub3d.h"
 
+t_data	get_wall_texture(t_cub3d *prog, t_ray *ray)
+{
+	if (ray->is_door_v)
+	{
+		if (ray->is_ray_left)
+			return (prog->wall_e_img);
+		return (prog->wall_w_img);
+	}
+	if(ray->is_ray_down)
+		return (prog->wall_s_img);
+	return (prog->wall_n_img);
+}
+
 t_vec	calculate_texture(t_cub3d *prog, t_ray *ray, double wheight)
 {
 	t_vec	texture;
 	t_data	img;
 
-	img = prog->wall_n_img;
-	if (ray->is_door)
-		img = prog->door_img;
+	img = prog->door_img;
+	if (!ray->is_door)
+		img = get_wall_texture(prog, ray);
 	if (ray->is_vertical)
 		texture.x = fmod((ray->ray_pos.y * (img.width / GRID_SIZE)), img.width);
 	else
@@ -34,7 +47,9 @@ int	get_pixel_color(t_cub3d *prog, t_vec texture, double ycord, t_ray ray)
 	int		color;
 	t_data	img;
 
-	img = prog->wall_n_img;
+	img = prog->door_img;
+	if (!ray.is_door)
+		img = get_wall_texture(prog, &ray);
 	if (ray.is_door)
 		img = prog->door_img;
 	color = img.addr[(int)ycord * img.width + (int)texture.x];

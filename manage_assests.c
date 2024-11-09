@@ -27,17 +27,26 @@ void	load_image(t_cub3d prog, t_data *img, char *path, int load_attribute)
 
 int	load_texture(t_cub3d	*prog)
 {
-	load_image(*prog, &prog->wall_n_img, "assets/d.xpn", 1);
+	load_image(*prog, &prog->wall_n_img, "assets/wall3.xpm", 1);
 	if (prog->wall_n_img.img == NULL)
 		return (clear_resource(prog, 2), 1);
+	load_image(*prog, &prog->wall_e_img, "assets/wall3.xpm", 1);
+	if (prog->wall_e_img.img == NULL)
+		return (clear_resource(prog, 3), 1);
+	load_image(*prog, &prog->wall_s_img, "assets/wall3.xpm", 1);
+	if (prog->wall_s_img.img == NULL)
+		return (clear_resource(prog, 4), 1);
+	load_image(*prog, &prog->wall_w_img, "assets/wall3.xpm", 1);
+	if (prog->wall_w_img.img == NULL)
+		return (clear_resource(prog, 5), 1);
 	load_image(*prog, &prog->gun_img, "assets/gun1.xpm", 0);
 	if (prog->gun_img.img == NULL)
-		return (clear_resource(prog, 3), 1);
+		return (clear_resource(prog, 6), 1);
 	load_image(*prog, &prog->gun_img2, "assets/gun2.xpm", 0);
 	if (prog->gun_img2.img == NULL)
-		return (clear_resource(prog, 4), 1);
+		return (clear_resource(prog, 7), 1);
 	load_image(*prog, &prog->door_img, "assets/door.xpm", 1);
 	if (prog->door_img.img == NULL)
-		return (clear_resource(prog, 5), 1);
+		return (clear_resource(prog, 8), 1);
 	return (0);
 }

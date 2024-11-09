@@ -12,9 +12,18 @@
 
 #include "cub3d.h"
 
+void	ft_error(char *s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+		write(2, &s[i++], 1);
+}
+
 void	exit_failure(void)
 {
-	write(2, "no memory was found\n", 19);
+	ft_error( "no memory was found\n");
 	exit(1);
 }
 
@@ -40,10 +49,16 @@ void	clear_resource(t_cub3d *prog, int counter)
 	if (counter >= 3)
 		mlx_destroy_image(prog->mlx_ptr, prog->wall_n_img.img);
 	if (counter >= 4)
-		mlx_destroy_image(prog->mlx_ptr, prog->gun_img.img);
+		mlx_destroy_image(prog->mlx_ptr, prog->wall_e_img.img);
 	if (counter >= 5)
-		mlx_destroy_image(prog->mlx_ptr, prog->gun_img2.img);
+		mlx_destroy_image(prog->mlx_ptr, prog->wall_s_img.img);
 	if (counter >= 6)
+		mlx_destroy_image(prog->mlx_ptr, prog->wall_w_img.img);
+	if (counter >= 7)
+		mlx_destroy_image(prog->mlx_ptr, prog->gun_img.img);
+	if (counter >= 8)
+		mlx_destroy_image(prog->mlx_ptr, prog->gun_img2.img);
+	if (counter >= 9)
 		mlx_destroy_image(prog->mlx_ptr, prog->door_img.img);
 	mlx_destroy_window(prog->mlx_ptr, prog->mlx_win);
 	clear_assets(prog);

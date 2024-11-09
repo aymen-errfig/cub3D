@@ -26,6 +26,8 @@
 # define W 2
 # define E 3
 
+# define ALLOC_ERROR "Cannot find memory to allocate"
+
 # define GRID_SIZE 16
 # define FOV_SCALE (60 * (M_PI / 180))
 
@@ -203,5 +205,6 @@ void	clear_resource(t_cub3d *prog, int counter);
 double	calculate_distance(t_vec v1, t_vec v2);
 t_vec	h_intersection(t_cub3d prog, double angle, t_ray *ray);
 t_vec	v_intersection(t_cub3d prog, double angle, t_ray *ray);
+void	ft_error(char *s);
 
 #endif
