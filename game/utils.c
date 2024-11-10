@@ -42,6 +42,7 @@ void	clear_assets(t_cub3d *prog)
 
 void	clear_resource(t_cub3d *prog, int counter)
 {
+	mlx_destroy_window(prog->mlx_ptr, prog->mlx_win);
 	if (counter >= 1)
 		mlx_destroy_image(prog->mlx_ptr, prog->img_data.img);
 	if (counter >= 2)
@@ -60,7 +61,6 @@ void	clear_resource(t_cub3d *prog, int counter)
 		mlx_destroy_image(prog->mlx_ptr, prog->gun_img2.img);
 	if (counter >= 9)
 		mlx_destroy_image(prog->mlx_ptr, prog->door_img.img);
-	mlx_destroy_window(prog->mlx_ptr, prog->mlx_win);
 	clear_assets(prog);
 	free(prog->assets.ea);
 	free(prog->assets.no);

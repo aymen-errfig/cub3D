@@ -23,15 +23,7 @@ int	mouse_controls(int mouse_key, int x, int y, t_cub3d *prog)
 
 void	f()
 {
-	system("leaks cub3d");
-}
-
-void	clean_assets(t_cub3d *d)
-{
-	free(d->assets.ea);
-	free(d->assets.no);
-	free(d->assets.we);
-	free(d->assets.so);
+	system("leaks  cub3d");
 }
 
 int	main(int argc, char *argv[])
@@ -46,7 +38,7 @@ int	main(int argc, char *argv[])
 			&prog.game_img.bits_per_pixel, &prog.game_img.line_length,
 			&prog.game_img.endian);
 	if(load_texture(&prog))
-		return (1);
+		exit(1);
 	mlx_put_image_to_window(prog.mlx_ptr, prog.mlx_win, prog.img_data.img, 0, 0);
 	mlx_mouse_hide();
 	mlx_hook(prog.mlx_win, 6, 1L << 6, mouse_handler, &prog);

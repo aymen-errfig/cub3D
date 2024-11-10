@@ -32,15 +32,10 @@ int	init_game(t_cub3d *prog)
 		return (exit_failure(), 1);
 	prog->mlx_win = mlx_new_window(prog->mlx_ptr, WIDTH, HEIGHT, "Cub3d");
 	if (prog->mlx_win == NULL)
-	{
 		return (exit_failure(), 1);
-	}
 	prog->img_data.img = mlx_new_image(prog->mlx_ptr, MINIPAM_W, MINIPAM_H);
 	if (prog->img_data.img == NULL)
-	{
-		clear_resource(prog, 0);
-		return (exit_failure(), 1);
-	}
+		return (clear_resource(prog, 0), exit_failure(), 1);
 	prog->img_data.addr = (int *)mlx_get_data_addr(prog->img_data.img,
 			&prog->img_data.bits_per_pixel, &prog->img_data.line_length,
 			&prog->img_data.endian);

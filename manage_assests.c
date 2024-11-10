@@ -29,24 +29,24 @@ int	load_texture(t_cub3d	*prog)
 {
 	load_image(*prog, &prog->wall_n_img, prog->assets.no, 1);
 	if (prog->wall_n_img.img == NULL)
-		return (clear_resource(prog, 2), 1);
+		return (ft_error("Error loading texture 1\n"),clear_resource(prog, 2), 1);
 	load_image(*prog, &prog->wall_e_img, prog->assets.ea, 1);
 	if (prog->wall_e_img.img == NULL)
-		return (clear_resource(prog, 3), 1);
+		return (ft_error("Error loading texture 2\n"),clear_resource(prog, 3), 1);
 	load_image(*prog, &prog->wall_s_img, prog->assets.so, 1);
 	if (prog->wall_s_img.img == NULL)
-		return (clear_resource(prog, 4), 1);
+		return (ft_error("Error loading texture 3\n"), clear_resource(prog, 4), 1);
 	load_image(*prog, &prog->wall_w_img, prog->assets.we, 1);
 	if (prog->wall_w_img.img == NULL)
-		return (clear_resource(prog, 5), 1);
+		return (ft_error("Error loading texture 4\n"), clear_resource(prog, 5), 1);
 	load_image(*prog, &prog->gun_img, "assets/gun1.xpm", 0);
 	if (prog->gun_img.img == NULL)
-		return (clear_resource(prog, 6), 1);
+		return (ft_error("Error loading texture 5\n"), clear_resource(prog, 6), 1);
 	load_image(*prog, &prog->gun_img2, "assets/gun2.xpm", 0);
 	if (prog->gun_img2.img == NULL)
-		return (clear_resource(prog, 7), 1);
+		return (ft_error("Error loading texture 6\n"), clear_resource(prog, 7), 1);
 	load_image(*prog, &prog->door_img, "assets/door.xpm", 1);
 	if (prog->door_img.img == NULL)
-		return (clear_resource(prog, 8), 1);
+		return (ft_error("Error loading texture\n"), clear_resource(prog, 8), 1);
 	return (0);
 }
