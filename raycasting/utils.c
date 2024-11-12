@@ -6,7 +6,7 @@
 /*   By: aerrfig <aerrfig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 14:56:11 by aoukouho          #+#    #+#             */
-/*   Updated: 2024/11/09 15:15:57 by aerrfig          ###   ########.fr       */
+/*   Updated: 2024/11/12 15:15:31 by aerrfig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_data	get_wall_texture(t_cub3d *prog, t_ray *ray)
 			return (prog->wall_e_img);
 		return (prog->wall_w_img);
 	}
-	if(ray->is_ray_down)
+	if (ray->is_ray_down)
 		return (prog->wall_s_img);
 	return (prog->wall_n_img);
 }

@@ -6,38 +6,11 @@
 /*   By: aerrfig <aerrfig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 12:07:19 by aerrfig           #+#    #+#             */
-/*   Updated: 2024/11/07 16:24:15 by aerrfig          ###   ########.fr       */
+/*   Updated: 2024/11/12 16:03:25 by aerrfig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
-
-int	check_ext(char *fname)
-{
-	int		len;
-	char	*ext;
-
-	len = ft_strlen(fname);
-	if (len < 4)
-		return (-1);
-	ext = fname + len - 4;
-	if (ft_strncmp(ext, ".cub", 4))
-		return (-1);
-	return (open(fname, O_RDONLY));
-}
-
-void	free2d(char **arr)
-{
-	int	k;
-
-	k = 0;
-	while (arr && arr[k])
-	{
-		free(arr[k]);
-		k++;
-	}
-	free(arr);
-}
 
 int	rgb_parsing(char *line)
 {
@@ -56,7 +29,9 @@ int	rgb_parsing(char *line)
 		r = ft_atoi(code[0]);
 		g = ft_atoi(code[1]);
 		b = ft_atoi(code[2]);
-		if (r.num >= 0 && r.num <= 255 && g.num >= 0 && g.num <= 255
+		if (r.is_flow + g.is_flow + b.is_flow != 0)
+			return (free2d(code), -1);
+		else if (r.num >= 0 && r.num <= 255 && g.num >= 0 && g.num <= 255
 			&& b.num >= 0 && b.num <= 255)
 			color = (r.num << 16) | ((g.num & 0x0ff) << 8) | (b.num & 0x0ff);
 	}
@@ -121,9 +96,7 @@ t_assets	parse_map(char *file_name)
 	fd = check_ext(file_name);
 	fd2 = check_ext(file_name);
 	data.map_start = 0;
-	data = (t_assets){.no = 0, .so = 0, .ea = 0, .we = 0, .err = 0,
-		.floor_c = -1, .cell_c = -1, .map = 0, .map_start = 0,
-		.map_height = 0, .map_width = 0};
+	initialize_assets(&data);
 	if (fd < 0 || fd2 < 0)
 		exit(-1);
 	line = get_next_line(fd);

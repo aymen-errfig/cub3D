@@ -6,7 +6,7 @@
 /*   By: aerrfig <aerrfig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 15:35:47 by aoukouho          #+#    #+#             */
-/*   Updated: 2024/11/05 18:05:31 by aerrfig          ###   ########.fr       */
+/*   Updated: 2024/11/12 15:31:00 by aerrfig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,24 +49,24 @@ static int	is_out_of_bounds(int i, int j, t_cub3d *prog)
 	return (0);
 }
 
-static void	draw_map_pixel(t_cub3d *prog, int i, int j, int i_map, int j_map)
+static void	draw_map_pixel(t_cub3d *prog, int i, int j, t_vec_i size)
 {
 	if (is_out_of_bounds(i, j, prog))
 	{
-		my_mlx_pixel_put(&prog->img_data, j_map, i_map, 0x0000FF);
+		my_mlx_pixel_put(&prog->img_data, size.y, size.x, 0x0000FF);
 	}
 	else
 	{
 		if (prog->map[(int)(i / GRID_SIZE)][(int)(j / GRID_SIZE)] == '1')
-			my_mlx_pixel_put(&prog->img_data, j_map, i_map, 0xFF0000);
+			my_mlx_pixel_put(&prog->img_data, size.y, size.x, 0xFF0000);
 		else if (prog->map[(int)(i / GRID_SIZE)]
 			[(int)(j / GRID_SIZE)] == ' ')
-			my_mlx_pixel_put(&prog->img_data, j_map, i_map, 0x0000FF);
+			my_mlx_pixel_put(&prog->img_data, size.y, size.x, 0x0000FF);
 		else if (prog->map[(int)(i / GRID_SIZE)]
 			[(int)(j / GRID_SIZE)] == 'D')
-			my_mlx_pixel_put(&prog->img_data, j_map, i_map, 0x00FFF0);
+			my_mlx_pixel_put(&prog->img_data, size.y, size.x, 0x00FFF0);
 		else
-			my_mlx_pixel_put(&prog->img_data, j_map, i_map, 0xFFFFFF);
+			my_mlx_pixel_put(&prog->img_data, size.y, size.x, 0xFFFFFF);
 	}
 }
 
@@ -87,7 +87,7 @@ void	draw_minimap(t_cub3d *prog)
 		j = (int)prog->player.player_pos.x - M_MAP_HALF;
 		while (j_map < MINIPAM_H)
 		{
-			draw_map_pixel(prog, i, j, i_map, j_map);
+			draw_map_pixel(prog, i, j, (t_vec_i){i_map, j_map});
 			j++;
 			j_map++;
 		}

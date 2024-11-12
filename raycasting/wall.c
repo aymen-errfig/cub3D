@@ -6,7 +6,7 @@
 /*   By: aerrfig <aerrfig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 17:27:06 by aoukouho          #+#    #+#             */
-/*   Updated: 2024/11/08 15:51:30 by aerrfig          ###   ########.fr       */
+/*   Updated: 2024/11/12 15:32:48 by aerrfig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	draw_cieling(t_data img, double wall_start, t_vec *pixel)
 {
 	t_cub3d	*prog;
 
-	prog = getData(NULL);
+	prog = get_data(NULL);
 	while (pixel->y < wall_start)
 	{
 		my_mlx_pixel_put(&img, pixel->x, pixel->y, prog->assets.cell_c);
@@ -31,7 +31,7 @@ void	draw_wall(t_ray *ray, double wheight, t_vec wborder, t_vec *pixel)
 	double	ycord;
 	t_cub3d	*prog;
 
-	prog = getData(NULL);
+	prog = get_data(NULL);
 	texture = calculate_texture(prog, ray, wheight);
 	ycord = (wborder.x - (HEIGHT / 2) + (wheight / 2)) * texture.y;
 	ycord *= (ycord > 0);
@@ -48,7 +48,8 @@ void	draw_floor(t_cub3d prog, t_vec *pixel)
 {
 	while (pixel->y < HEIGHT)
 	{
-		my_mlx_pixel_put(&prog.game_img, pixel->x, pixel->y, prog.assets.floor_c);
+		my_mlx_pixel_put(&prog.game_img, pixel->x,
+			pixel->y, prog.assets.floor_c);
 		pixel->y++;
 	}
 }

@@ -6,27 +6,11 @@
 /*   By: aerrfig <aerrfig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 15:56:20 by aerrfig           #+#    #+#             */
-/*   Updated: 2024/11/08 15:56:21 by aerrfig          ###   ########.fr       */
+/*   Updated: 2024/11/12 16:03:37 by aerrfig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
-
-char	*gimme_spaces(int n)
-{
-	char	*spcs;
-	int		i;
-
-	i = 0;
-	spcs = malloc(n + 1);
-	while (i < n)
-	{
-		spcs[i] = ' ';
-		i++;
-	}
-	spcs[i] = 0;
-	return (spcs);
-}
 
 int	check_surrounded(t_assets *data, int i, int j)
 {
@@ -102,14 +86,31 @@ int	is_valid_map(t_assets *data)
 	return ((data->player_dir > 0));
 }
 
+void	fill_map2(int fd2, t_assets *data)
+{
+	char	*line;
+	char	*s2;
+	int		y;
+
+	y = 0;
+	line = get_next_line(fd2);
+	while (line && ft_strncmp(line, "\n", 1))
+	{
+		if (ft_strlen(line) > 1 && line[ft_strlen(line) - 1] == '\n')
+			line[ft_strlen(line) - 1] = 0;
+		s2 = gimme_spaces(data->map_width - ft_strlen(line));
+		data->map[y++] = ft_strjoin(line, s2);
+		free(s2);
+		line = get_next_line(fd2);
+	}
+}
+
 int	fill_map(t_assets *data, int fd1, int fd2)
 {
 	int		off;
-	int		y;
 	char	*line;
-	char	*s2;
 
-	1 && (off = -1, y = 0);
+	off = -1;
 	get_map_size(data, fd1);
 	if (data->map_height < 1 || data->map_width < 1)
 		return (-1);
@@ -123,15 +124,6 @@ int	fill_map(t_assets *data, int fd1, int fd2)
 	data->map = malloc(sizeof(char *) * data->map_height);
 	if (!data->map)
 		return (-1);
-	line = get_next_line(fd2);
-	while (line && ft_strncmp(line, "\n", 1))
-	{
-		if (ft_strlen(line) > 1 && line[ft_strlen(line) - 1] == '\n')
-			line[ft_strlen(line) - 1] = 0;
-		s2 = gimme_spaces(data->map_width - ft_strlen(line));
-		data->map[y++] = ft_strjoin(line, s2);
-		free(s2);
-		line = get_next_line(fd2);
-	}
+	fill_map2(fd2, data);
 	return (!is_valid_map(data));
 }

@@ -6,14 +6,14 @@
 /*   By: aerrfig <aerrfig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 14:04:21 by aoukouho          #+#    #+#             */
-/*   Updated: 2024/11/05 16:11:52 by aerrfig          ###   ########.fr       */
+/*   Updated: 2024/11/12 15:31:54 by aerrfig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include <stdio.h>
 
-t_cub3d	*getData(t_cub3d *tosave)
+t_cub3d	*get_data(t_cub3d *tosave)
 {
 	static t_cub3d	*saved;
 

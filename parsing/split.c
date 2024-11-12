@@ -6,7 +6,7 @@
 /*   By: aerrfig <aerrfig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 15:56:11 by aerrfig           #+#    #+#             */
-/*   Updated: 2024/11/08 15:56:15 by aerrfig          ###   ########.fr       */
+/*   Updated: 2024/11/12 16:06:03 by aerrfig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ static void	skip(const char *s, char c, int *l)
 	*l = i;
 }
 
-static void	*free2d(char **arr)
+static void	*free2ds(char **arr)
 {
 	size_t	i;
 
@@ -107,7 +107,7 @@ char	**ft_split(char const *s, char c)
 		{
 			res[j] = get_word(s, c, i++);
 			if (!res[j++])
-				return (free2d(res));
+				return (free2ds(res));
 		}
 		while (s[i] != c && s[i])
 			i++;

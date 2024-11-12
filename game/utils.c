@@ -6,7 +6,7 @@
 /*   By: aerrfig <aerrfig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 16:49:25 by aoukouho          #+#    #+#             */
-/*   Updated: 2024/11/09 18:05:49 by aerrfig          ###   ########.fr       */
+/*   Updated: 2024/11/12 15:23:38 by aerrfig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	ft_error(char *s)
 
 void	exit_failure(void)
 {
-	ft_error( "no memory was found\n");
+	ft_error("no memory was found\n");
 	exit(1);
 }
 

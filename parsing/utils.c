@@ -6,11 +6,25 @@
 /*   By: aerrfig <aerrfig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 15:56:02 by aerrfig           #+#    #+#             */
-/*   Updated: 2024/11/09 15:05:51 by aerrfig          ###   ########.fr       */
+/*   Updated: 2024/11/12 15:05:13 by aerrfig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
+
+int	is_allnum(char *str, int o)
+{
+	int	i;
+
+	i = o;
+	while (str && str[i] && str[i] != '\n')
+	{
+		if (str[i] < '0' || str[i] > '9')
+			return (1);
+		i++;
+	}
+	return (0);
+}
 
 t_num	ft_atoi(const char *str)
 {
@@ -23,7 +37,8 @@ t_num	ft_atoi(const char *str)
 	while ((str[i] == '\t' || str[i] == '\n' || str[i] == '\v' || str[i] == '\f'
 			|| str[i] == '\r' || str[i] == ' ') && str[i])
 		i++;
-	while (str[i] >= '0' && str[i] <= '9')
+	res.is_flow = is_allnum((char *)str, i);
+	while (str[i] >= '0' && str[i] <= '9' && !res.is_flow)
 	{
 		res.num *= 10;
 		res.num += str[i] - '0';

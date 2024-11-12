@@ -3,13 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   load_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aoukouho <aoukouho@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: aerrfig <aerrfig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 16:42:43 by aoukouho          #+#    #+#             */
-/*   Updated: 2024/11/04 20:08:06 by aoukouho         ###   ########.fr       */
+/*   Updated: 2024/11/12 15:33:39 by aerrfig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "../cub3d.h"
+
+#include "cub3d.h"
 
 int	load_map(t_cub3d *prog, int argc, char *argv[])
 {
@@ -18,7 +19,7 @@ int	load_map(t_cub3d *prog, int argc, char *argv[])
 	prog->assets = parse_map(argv[1]);
 	if (prog->assets.err)
 		exit(1);
-	getData(prog);
+	get_data(prog);
 	prog->map = prog->assets.map;
 	prog->map_size = (t_vec_i){prog->assets.map_width, prog->assets.map_height};
 	prog->is_shooting = 0;
