@@ -6,7 +6,7 @@
 /*   By: aerrfig <aerrfig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 15:56:20 by aerrfig           #+#    #+#             */
-/*   Updated: 2024/11/12 16:03:37 by aerrfig          ###   ########.fr       */
+/*   Updated: 2024/11/12 17:50:32 by aerrfig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ int	check_surrounded(t_assets *data, int i, int j)
 	if (data->map[i][j] != '1' && data->map[i][j] != 'N'
 		&& data->map[i][j] != 'W' && data->map[i][j] != 'S'
 		&& data->map[i][j] != 'E' && data->map[i][j] != '0'
-		&& data->map[i][j] != 'D' && data->map[i][j] != ' ')
+		&& data->map[i][j] != ' ')
 		return (1);
 	if (data->map[i][j] == 'N' || data->map[i][j] == 'W'
 		|| data->map[i][j] == 'S' || data->map[i][j] == 'E'
-		|| data->map[i][j] == '0' || data->map[i][j] == 'D')
+		|| data->map[i][j] == '0')
 	{
 		if (data->map[i - 1][j] == ' ' || data->map[i + 1][j] == ' '
 			|| data->map[i][j + 1] == ' ' || data->map[i][j - 1] == ' ')

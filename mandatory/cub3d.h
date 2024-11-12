@@ -6,7 +6,7 @@
 /*   By: aerrfig <aerrfig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 15:36:25 by aoukouho          #+#    #+#             */
-/*   Updated: 2024/11/12 16:04:22 by aerrfig          ###   ########.fr       */
+/*   Updated: 2024/11/12 18:10:42 by aerrfig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,13 +100,6 @@ typedef struct s_ray
 	double		distance;
 	int			is_vertical;
 	t_vec		ray_pos;
-	int			is_door_h;
-	int			is_door;
-	int			is_door_v;
-	t_vec_i		door_pos;
-	int			see_beyond;
-	int			o_door;
-	t_vec_i		o_door_pos;
 }				t_ray;
 
 typedef struct s_assets
@@ -138,30 +131,14 @@ typedef struct s_cub3d
 	void		*mlx_win;
 	t_data		img_data;
 	t_data		game_img;
-	t_data		gun_img;
-	t_data		gun_img2;
-	t_data		black_img;
 	t_data		wall_n_img;
 	t_data		wall_s_img;
 	t_data		wall_w_img;
 	t_data		wall_e_img;
-	t_data		door_img;
-	int			animate_do;
-	char		is_shooting;
-	int			anim;
 } t_cub3d;
-
-typedef struct s_door_info
-{
-	int			seen_door;
-	double		anim;
-	t_vec_i		door_pos;
-} t_door_info;
 
 t_cub3d			*get_data(t_cub3d *tosave);
 void			my_mlx_pixel_put(t_data *data, int x, int y, int color);
-void			draw_rectangle(t_data *data, t_vec v, int color, int size);
-void			draw_minimap(t_cub3d *prog);
 t_player		player_init(t_cub3d *prog);
 int				move_player(t_cub3d *prog);
 int				keyboard_press_handler(int keycode, t_cub3d *prog);

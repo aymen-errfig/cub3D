@@ -6,7 +6,7 @@
 /*   By: aerrfig <aerrfig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 15:35:52 by aoukouho          #+#    #+#             */
-/*   Updated: 2024/11/06 18:26:56 by aerrfig          ###   ########.fr       */
+/*   Updated: 2024/11/12 18:07:50 by aerrfig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@ int	keyboard_press_handler(int keycode, t_cub3d *prog)
 	}
 	ud_direction = 0;
 	rl_direction = 0;
-	prog->animate_do = (keycode == SPACE) + prog->animate_do;
 	ud_direction = ((keycode == UP_KEYCODE) * 1);
 	ud_direction += ((keycode == DOWN_KEYCODE) * -1);
 	rl_direction = ((keycode == RIGHT_KEYCODE) * 1);

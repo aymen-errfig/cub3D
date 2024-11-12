@@ -6,20 +6,11 @@
 /*   By: aerrfig <aerrfig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 14:04:09 by aoukouho          #+#    #+#             */
-/*   Updated: 2024/11/12 15:18:21 by aerrfig          ###   ########.fr       */
+/*   Updated: 2024/11/12 18:39:35 by aerrfig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-int	mouse_controls(int mouse_key, int x, int y, t_cub3d *prog)
-{
-	(void)x;
-	(void)y;
-	if (mouse_key == 1)
-		prog->is_shooting = 1;
-	return (0);
-}
 
 void	f()
 {
@@ -30,7 +21,9 @@ int	main(int argc, char *argv[])
 {
 	t_cub3d	prog;
 
-	atexit(f);
+	// atexit(f);
+	if (argc != 2)
+		return (1);
 	load_map(&prog, argc, argv);
 	init_game(&prog);
 	prog.player = player_init(&prog);
@@ -39,11 +32,8 @@ int	main(int argc, char *argv[])
 			&prog.game_img.endian);
 	if (load_texture(&prog))
 		exit(1);
-	mlx_put_image_to_window(prog.mlx_ptr, prog.mlx_win,
-		prog.img_data.img, 0, 0);
 	mlx_mouse_hide();
 	mlx_hook(prog.mlx_win, 6, 1L << 6, mouse_handler, &prog);
-	mlx_mouse_hook(prog.mlx_win, mouse_controls, &prog);
 	mlx_hook(prog.mlx_win, 2, 1L << 1, keyboard_press_handler, &prog);
 	mlx_loop_hook(prog.mlx_ptr, move_player, &prog);
 	mlx_loop(prog.mlx_ptr);

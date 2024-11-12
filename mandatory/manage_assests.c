@@ -6,7 +6,7 @@
 /*   By: aerrfig <aerrfig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 20:06:14 by aoukouho          #+#    #+#             */
-/*   Updated: 2024/11/12 16:01:27 by aerrfig          ###   ########.fr       */
+/*   Updated: 2024/11/12 18:11:09 by aerrfig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,5 @@ int	load_texture(t_cub3d	*prog)
 	load_image(*prog, &prog->wall_w_img, prog->assets.we, 1);
 	if (prog->wall_w_img.img == NULL)
 		return (ft_error(ASSETS_ERR), clear_resource(prog, 5), 1);
-	load_image(*prog, &prog->gun_img, "assets/gun1.xpm", 0);
-	if (prog->gun_img.img == NULL)
-		return (ft_error(ASSETS_ERR), clear_resource(prog, 6), 1);
-	load_image(*prog, &prog->gun_img2, "assets/gun2.xpm", 0);
-	if (prog->gun_img2.img == NULL)
-		return (ft_error(ASSETS_ERR), clear_resource(prog, 7), 1);
-	load_image(*prog, &prog->door_img, "assets/door.xpm", 1);
-	if (prog->door_img.img == NULL)
-		return (ft_error(ASSETS_ERR), clear_resource(prog, 8), 1);
 	return (0);
 }

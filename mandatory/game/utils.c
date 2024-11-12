@@ -6,11 +6,11 @@
 /*   By: aerrfig <aerrfig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 16:49:25 by aoukouho          #+#    #+#             */
-/*   Updated: 2024/11/12 15:23:38 by aerrfig          ###   ########.fr       */
+/*   Updated: 2024/11/12 18:35:08 by aerrfig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
 void	ft_error(char *s)
 {
@@ -43,8 +43,6 @@ void	clear_assets(t_cub3d *prog)
 void	clear_resource(t_cub3d *prog, int counter)
 {
 	mlx_destroy_window(prog->mlx_ptr, prog->mlx_win);
-	if (counter >= 1)
-		mlx_destroy_image(prog->mlx_ptr, prog->img_data.img);
 	if (counter >= 2)
 		mlx_destroy_image(prog->mlx_ptr, prog->game_img.img);
 	if (counter >= 3)
@@ -55,12 +53,6 @@ void	clear_resource(t_cub3d *prog, int counter)
 		mlx_destroy_image(prog->mlx_ptr, prog->wall_s_img.img);
 	if (counter >= 6)
 		mlx_destroy_image(prog->mlx_ptr, prog->wall_w_img.img);
-	if (counter >= 7)
-		mlx_destroy_image(prog->mlx_ptr, prog->gun_img.img);
-	if (counter >= 8)
-		mlx_destroy_image(prog->mlx_ptr, prog->gun_img2.img);
-	if (counter >= 9)
-		mlx_destroy_image(prog->mlx_ptr, prog->door_img.img);
 	clear_assets(prog);
 	free(prog->assets.ea);
 	free(prog->assets.no);

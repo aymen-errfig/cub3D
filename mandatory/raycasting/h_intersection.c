@@ -6,7 +6,7 @@
 /*   By: aerrfig <aerrfig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 18:33:15 by aoukouho          #+#    #+#             */
-/*   Updated: 2024/11/07 14:12:14 by aerrfig          ###   ########.fr       */
+/*   Updated: 2024/11/12 18:01:48 by aerrfig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,18 +47,8 @@ static int	check_h_wall_hit(t_cub3d prog, t_ray *ray, t_vec *h_intersection)
 
 	what = is_hit_wall(prog, (t_vec){.x = h_intersection->x,
 			.y = h_intersection->y - ray->is_ray_up});
-	if (what == '1' || (what == 'D' && !ray->see_beyond))
-	{
-		if (what == 'D')
-		{
-			ray->is_door_h = 1;
-			ray->door_pos.x = h_intersection->x;
-			ray->door_pos.y = h_intersection->y - ray->is_ray_up;
-		}
+	if (what == '1')
 		return (1);
-	}
-	else if (what == 'O')
-		ray->o_door = 1;
 	return (0);
 }
 
