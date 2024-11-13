@@ -10,8 +10,10 @@ NAME = cub3d
 BONUS_N = cub3d_bonus
 MLX_DIR = minilibx_opengl
 INC = -I $(MLX_DIR) -I .
-HEADERS = mandatory/cub3d.h bonus/cub3d.h $(MLX_DIR)/mlx.h
-LINKERS = -L$(MLX_DIR) -lmlx -framework OpenGL -framework AppKit -g -fsanitize=address
+LIB_HEADER = $(MLX_DIR)/mlx.h
+MAN_HEADER = mandatory/cub3d.h
+BONUS_HEADER = bonus/cub3d.h
+LINKERS = -L$(MLX_DIR) -lmlx -framework OpenGL -framework AppKit
 
 all: $(NAME) $(MLX_DIR)/libmlx.a
 bonus: $(BONUS_N) $(MLX_DIR)/libmlx.a
@@ -38,18 +40,21 @@ $(BONUS_N): $(BONUS_OBJS)
 $(MLX_DIR)/libmlx.a: 
 	make -C $(MLX_DIR)
 
-%.o: %.c $(HEADERS)
+mandatory/%.o: mandatory/%.c $(MAN_HEADER) $(LIB_HEADER)
+	$(CC) $(CFLAGS) $(INC) -c $< -o $@
+
+bonus/%.o: bonus/%.c $(BONUS_HEADER) $(LIB_HEADER)
 	$(CC) $(CFLAGS) $(INC) -c $< -o $@
 
 re: fclean all
 
 clean:
-	@rm -rf $(OBJS) 
+	@rm -rf $(OBJS) $(BONUS_OBJS)
 	make -C $(MLX_DIR) clean
 	@echo "clean the objects files"
 
 fclean: clean
-	@rm -rf $(NAME) 
+	@rm -rf $(NAME) $(BONUS_N)
 	@rm -rf $(MLX_DIR)/libmlx.a 
 	@echo "clean the executable files"
 

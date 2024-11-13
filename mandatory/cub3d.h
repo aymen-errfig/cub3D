@@ -6,7 +6,7 @@
 /*   By: aerrfig <aerrfig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 15:36:25 by aoukouho          #+#    #+#             */
-/*   Updated: 2024/11/12 18:10:42 by aerrfig          ###   ########.fr       */
+/*   Updated: 2024/11/13 11:12:28 by aerrfig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include "mlx.h"
 # include <fcntl.h>
-# include <float.h>
 # include <math.h>
 # include <stdio.h>
 # include <stdlib.h>
@@ -30,14 +29,13 @@
 # define ASSETS_ERR "Error loading texture\n"
 
 # define GRID_SIZE 16
-# define FOV_SCALE (60 * (M_PI / 180))
 
 # define WIDTH 1920
 # define HEIGHT 1080
 
-# define MINIPAM_W (16 * GRID_SIZE)
-# define M_MAP_HALF (8 * GRID_SIZE)
-# define MINIPAM_H (16 * GRID_SIZE)
+# define MINIPAM_W 256
+# define M_MAP_HALF 128
+# define MINIPAM_H 256
 
 # define UP_KEYCODE 13
 # define DOWN_KEYCODE 1
@@ -135,7 +133,8 @@ typedef struct s_cub3d
 	t_data		wall_s_img;
 	t_data		wall_w_img;
 	t_data		wall_e_img;
-} t_cub3d;
+	float		fov_scale;
+}	t_cub3d;
 
 t_cub3d			*get_data(t_cub3d *tosave);
 void			my_mlx_pixel_put(t_data *data, int x, int y, int color);
@@ -167,11 +166,12 @@ char			*ft_remspace(char *line);
 int				fill_map(t_assets *data, int fd1, int fd2);
 void			get_map_size(t_assets *data, int fd1);
 int				load_texture(t_cub3d	*prog);
-void			load_image(t_cub3d prog, t_data *img, char *path, int load_attribute);
+void			load_image(t_cub3d prog, t_data *img, char *path,
+					int load_attribute);
 double			degree_to_rad(double angle);
 int				load_map(t_cub3d *prog, int argc, char *argv[]);
 int				init_game(t_cub3d *prog);
-void			exit_failure();
+void			exit_failure(void);
 void			clear_resource(t_cub3d *prog, int counter);
 double			calculate_distance(t_vec v1, t_vec v2);
 t_vec			h_intersection(t_cub3d prog, double angle, t_ray *ray);

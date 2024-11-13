@@ -6,7 +6,7 @@
 /*   By: aerrfig <aerrfig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 14:04:04 by aoukouho          #+#    #+#             */
-/*   Updated: 2024/11/12 18:12:34 by aerrfig          ###   ########.fr       */
+/*   Updated: 2024/11/13 10:54:45 by aerrfig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,13 @@ void	draw_rays(t_cub3d *prog)
 	t_ray				ray;
 
 	i = -1;
-	angle = prog->player.player_angle - FOV_SCALE / 2;
+	prog->fov_scale = 60 * (M_PI / 180);
+	angle = prog->player.player_angle - prog->fov_scale / 2;
 	while (++i < WIDTH)
 	{
 		angle = normalize_angle(angle);
 		ray.index = i;
 		dda_algo(*prog, angle, &ray);
-		angle += FOV_SCALE / WIDTH;
+		angle += prog->fov_scale / WIDTH;
 	}
 }

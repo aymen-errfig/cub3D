@@ -6,22 +6,16 @@
 /*   By: aerrfig <aerrfig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 14:04:09 by aoukouho          #+#    #+#             */
-/*   Updated: 2024/11/12 18:39:35 by aerrfig          ###   ########.fr       */
+/*   Updated: 2024/11/13 10:46:48 by aerrfig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	f()
-{
-	system("leaks  cub3d");
-}
-
 int	main(int argc, char *argv[])
 {
 	t_cub3d	prog;
 
-	// atexit(f);
 	if (argc != 2)
 		return (1);
 	load_map(&prog, argc, argv);
