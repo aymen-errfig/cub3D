@@ -6,7 +6,7 @@
 /*   By: aerrfig <aerrfig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 12:07:19 by aerrfig           #+#    #+#             */
-/*   Updated: 2024/11/12 16:03:25 by aerrfig          ###   ########.fr       */
+/*   Updated: 2024/11/13 11:28:23 by aerrfig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ t_assets	parse_map(char *file_name)
 	data.map_start = 0;
 	initialize_assets(&data);
 	if (fd < 0 || fd2 < 0)
-		exit(-1);
+		(close(fd), close(fd2), exit(1));
 	line = get_next_line(fd);
 	while (line && !is_all_assets(data))
 	{
@@ -112,5 +112,5 @@ t_assets	parse_map(char *file_name)
 		data.err = 1;
 	else
 		data.err = fill_map(&data, fd, fd2);
-	return (data);
+	return (close(fd), close(fd2), data);
 }

@@ -1,6 +1,0 @@
-.vscode
-*.o
-cub3d
-.DS_Store
-minilibx_opengn/*/*.o
-minilibx_opengn/*/*.a
