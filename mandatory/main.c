@@ -1,0 +1,33 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aerrfig <aerrfig@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/09 14:04:09 by aoukouho          #+#    #+#             */
+/*   Updated: 2024/11/14 14:51:07 by aerrfig          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "cub3d.h"
+
+int	main(int argc, char *argv[])
+{
+	t_cub3d	prog;
+
+	if (argc != 2)
+		return (ft_error(ERR_ARGS), 1);
+	load_map(&prog, argv);
+	init_game(&prog);
+	prog.player = player_init(&prog);
+	prog.game_img.addr = (int *)mlx_get_data_addr(prog.game_img.img,
+			&prog.game_img.bits_per_pixel, &prog.game_img.line_length,
+			&prog.game_img.endian);
+	if (load_texture(&prog))
+		exit(1);
+	mlx_hook(prog.mlx_win, 2, 1L << 1, keyboard_press_handler, &prog);
+	mlx_loop_hook(prog.mlx_ptr, move_player, &prog);
+	mlx_loop(prog.mlx_ptr);
+	return (0);
+}
