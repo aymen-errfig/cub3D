@@ -6,8 +6,8 @@ BONUS_SRCS = bonus/draw.c bonus/game/load_game.c bonus/game/utils.c bonus/hooks_
 
 OBJS = $(SRCS:.c=.o)
 BONUS_OBJS = $(BONUS_SRCS:.c=.o)
-NAME = cub3d
-BONUS_N = cub3d_bonus
+NAME = cub3D
+BONUS_N = cub3D_bonus
 MLX_DIR = minilibx_opengl
 INC = -I $(MLX_DIR) -I .
 LIB_HEADER = $(MLX_DIR)/mlx.h
